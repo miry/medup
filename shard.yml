@@ -1,0 +1,16 @@
+name: medup
+version: 0.1.0
+
+authors:
+  - Michael Nikitochkin <miry.sof@gmail.com>
+
+description: |
+  Download Medium content to local folder
+
+targets:
+  medup:
+    main: src/cli.cr
+
+crystal: 0.31.1
+
+license: lgpl-3.0
