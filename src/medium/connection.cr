@@ -3,9 +3,11 @@ require "./error"
 module Medium
   module Connection
     HOST = "medium.com"
+    DEFAULT_PARAMS = {"format" => "json"}
 
-    def get(endpoint, headers : HTTP::Headers? = nil, body : String? = nil)
-      request "GET", endpoint + "?format=json&limit=100", headers, body
+    def get(endpoint, params : Hash(String, String)? = nil, headers : HTTP::Headers? = nil, body : String? = nil)
+      params = DEFAULT_PARAMS.merge(params || Hash(String, String).new)
+      request "GET", endpoint, params, headers, body
     end
 
     def http : HTTP::Client
@@ -23,7 +25,11 @@ module Medium
       return _http
     end
 
-    def request(method, endpoint, headers : HTTP::Headers? = nil, body : String? = nil)
+    def request(method, endpoint, params : Hash(String, String)? = nil, headers : HTTP::Headers? = nil, body : String? = nil)
+      if params
+        endpoint += "?" + HTTP::Params.encode(params)
+      end
+
       response = http.exec(method.upcase, endpoint, headers, body)
 
       puts "#{method} #{endpoint} => #{response.status_code} #{response.status_message}"

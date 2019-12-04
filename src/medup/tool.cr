@@ -8,7 +8,11 @@ module Medup
 
     def backup
       raise "No user set" if @user.nil?
-      puts @client.posts[0].to_pretty_json
+      posts = @client.posts
+      puts  "Posts count: #{posts.size}"
+
+      post_id = posts[0]["id"].raw.to_s
+      p @client.post(post_id)
     end
 
     def close : Nil

@@ -43,5 +43,5 @@ $ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fd
 ```
 $ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream?limit=100&page=3" | cut -c17- > stream.json
 $ cat stream.json| jq ".payload.references.Post[].title"
- $ cat stream.json| jq ".payload.paging "
+$ cat stream.json| jq ".payload.paging "
 ```
