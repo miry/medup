@@ -1,11 +1,19 @@
 require "./error"
 
 module Medium
-  module Connection
-    HOST = "medium.com"
+  module ConnectionAPI
+    HOST = "api.medium.com"
 
     def get(endpoint, headers : HTTP::Headers? = nil, body : String? = nil)
-      request "GET", endpoint + "?format=json", headers, body
+      request "GET", endpoint, headers, body
+    end
+
+    def post(endpoint, headers : HTTP::Headers? = nil, body : String? = nil)
+      request "POST", endpoint, headers, body
+    end
+
+    def patch(endpoint, headers : HTTP::Headers? = nil, body : String? = nil)
+      request "PATCH", endpoint, headers, body
     end
 
     def http : HTTP::Client
@@ -17,6 +25,7 @@ module Medium
 
       _http.before_request do |request|
         request.headers["Content-Type"] = "application/json"
+        request.headers["Authorization"] = "Bearer #{@token}"
       end
 
       @http = _http
@@ -31,7 +40,7 @@ module Medium
       error = Medium::Error.from_response(response)
       raise error if error
 
-      JSON.parse(response.body[16..])
+      JSON.parse(response.body)
     end
   end
 end

@@ -19,3 +19,7 @@ Sync all content from Medium with local folder via API
 $ curl -H "Authorization: Bearer <token>" https://api.medium.com/v1/me
 {"data":{"id":"number","username":"miry","name":"Michael Nikitochkin","url":"https://medium.com/@miry","imageUrl":"https://cdn-images-1.medium.com/fit/c/400/400/0*KgbjgGnH-csHuB8j."}}
 ```
+1. Check public information not covered by API
+```shell
+$ curl "https://medium.com/@miry?format=json" | cut -c17- && : Remove in the front from response some strange JS code.
+```

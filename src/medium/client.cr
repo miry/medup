@@ -11,7 +11,7 @@ module Medium
     include Medium::Connection
     include Medium::Client::Users
 
-    def initialize(@token : String)
+    def initialize(@token : String, @user : String)
     end
 
     def close
