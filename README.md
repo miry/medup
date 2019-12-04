@@ -23,3 +23,25 @@ $ curl -H "Authorization: Bearer <token>" https://api.medium.com/v1/me
 ```shell
 $ curl "https://medium.com/@miry?format=json" | cut -c17- && : Remove in the front from response some strange JS code.
 ```
+
+Pagination
+```shell
+$ curl "https://medium.com/@miry/latest?format=json&limit=100" | cut -c17- && : Remove in the front from response some strange JS code.
+```
+
+Post info
+```shell
+curl -s -H "Content-Type: application/json" https://medium.com/@miry/c35b40c499e\?format\=json\&limit\=100
+```
+
+Stream:
+```shell
+$ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream" | cut -c17-
+```
+
+
+```
+$ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream?limit=100&page=3" | cut -c17- > stream.json
+$ cat stream.json| jq ".payload.references.Post[].title"
+ $ cat stream.json| jq ".payload.paging "
+```
