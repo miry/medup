@@ -7,8 +7,9 @@ module Medup
 
     user : String?
 
-    def initialize(token : String, @user : String?)
+    def initialize(token : String?, @user : String?, dist : String?)
       @client = Medium::Client.new(token, @user)
+      @dist = (dist || DIST_PATH).as(String)
     end
 
     def backup
@@ -32,15 +33,16 @@ module Medup
     def save(post)
       slug = post["slug"].raw.to_s
       filename = slug + ".json"
-      filepath = File.join(DIST_PATH, filename)
-      unless File.directory?(DIST_PATH)
-        puts "Create directory #{DIST_PATH}"
-        Dir.mkdir(DIST_PATH)
+      filepath = File.join(@dist, filename)
+      unless File.directory?(@dist)
+        puts "Create directory #{@dist}"
+        Dir.mkdir(@dist)
       end
 
-      unless File.directory?(DIST_PATH+"/assets")
-        puts "Create directory #{DIST_PATH}/assets"
-        Dir.mkdir(DIST_PATH+"/assets")
+      assets_dir = File.join(@dist, "/assets")
+      unless File.directory?(assets_dir)
+        puts "Create directory #{assets_dir}"
+        Dir.mkdir(assets_dir)
       end
 
       if File.exists?(filepath)
@@ -62,7 +64,7 @@ module Medup
     end
 
     def download_image(name)
-      filepath = File.join(DIST_PATH, "assets", name)
+      filepath = File.join(@dist, "assets", name)
       return if File.exists?(filepath)
 
       puts "Downlod file to #{filepath}"
@@ -75,7 +77,7 @@ module Medup
     def download_url(href)
       uri = URI.parse href
       name = "#{uri.host}_#{uri.path}".gsub(/[\@\/]+/, "_")
-      filepath = File.join(DIST_PATH, "assets", name)
+      filepath = File.join(@dist_path, "assets", name)
 
       return if File.exists?(filepath)
 

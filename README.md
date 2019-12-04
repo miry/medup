@@ -11,17 +11,20 @@ Sync all content from Medium with local folder via API
 1. Create environment variable `MEDIUM_TOKEN=<token>`
 1. Run sync command:
 ```shell
-$ crystal run src/cli.cr -- -u miry
+$ crystal run src/cli.cr -- -u miry -d posts/miry
+$ crystal run src/cli.cr -- -u pftg -d posts/pftg
 ```
 
 ## Development
 
 ## TODO
 - [ ] Clean code
+- [ ] Standardize logging
 - [ ] Save in Markdown format with correct images
 - [ ] Extract Medium API to a separate shard
 - [ ] Create posts from local Markdown articles
 - [ ] Update a post content from local files
+- [ ] Extract posts from Publishers
 
 ## Play ownself
 
