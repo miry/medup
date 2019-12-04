@@ -5,7 +5,7 @@ module Medium
     HOST = "medium.com"
 
     def get(endpoint, headers : HTTP::Headers? = nil, body : String? = nil)
-      request "GET", endpoint + "?format=json", headers, body
+      request "GET", endpoint + "?format=json&limit=100", headers, body
     end
 
     def http : HTTP::Client
