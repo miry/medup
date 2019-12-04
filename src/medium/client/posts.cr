@@ -4,14 +4,29 @@ module Medium
       def posts
         u = user
         user_id = u["user"]["userId"]
-
-        records = get("/_/api/users/#{user_id}/profile/stream")["payload"]["references"]["Post"]
-
         result = [] of Hash(String, JSON::Any)
-        records.raw.as(Hash).each do |k, post|
-          result << post.raw.as(Hash)
+
+        params : Hash(String, String)? = {"limit" => "100"}
+        while params
+          response = get("/_/api/users/#{user_id}/profile/stream", params: params)
+          records = response["payload"]["references"]["Post"]
+
+          records.raw.as(Hash).each do |k, post|
+            result << post.raw.as(Hash)
+          end
+
+          next_page = response["payload"]["paging"]["next"]?
+          break if next_page.nil?
+          params["page"] = next_page["page"].raw.to_s
+          params["to"] = next_page["to"].raw.to_s
         end
+
         result
+      end
+
+      def post(post_id : String)
+        response = get("/@#{@user}/#{post_id}")
+        response["payload"]["value"]
       end
     end
   end
