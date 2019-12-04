@@ -1,11 +1,14 @@
 module Medup
   class Tool
-    def initialize(token : String)
-      @client = Medium::Client.new(token)
+    user : String?
+
+    def initialize(token : String, @user : String?)
+      @client = Medium::Client.new(token, @user)
     end
 
     def backup
-      puts @client.me
+      raise "No user set" if @user.nil?
+      puts @client.user(@user.not_nil!)
     end
 
     def close : Nil

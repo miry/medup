@@ -5,9 +5,7 @@ module Medium
               when 400..499 then ::Medium::ClientError
               when 500..599 then ::Medium::ServerError
               end
-      if klass
-        klass.new(response)
-      end
+      klass.new(response) if klass
     end
 
     @data : JSON::Any? = nil
@@ -20,26 +18,28 @@ module Medium
       return nil if @response.nil?
 
       message = "#{@response.status_code} #{@response.status_message} "
-      message += "#{response_message} " if response_message
+      message += "#{response_error} " if response_error
 
       message
     end
 
-    def response_message
-      if data
-        data.not_nil!["message"]
-      end
+    def response_error
+      data.not_nil!["error"] if data
     end
 
     private def data
       return @data if @data
 
       if @response.body
-        _data = JSON.parse(@response.body)
+        _data = self.class.json(@response)
         @data = _data
       end
 
       return @data
+    end
+
+    def self.json(response)
+      JSON.parse(response.body[16..])
     end
   end
 
