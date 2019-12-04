@@ -15,6 +15,12 @@ $ crystal run src/cli.cr -- -u miry -d posts/miry
 $ crystal run src/cli.cr -- -u pftg -d posts/pftg
 ```
 
+### Docker
+
+```shell
+$ docker run -v $(pwd)/posts:/posts -it miry/medup -u miry
+```
+
 ## Development
 
 ## TODO
@@ -25,6 +31,7 @@ $ crystal run src/cli.cr -- -u pftg -d posts/pftg
 - [ ] Create posts from local Markdown articles
 - [ ] Update a post content from local files
 - [ ] Extract posts from Publishers
+- [ ] Create Rake task management
 
 ## Play ownself
 

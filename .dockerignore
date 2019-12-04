@@ -1,0 +1,6 @@
+.*
+bin/
+Brewfile
+Dockerfile
+*.md
+LICENSE
