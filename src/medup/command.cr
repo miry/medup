@@ -17,6 +17,10 @@ module Medup
       end
 
       return if exit
+
+      tool = ::Medup::Tool.new(token)
+      tool.backup
+      tool.close
     end
   end
 end
