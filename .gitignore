@@ -1,3 +1,5 @@
 .env
 bin/
 posts/
+build/
+_output/

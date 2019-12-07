@@ -2,7 +2,7 @@ require "./error"
 
 module Medium
   module Connection
-    HOST = "medium.com"
+    HOST           = "medium.com"
     DEFAULT_PARAMS = {"format" => "json"}
 
     def get(endpoint, params : Hash(String, String)? = nil, headers : HTTP::Headers? = nil, body : String? = nil)
