@@ -1,4 +1,3 @@
-
 require "http/client"
 
 module Medup
@@ -15,12 +14,12 @@ module Medup
     def backup
       raise "No user set" if @user.nil?
       posts = @client.posts
-      puts  "Posts count: #{posts.size}"
+      puts "Posts count: #{posts.size}"
 
       posts.each do |post_meta|
         post_id = post_meta["id"].raw.to_s
         post_slug = post_meta["slug"].raw.to_s
-        post  = @client.post(post_id)
+        post = @client.post(post_id)
         save(post)
         save_assets(post)
       end
