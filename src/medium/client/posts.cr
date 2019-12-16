@@ -28,7 +28,7 @@ module Medium
 
       def post(post_id : String)
         response = get("/@#{@user}/#{post_id}")
-        response["payload"]["value"]
+        Post.from_json(response["payload"]["value"].to_json)
       end
     end
   end
