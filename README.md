@@ -65,7 +65,7 @@ crystal run src/cli.cr -- -u miry -d posts/miry
 
 # License
 
-This project is under the MIT license.
+This project is under the LGPL-3.0 license.
 
 # TODO
 - [ ] Installation process
