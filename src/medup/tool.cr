@@ -20,7 +20,8 @@ module Medup
         post_id = post_meta["id"].raw.to_s
         post_slug = post_meta["slug"].raw.to_s
         post = @client.post(post_id)
-        save(post)
+        save(post, "md")
+        save(post, "json")
         save_assets(post)
       end
     end
@@ -29,9 +30,9 @@ module Medup
       @client.close unless @client.nil?
     end
 
-    def save(post)
-      slug = post["slug"].raw.to_s
-      filename = slug + ".json"
+    def save(post, format = "json")
+      slug = post.slug
+      filename = slug + "." + format
       filepath = File.join(@dist, filename)
       unless File.directory?(@dist)
         puts "Create directory #{@dist}"
@@ -49,15 +50,19 @@ module Medup
         File.rename(filepath, filepath + ".old")
       end
       puts "Create file #{filepath}"
-      File.write(filepath, post["content"].to_pretty_json)
+
+      File.write(filepath, post.format(format))
     end
 
     def save_assets(post)
       # puts post.to_pretty_json
-      post["content"]["bodyModel"]["paragraphs"].raw.as(Array).each do |paragraph|
-        case paragraph["type"].raw
+      post.content.bodyModel.paragraphs.each do |paragraph|
+        case paragraph.type
         when 4
-          download_image(paragraph["metadata"]["id"].raw.to_s)
+          metadata = paragraph.metadata
+          if !metadata.nil?
+            download_image(metadata.id)
+          end
         end
       end
     end

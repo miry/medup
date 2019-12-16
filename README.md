@@ -51,6 +51,10 @@ Run dumping with source code
 crystal run src/cli.cr -- -u miry -d posts/miry
 ```
 
+In the result directory, you can find 2 format of files: `.json` and `.md`.
+- *JSON* format is the raw, what *Medium* returns.
+- *Markdown* format is simple implementation of block formated text.
+
 # Contributing
 
 1. Fork it ( https://github.com/miry/medup/fork )
