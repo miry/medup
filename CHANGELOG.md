@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Create Changelog
 
+### Changed
+- Use markdown comments for not implementd elements like IFRAME
+- Add section to Readme to show exported vs original document view
+- Split paragraphs with 2 empty lines
+
 ## [0.1.2] - 2019-12-21
 ### Changed
 - Docker base image is ubuntu bionic
