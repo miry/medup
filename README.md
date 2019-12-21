@@ -118,10 +118,15 @@ $ curl "https://medium.com/@miry/latest?format=json&limit=100" | cut -c17- && : 
 curl -s -H "Content-Type: application/json" https://medium.com/@miry/c35b40c499e\?format\=json\&limit\=100
 ```
 
-4. Stream:
+4. Stream
 ```shell
 $ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream" | cut -c17-
 $ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream?limit=100&page=3" | cut -c17- > stream.json
 $ cat stream.json| jq ".payload.references.Post[].title"
 $ cat stream.json| jq ".payload.paging.next"
+```
+
+5. Recommendations
+```shell
+$ curl -s -H "Content-Type: application/json" https://medium.com/@miry/has-recommended | cut -c17-
 ```
