@@ -34,7 +34,7 @@ describe Medium::Post do
   describe "#to_md" do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.to_md.size.should eq(2109)
+      subject.to_md.size.should eq(2176)
     end
 
     it "renders header" do
@@ -102,13 +102,13 @@ describe Medium::Post do
     it "render iframe" do
       subject = Medium::Post.from_json(post_fixture)
       paragraph = subject.content.bodyModel.paragraphs[12]
-      paragraph.to_md.should eq("???")
+      paragraph.to_md.should eq("<iframe src=\"./assets/ab24f0b378f797307fddc32f10a99685.html\"></iframe>")
     end
 
     it "render code block" do
       subject = Medium::Post.from_json(post_fixture)
-      paragraph = subject.content.bodyModel.paragraphs[12]
-      paragraph.to_md.should eq("???")
+      paragraph = subject.content.bodyModel.paragraphs[15]
+      paragraph.to_md.should contain(%{```\n[terminal 1]})
     end
   end
 end
