@@ -8,6 +8,7 @@ module Medup
 
     def initialize(token : String?, @user : String?, dist : String?)
       @client = Medium::Client.new(token, @user)
+      Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
     end
 
@@ -63,19 +64,21 @@ module Medup
           if !metadata.nil?
             download_image(metadata.id)
           end
+        when 11
+          iframe = paragraph.iframe
+          if !iframe.nil?
+            download_iframe(iframe.mediaResourceId)
+          end
         end
       end
     end
 
-    def download_image(name)
-      filepath = File.join(@dist, "assets", name)
-      return if File.exists?(filepath)
+    def download_image(name : String)
+      download_to_assets("https://miro.medium.com/#{name}", name)
+    end
 
-      puts "Downlod file to #{filepath}"
-
-      HTTP::Client.get("https://miro.medium.com/#{name}") do |response|
-        File.write(filepath, response.body_io)
-      end
+    def download_iframe(name : String)
+      download_to_assets("https://medium.com/media/#{name}", name + ".html")
     end
 
     def download_url(href)
@@ -85,9 +88,20 @@ module Medup
 
       return if File.exists?(filepath)
 
-      puts "Downlod #{href} file to #{filepath}"
+      puts "Download #{href} file to #{filepath}"
 
       HTTP::Client.get(href) do |response|
+        File.write(filepath, response.body_io)
+      end
+    end
+
+    def download_to_assets(src, filename)
+      filepath = File.join(@dist, "assets", filename)
+      return if File.exists?(filepath)
+
+      puts "Download file #{src} to #{filepath}"
+
+      HTTP::Client.get(src) do |response|
         File.write(filepath, response.body_io)
       end
     end

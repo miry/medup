@@ -41,7 +41,14 @@ module Medium
         when 10
           "1. #{@text}"
         when 11
-          "<!-- Embeded content: iframe -->"
+          if @iframe.nil?
+            "<!-- Missing iframe -->"
+          else
+            frame = @iframe.not_nil!
+            "<iframe src=\"./assets/#{frame.mediaResourceId}.html\"></iframe>"
+            # Support Frame mode with inline content. Github does not support it.
+            #"<frame>#{frame.get}</frame>"
+          end
         when 13
           "### #{@text}"
         when 14
@@ -52,9 +59,15 @@ module Medium
       end
 
       class Iframe
+        getter content : String?
+
         JSON.mapping(
           mediaResourceId: String
         )
+
+        def get
+          @content ||= Medium::Client.default.media(mediaResourceId)
+        end
       end
 
       class MixtapeMetadata

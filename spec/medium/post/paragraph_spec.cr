@@ -63,5 +63,10 @@ describe Medium::Post::Paragraph do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 4, "text": "", "layout": 3, "href": "https://asciinema.org/a/5diw0wwk6vbbovnqrk5sh1soy", "markups": [], "metadata":{"id": "1*NVLl4oVmMQtumKL-DVV1rA.png"}}})
       subject.to_md.should eq("[![](./assets/1*NVLl4oVmMQtumKL-DVV1rA.png)](https://asciinema.org/a/5diw0wwk6vbbovnqrk5sh1soy)")
     end
+
+    it "render iframe inline" do
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 11, "text": "", "markups": [], "iframe":{"mediaResourceId": "e7722acf2886364130e03d2c7ad29de7"}}})
+      subject.to_md.should eq(%{<iframe src="./assets/e7722acf2886364130e03d2c7ad29de7.html"></iframe>})
+    end
   end
 end

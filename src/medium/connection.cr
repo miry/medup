@@ -39,5 +39,13 @@ module Medium
 
       JSON.parse(response.body[16..])
     end
+
+    def download(endpoint : String)
+      response = http.exec("GET", endpoint)
+      puts "GET #{endpoint} => #{response.status_code} #{response.status_message}"
+      error = Medium::Error.from_response(response)
+      raise error if error
+      response.body
+    end
   end
 end
