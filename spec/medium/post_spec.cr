@@ -19,14 +19,22 @@ describe Medium::Post do
 
     it "setups content" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.content.bodyModel.paragraphs.size.should eq(15)
+      subject.content.bodyModel.paragraphs.size.should eq(21)
+    end
+  end
+
+  describe "#url" do
+    it "set url" do
+      subject = Medium::Post.from_json(post_fixture)
+      subject.url = "example.com"
+      subject.url.should eq("example.com")
     end
   end
 
   describe "#to_md" do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.to_md.size.should eq(1489)
+      subject.to_md.size.should eq(2109)
     end
 
     it "renders header" do

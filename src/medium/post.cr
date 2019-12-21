@@ -2,6 +2,8 @@ require "./post/*"
 
 module Medium
   class Post
+    property url : String = ""
+
     JSON.mapping(
       title: String,
       slug: String,
@@ -20,7 +22,13 @@ module Medium
     end
 
     def to_md
-      @content.bodyModel.paragraphs.map(&.to_md).join("\n")
+      result = "---\n\
+      url: #{@url}\n\
+      title: #{@title}\n\
+      slug: #{@slug}\n\
+      ---\n\n"
+      result +
+        @content.bodyModel.paragraphs.map(&.to_md).join("\n")
     end
 
     def to_pretty_json
