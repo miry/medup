@@ -5,3 +5,4 @@ Dockerfile
 *.md
 LICENSE
 _output/
+posts/

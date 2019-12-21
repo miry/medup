@@ -7,14 +7,14 @@ RUN shards install
 COPY . /app/
 RUN shards build --production -v
 
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 RUN \
   apt-get update && \
   apt-get install -y \
     ca-certificates \
-    libssl1.0.0 \
+    libssl1.1 \
     libssl-dev \
-    libevent-2.0.5 \
+    libevent-2.1.6 \
     libxml2-dev \
     libyaml-dev \
     libgmp-dev \
