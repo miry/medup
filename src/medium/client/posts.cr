@@ -27,8 +27,11 @@ module Medium
       end
 
       def post(post_id : String)
-        response = get("/@#{@user}/#{post_id}")
-        Post.from_json(response["payload"]["value"].to_json)
+        url = "https://medium.com/@#{@user}/#{post_id}"
+        response = get(url)
+        result = Post.from_json(response["payload"]["value"].to_json)
+        result.url = url
+        result
       end
     end
   end
