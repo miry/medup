@@ -28,7 +28,7 @@ module Medium
       slug: #{@slug}\n\
       ---\n\n"
       result +
-        @content.bodyModel.paragraphs.map(&.to_md).join("\n")
+        @content.bodyModel.paragraphs.map(&.to_md).join("\n\n")
     end
 
     def to_pretty_json
