@@ -55,6 +55,6 @@ end
 namespace :github do
   desc "Create Github release"
   task :release do
-    sh "hub release create v#{version}"
+    sh "hub release create -m 'v#{version}' v#{version}"
   end
 end
