@@ -55,6 +55,12 @@ In the result directory, you can find 2 format of files: `.json` and `.md`.
 - *JSON* format is the raw, what *Medium* returns.
 - *Markdown* format is simple implementation of block formated text.
 
+## Markdown
+
+Example of exported document (Exported Markdown vs Origianl Medium):
+
+![](./img/compare.png)
+
 # Contributing
 
 1. Fork it ( https://github.com/miry/medup/fork )
