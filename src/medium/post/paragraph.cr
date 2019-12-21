@@ -41,7 +41,7 @@ module Medium
         when 10
           "1. #{@text}"
         when 11
-          "Embeded content: iframe"
+          "<!-- Embeded content: iframe -->"
         when 13
           "### #{@text}"
         when 14
