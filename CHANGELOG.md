@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Create Changelog
+- Create Contributing document
 
 ### Changed
 - Use markdown comments for not implementd elements like IFRAME
