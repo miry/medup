@@ -4,3 +4,4 @@ Brewfile
 Dockerfile
 *.md
 LICENSE
+_output/
