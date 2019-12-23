@@ -24,14 +24,13 @@
 
 * Discover all articles from user account available in public
 * Download images used inside article
+* Save posts in markdown format
 
 # Installation
 
 ...
 
 # Getting Started
-
-Start dumping process via command
 
 ```shell
 medup -u <medium user> -d <destination folder>
@@ -71,7 +70,7 @@ Example of exported document (Exported Markdown vs Origianl Medium):
 
 # Contributors
 
-- [miry](https://github.com/miry) Michael Nikitochkin - creator, maintainer
+- [@miry](https://github.com/miry) Michael Nikitochkin - creator, maintainer
 
 # License
 
@@ -81,7 +80,6 @@ This project is under the LGPL-3.0 license.
 - [ ] Installation process
 - [ ] Clean code
 - [ ] Standardize logging
-- [ ] Save in Markdown format with correct images
 - [ ] Extract Medium API to a separate shard
 - [ ] Create posts from local Markdown articles
 - [ ] Update a post content from local files

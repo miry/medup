@@ -55,10 +55,4 @@ module Medium
       id: String
     )
   end
-
-  class ParagraphMarkup
-    JSON.mapping(
-      type: Int64
-    )
-  end
 end
