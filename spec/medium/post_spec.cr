@@ -34,7 +34,7 @@ describe Medium::Post do
   describe "#to_md" do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.to_md.size.should eq(2176)
+      subject.to_md.size.should eq(2553)
     end
 
     it "renders header" do
@@ -46,7 +46,7 @@ describe Medium::Post do
     it "renders blockquotes" do
       subject = Medium::Post.from_json(post_fixture)
       paragraph = subject.content.bodyModel.paragraphs[1]
-      paragraph.to_md.should eq("> TL;DR xxd ./bin/app | vim — and :%!xxd -r > ./bin/new_app")
+      paragraph.to_md.should eq("> TL;DR `xxd ./bin/app | vim —` and `:%!xxd -r > ./bin/new_app`")
     end
 
     it "renders image" do
@@ -59,7 +59,7 @@ describe Medium::Post do
       it "renders content with capital letter" do
         subject = Medium::Post.from_json(post_fixture)
         paragraph = subject.content.bodyModel.paragraphs[3]
-        paragraph.to_md.should contain("**W**hen I was a student")
+        paragraph.to_md.should contain("When I was a student")
       end
 
       it "renders content with links" do
@@ -71,7 +71,7 @@ describe Medium::Post do
       it "renders content with bold text with link" do
         subject = Medium::Post.from_json(post_fixture)
         paragraph = subject.content.bodyModel.paragraphs[7]
-        paragraph.to_md.should contain("I came to: [**xxd**](http://vim.fandom.com/wiki/Hex_dump)")
+        paragraph.to_md.should contain("I came to: [**xxd**](http://vim.wikia.com/wiki/Hex_dump)")
       end
 
       it "renders content with inline code block" do
@@ -93,7 +93,7 @@ describe Medium::Post do
       paragraph.to_md.should eq("1. should be easy to use with Vim (as main my editor for linux machines)")
     end
 
-    it "render split" do
+    pending "render split" do
       subject = Medium::Post.from_json(post_fixture)
       paragraph = subject.content.bodyModel.paragraphs[12]
       paragraph.to_md.should eq("---")

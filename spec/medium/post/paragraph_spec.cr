@@ -68,5 +68,15 @@ describe Medium::Post::Paragraph do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 11, "text": "", "markups": [], "iframe":{"mediaResourceId": "e7722acf2886364130e03d2c7ad29de7"}}})
       subject.to_md.should eq(%{<iframe src="./assets/e7722acf2886364130e03d2c7ad29de7.html"></iframe>})
     end
+
+    it "renders inline code block" do
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 6, "text": "TL;DR xxd ./bin/app | vim — and :%!xxd -r > ./bin/new_app", "markups": [{"type": 10,"start": 6,"end": 27},{"type": 10,"start": 32,"end": 57}]}})
+      subject.to_md.should eq("> TL;DR `xxd ./bin/app | vim —` and `:%!xxd -r > ./bin/new_app`")
+    end
+
+    it "renders bold link" do
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 6, "text": "My xxd in the world.", "markups": [{"type": 3, "start": 3,"end": 6, "href": "http://example.com"},{"type": 1,"start": 3,"end": 6}]}})
+      subject.to_md.should eq("> My [**xxd**](http://example.com) in the world.")
+    end
   end
 end
