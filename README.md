@@ -56,7 +56,7 @@ In the result directory, you can find 2 format of files: `.json` and `.md`.
 
 ## Markdown
 
-Example of exported document (Exported Markdown vs Origianl Medium):
+Example of exported document (Original Medium post vs Exported Markdown):
 
 ![](./img/compare.png)
 
