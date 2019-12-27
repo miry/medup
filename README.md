@@ -76,15 +76,6 @@ Example of exported document (Original Medium post vs Exported Markdown):
 
 This project is under the LGPL-3.0 license.
 
-# TODO
-- [ ] Installation process
-- [ ] Clean code
-- [ ] Standardize logging
-- [ ] Extract Medium API to a separate shard
-- [ ] Create posts from local Markdown articles
-- [ ] Update a post content from local files
-- [ ] Extract posts from Publishers
-
 # Play ownself
 
 ### Medium API
