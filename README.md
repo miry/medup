@@ -14,7 +14,6 @@
 # Table of Contents
 
 * [Features](#features)
-* [Installation](#installation)
 * [Getting Started](#getting-started)
 * [Contributing](#contributing)
 * [Contributors](#contributors)
@@ -26,33 +25,52 @@
 * Download images used inside article
 * Save posts in markdown format
 
-# Installation
-
-...
-
 # Getting Started
 
-```shell
-medup -u <medium user> -d <destination folder>
-```
 
-By default all articles are going to dump in `posts` folder.
+## Docker
 
 Docker way to make same job:
 
 ```shell
-docker run -v <path to local articles folder>:/posts -it miry/medup -u miry
+$ docker run -v <path to local articles folder>:/posts -it miry/medup -u <user>
 ```
+
+## Crystal
 
 Run dumping with source code
 
 ```shell
-crystal run src/cli.cr -- -u miry -d posts/miry
+$ shards install
+$ crystal run src/cli.cr -- -u <medium user> -d <destination folder>
 ```
 
-In the result directory, you can find 2 format of files: `.json` and `.md`.
+Example download all posts from author https://medium.com/@miry to local folder `posts/miry`
+
+```shell
+$ crystal run src/cli.cr -- -u miry -d posts/miry
+```
+
+## Build
+
+Build a application binary and execute:
+
+```shell
+$ shards install
+$ rake build
+$ _output/medup -u <medium user> -d <destination folder>
+```
+
+# Result
+
+By default all articles destination folder is `posts`.
+
+
+In the directory, you can find 2 format of files: `.json` and `.md`.
 - *JSON* format is the raw, what *Medium* returns.
 - *Markdown* format is simple implementation of block formated text.
+
+Images and `IFRAME` content are located in `posts/assets`.
 
 ## Markdown
 
