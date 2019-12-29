@@ -1,8 +1,4 @@
-<p align="center">
-  <a href="#">
-    <img src="/img/logo.png?raw=true" width="200"/>
-  </a>
-</p>
+![Logo](./img/logo.svg)
 
 # Medup
 
