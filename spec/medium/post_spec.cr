@@ -34,7 +34,7 @@ describe Medium::Post do
   describe "#to_md" do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.to_md.size.should eq(2553)
+      subject.to_md.size.should eq(2801)
     end
 
     it "renders header" do
@@ -109,6 +109,23 @@ describe Medium::Post do
       subject = Medium::Post.from_json(post_fixture)
       paragraph = subject.content.bodyModel.paragraphs[15]
       paragraph.to_md.should contain(%{```\n[terminal 1]})
+    end
+
+    describe "metadata" do
+      it "stores description information in metadata" do
+        subject = Medium::Post.from_json(post_fixture)
+        subject.to_md.should contain(%{description: Sometime I need to open binaries})
+      end
+
+      it "stores subtitle information in metadata" do
+        subject = Medium::Post.from_json(post_fixture)
+        subject.to_md.should contain(%{subtitle: Edit binary files in Linux with Vim})
+      end
+
+      it "stores tags information in metadata" do
+        subject = Medium::Post.from_json(post_fixture)
+        subject.to_md.should contain(%{tags: vim,debug,linux,cracking,hacking})
+      end
     end
   end
 end
