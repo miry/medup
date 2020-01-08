@@ -7,7 +7,8 @@ module Medium
     JSON.mapping(
       title: String,
       slug: String,
-      content: PostContent
+      content: PostContent,
+      virtuals: PostVirtuals
     )
 
     def format(ext)
@@ -25,7 +26,10 @@ module Medium
       result = "---\n\
       url: #{@url}\n\
       title: #{@title}\n\
+      subtitle: #{subtitle}\n\
       slug: #{@slug}\n\
+      description: #{seo_description}\n\
+      tags: #{tags}\n\
       ---\n\n"
       result +
         @content.bodyModel.paragraphs.map(&.to_md).join("\n\n")
@@ -34,6 +38,19 @@ module Medium
     def to_pretty_json
       @content.to_pretty_json
     end
+
+    def seo_description
+      @content.metaDescription || ""
+    end
+
+    def subtitle
+      @content.subtitle || ""
+    end
+
+    # Comma seprated list of tags
+    def tags
+      @virtuals.tags.join ",", &.slug
+    end
   end
 
   class PostContent
@@ -41,6 +58,12 @@ module Medium
       subtitle: String,
       metaDescription: String?,
       bodyModel: PostBodyModel
+    )
+  end
+
+  class PostVirtuals
+    JSON.mapping(
+      tags: Array(Post::Tag)
     )
   end
 
