@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Markdown: Store authors, subtitle, tags and SEO description information (#7, @miry)
+- Markdown: Store subtitle, tags and SEO description information (#7, @miry)
+- Markdown: Store authors information (@miry)
 
 ## [0.1.4] - 2019-12-28
 ### Added

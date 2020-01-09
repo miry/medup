@@ -126,6 +126,20 @@ describe Medium::Post do
         subject = Medium::Post.from_json(post_fixture)
         subject.to_md.should contain(%{tags: vim,debug,linux,cracking,hacking})
       end
+
+      it "stores author name information in metadata" do
+        subject = Medium::Post.from_json(post_fixture)
+        user = Medium::User.from_json(user_fixture)
+        subject.user = user
+        subject.to_md.should contain(%{author: Michael Nikitochkin})
+      end
+
+      it "stores username information in metadata" do
+        subject = Medium::Post.from_json(post_fixture)
+        user = Medium::User.from_json(user_fixture)
+        subject.user = user
+        subject.to_md.should contain(%{username: miry})
+      end
     end
   end
 end

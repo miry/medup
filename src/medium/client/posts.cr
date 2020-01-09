@@ -29,8 +29,13 @@ module Medium
       def post(post_id : String)
         url = "https://medium.com/@#{@user}/#{post_id}"
         response = get(url)
+
         result = Post.from_json(response["payload"]["value"].to_json)
         result.url = url
+
+        creator_id = response["payload"]["value"]["creatorId"].as_s
+        result.user = User.from_json(response["payload"]["references"]["User"][creator_id].to_json)
+
         result
       end
     end

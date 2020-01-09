@@ -3,6 +3,7 @@ require "./post/*"
 module Medium
   class Post
     property url : String = ""
+    property user : Medium::User?
 
     JSON.mapping(
       title: String,
@@ -24,13 +25,20 @@ module Medium
 
     def to_md
       result = "---\n\
-      url: #{@url}\n\
-      title: #{@title}\n\
-      subtitle: #{subtitle}\n\
-      slug: #{@slug}\n\
-      description: #{seo_description}\n\
-      tags: #{tags}\n\
-      ---\n\n"
+        url: #{@url}\n\
+        title: #{@title}\n\
+        subtitle: #{subtitle}\n\
+        slug: #{@slug}\n\
+        description: #{seo_description}\n\
+        tags: #{tags}\n"
+
+      unless @user.nil?
+        user = @user.not_nil!
+        result += "author: #{user.name}\n\
+          username: #{user.username}\n"
+      end
+
+      result += "---\n\n"
       result +
         @content.bodyModel.paragraphs.map(&.to_md).join("\n\n")
     end
