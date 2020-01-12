@@ -19,7 +19,7 @@ describe Medium::Post do
 
     it "setups content" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.content.bodyModel.paragraphs.size.should eq(21)
+      subject.content.bodyModel.paragraphs.size.should eq(22)
     end
   end
 
@@ -34,7 +34,7 @@ describe Medium::Post do
   describe "#to_md" do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.to_md.size.should eq(2801)
+      subject.to_md.size.should eq(2825)
     end
 
     it "renders header" do
@@ -109,6 +109,13 @@ describe Medium::Post do
       subject = Medium::Post.from_json(post_fixture)
       paragraph = subject.content.bodyModel.paragraphs[15]
       paragraph.to_md.should contain(%{```\n[terminal 1]})
+    end
+
+    it "understands alignment attribute" do
+      # Original: https://medium.com/@jico/the-fine-art-of-javascript-error-tracking-bc031f24c659
+      subject = Medium::Post.from_json(post_fixture)
+      paragraph = subject.content.bodyModel.paragraphs[21]
+      paragraph.to_md.should contain(%{# The Title with image})
     end
 
     describe "metadata" do

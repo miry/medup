@@ -18,11 +18,11 @@
 # Features
 
 * Discover all articles from user account available in public
+* Allow to download all recommended articles by user
 * Download images used inside article
 * Save posts in markdown format
 
 # Getting Started
-
 
 ## Docker
 
@@ -30,6 +30,12 @@ Docker way to make same job:
 
 ```shell
 $ docker run -v <path to local articles folder>:/posts -it miry/medup -u <user>
+```
+
+Download all articles that user has recommended:
+
+```shell
+$ docker run -v <path to local articles folder>:/posts -it miry/medup -u <user> --recommended -d posts/recommended
 ```
 
 ## Crystal
@@ -123,7 +129,7 @@ curl -s -H "Content-Type: application/json" https://medium.com/@miry/c35b40c499e
 
 4. Stream
 ```shell
-$ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream" | cut -c17-
+$ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream?source=overview" | cut -c17-
 $ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream?limit=100&page=3" | cut -c17- > stream.json
 $ cat stream.json| jq ".payload.references.Post[].title"
 $ cat stream.json| jq ".payload.paging.next"
@@ -132,4 +138,5 @@ $ cat stream.json| jq ".payload.paging.next"
 5. Recommendations
 ```shell
 $ curl -s -H "Content-Type: application/json" https://medium.com/@miry/has-recommended | cut -c17-
+$ curl -s -H "Content-Type: application/json" "https://medium.com/_/api/users/fdf238948af6/profile/stream?source=has-recommended" | cut -c17-
 ```

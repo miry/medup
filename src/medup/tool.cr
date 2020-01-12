@@ -2,33 +2,40 @@ require "http/client"
 
 module Medup
   class Tool
-    DIST_PATH = "./posts"
+    DIST_PATH                = "./posts"
+    SOURCE_AUTHOR_POSTS      = "overview"
+    SOURCE_RECOMMENDED_POSTS = "has-recommended"
 
     user : String?
 
-    def initialize(token : String?, @user : String?, dist : String?)
+    def initialize(token : String?, @user : String?, dist : String?, source : String?)
       @client = Medium::Client.new(token, @user)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
+      @source = (source || SOURCE_AUTHOR_POSTS).as(String)
     end
 
     def backup
       raise "No user set" if @user.nil?
-      posts = @client.posts
+      posts = @client.streams(@source)
       puts "Posts count: #{posts.size}"
 
-      posts.each do |post_meta|
-        post_id = post_meta["id"].raw.to_s
-        post_slug = post_meta["slug"].raw.to_s
-        post = @client.post(post_id)
-        save(post, "md")
-        save(post, "json")
-        save_assets(post)
+      posts.each do |post_id|
+        process_post(post_id)
       end
     end
 
     def close : Nil
       @client.close unless @client.nil?
+    end
+
+    def process_post(post_id : String)
+      post = @client.post(post_id)
+      save(post, "md")
+      save(post, "json")
+      save_assets(post)
+    rescue ex : Exception
+      STDERR.puts "ERROR: #{ex.inspect}"
     end
 
     def save(post, format = "json")
@@ -37,13 +44,13 @@ module Medup
       filepath = File.join(@dist, filename)
       unless File.directory?(@dist)
         puts "Create directory #{@dist}"
-        Dir.mkdir(@dist)
+        Dir.mkdir_p(@dist)
       end
 
       assets_dir = File.join(@dist, "/assets")
       unless File.directory?(assets_dir)
         puts "Create directory #{assets_dir}"
-        Dir.mkdir(assets_dir)
+        Dir.mkdir_p(assets_dir)
       end
 
       if File.exists?(filepath)

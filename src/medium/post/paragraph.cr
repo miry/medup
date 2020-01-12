@@ -13,6 +13,7 @@ module Medium
           iframe:          Iframe?,
           mixtapeMetadata: MixtapeMetadata?,
           href:            String?,
+          alignment:       Int64?,
         },
         strict: true
       )
@@ -21,6 +22,8 @@ module Medium
         case @type
         when 1
           markup
+        when 2
+          "# #{markup}"
         when 3
           "# #{markup}"
         when 4

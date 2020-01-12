@@ -63,7 +63,7 @@ module Medium
 
   class PostContent
     JSON.mapping(
-      subtitle: String,
+      subtitle: String?,
       metaDescription: String?,
       bodyModel: PostBodyModel
     )
