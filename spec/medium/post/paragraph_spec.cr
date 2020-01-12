@@ -44,6 +44,11 @@ describe Medium::Post::Paragraph do
       subject.to_md.should eq("it should be cross distributive solution")
     end
 
+    it "render title" do
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 2, "text": "render title with picture", "markups": [], "alignment": 2}})
+      subject.to_md.should eq("# render title with picture")
+    end
+
     it "render code block" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 8, "text": "puts hello", "markups": []}})
       subject.to_md.should eq("```\nputs hello\n```")

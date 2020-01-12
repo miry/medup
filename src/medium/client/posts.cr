@@ -1,12 +1,12 @@
 module Medium
   class Client
     module Posts
-      def posts
+      def posts(source = "overview")
         u = user
         user_id = u["user"]["userId"]
         result = [] of Hash(String, JSON::Any)
 
-        params : Hash(String, String)? = {"limit" => "100"}
+        params : Hash(String, String)? = {"limit" => "100", "source" => source}
         stream_url = "/_/api/users/#{user_id}/profile/stream"
         while params
           response = get(stream_url, params: params)
@@ -14,6 +14,34 @@ module Medium
 
           records.raw.as(Hash).each do |k, post|
             result << post.raw.as(Hash)
+          end
+
+          next_page = response["payload"]["paging"]["next"]?
+          break if next_page.nil?
+
+          params["page"] = next_page["page"].raw.to_s
+          params["to"] = next_page["to"].raw.to_s
+        end
+
+        result
+      end
+
+      def streams(source = "overview")
+        u = user
+        user_id = u["user"]["userId"]
+        result = [] of String
+
+        params : Hash(String, String)? = {"limit" => "100", "source" => source}
+        stream_url = "/_/api/users/#{user_id}/profile/stream"
+        while params
+          response = get(stream_url, params: params)
+          records = response["payload"]["streamItems"]
+
+          records.raw.as(Array).each do |post|
+            post_preview = post.raw.as(Hash)
+            if post_preview["itemType"] == "postPreview"
+              result << post["postPreview"]["postId"].raw.as(String)
+            end
           end
 
           next_page = response["payload"]["paging"]["next"]?
