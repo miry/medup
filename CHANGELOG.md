@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Export user's recommened articles (#2, @miry)
 - Don't raise exceptions for paragraph type 2: with images in background, title and alignment (#2, @miry)
 - Print error messages to STDERR (#2, @miry)
+- Specify import format via command line (#23, @miry)
 
 ### Changed
 - Create missing subfolders with more than 1 layer (#2, @miry)
