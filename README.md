@@ -24,6 +24,22 @@
 
 # Getting Started
 
+## Homebrew
+
+Install `medup` tool to the MacOS or Linux via Hombrew:
+
+
+```shell
+$ brew tap miry/medup
+$ brew install medup
+```
+
+Run export command for **Medium** author *miry* and save articles to local folder:
+
+```shell
+$ medup -u miry -d .
+```
+
 ## Docker
 
 Docker way to make same job:
