@@ -5,14 +5,17 @@ module Medup
     DIST_PATH                = "./posts"
     SOURCE_AUTHOR_POSTS      = "overview"
     SOURCE_RECOMMENDED_POSTS = "has-recommended"
+    MARKDOWN_FORMAT          = "md"
+    JSON_FORMAT              = "json"
 
     user : String?
 
-    def initialize(token : String?, @user : String?, dist : String?, source : String?)
+    def initialize(token : String?, @user : String?, dist : String?, format : String?, source : String?)
       @client = Medium::Client.new(token, @user)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
+      @format = (format || MARKDOWN_FORMAT).as(String)
     end
 
     def backup
@@ -31,8 +34,7 @@ module Medup
 
     def process_post(post_id : String)
       post = @client.post(post_id)
-      save(post, "md")
-      save(post, "json")
+      save(post, @format)
       save_assets(post)
     rescue ex : Exception
       STDERR.puts "ERROR: #{ex.inspect}"
