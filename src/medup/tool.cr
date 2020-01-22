@@ -10,12 +10,13 @@ module Medup
 
     user : String?
 
-    def initialize(token : String?, @user : String?, dist : String?, format : String?, source : String?)
+    def initialize(token : String?, @user : String?, dist : String?, format : String?, source : String?, update : Bool?)
       @client = Medium::Client.new(token, @user)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
       @format = (format || MARKDOWN_FORMAT).as(String)
+      @update = update.nil? ? false : update.not_nil!
     end
 
     def backup
@@ -56,6 +57,7 @@ module Medup
       end
 
       if File.exists?(filepath)
+        return unless @update
         File.delete(filepath + ".old") if File.exists?(filepath + ".old")
         File.rename(filepath, filepath + ".old")
       end

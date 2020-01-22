@@ -8,6 +8,8 @@ module Medup
       dist = ::Medup::Tool::DIST_PATH
       format = ::Medup::Tool::MARKDOWN_FORMAT
       source = ::Medup::Tool::SOURCE_AUTHOR_POSTS
+      update = false
+
       exit = false
 
       OptionParser.parse do |parser|
@@ -23,6 +25,7 @@ module Medup
           end
         end
         parser.on("-r", "--recommended", "Export all posts to wich user clapped / has recommended") { source = ::Medup::Tool::SOURCE_RECOMMENDED_POSTS }
+        parser.on("-u", "--update", "Overwrite existing articles files, if the same article exists") { update = true }
         parser.on("-h", "--help", "Show this help") { puts parser; exit = true }
         parser.on("-v", "--version", "Print current version") { puts ::Medup::VERSION; exit = true }
 
@@ -33,7 +36,7 @@ module Medup
 
       return if exit
 
-      tool = ::Medup::Tool.new(token: token, user: user, dist: dist, format: format, source: source)
+      tool = ::Medup::Tool.new(token: token, user: user, dist: dist, format: format, source: source, update: update)
       tool.backup
       tool.close
     rescue ex : Exception
