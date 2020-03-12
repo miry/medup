@@ -11,6 +11,11 @@ def post_fixture
   data["payload"]["value"].to_json
 end
 
+def post_without_name_fixture
+  data = fixtures("post_without_name_response.json")
+  data["payload"]["value"].to_json
+end
+
 def user_fixture
   data = fixtures("post_response.json")
   creator_id = data["payload"]["value"]["creatorId"].as_s
