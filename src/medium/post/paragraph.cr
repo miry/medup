@@ -3,10 +3,10 @@ module Medium
     class Paragraph
       JSON.mapping(
         {
-          name:            String,
+          name:            String?,
           type:            Int64,
           text:            String,
-          markups:         Array(ParagraphMarkup),
+          markups:         Array(ParagraphMarkup)?,
           metadata:        ParagraphMetadata?,
           layout:          Int64?,
           hasDropCap:      Bool?,
@@ -68,7 +68,9 @@ module Medium
         last_marked_pos = 0
 
         result : String = ""
-        @markups.each do |m|
+        _markups = @markups
+        return result if markups.nil?
+        markups.not_nil!.each do |m|
           if open_elements.has_key?(m.start)
             open_elements[m.start] << m
           else
