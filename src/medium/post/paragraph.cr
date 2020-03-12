@@ -10,6 +10,7 @@ module Medium
           metadata:        ParagraphMetadata?,
           layout:          Int64?,
           hasDropCap:      Bool?,
+          dropCapImage:    DropCapImage?,
           iframe:          Iframe?,
           mixtapeMetadata: MixtapeMetadata?,
           href:            String?,
@@ -155,6 +156,14 @@ module Medium
         JSON.mapping(
           mediaResourceId: String,
           href: String?
+        )
+      end
+
+      class DropCapImage
+        JSON.mapping(
+          id: String,
+          originalWidth: Int64,
+          originalHeight: Int64
         )
       end
     end
