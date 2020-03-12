@@ -83,5 +83,10 @@ describe Medium::Post::Paragraph do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 6, "text": "My xxd in the world.", "markups": [{"type": 3, "start": 3,"end": 6, "href": "http://example.com"},{"type": 1,"start": 3,"end": 6}]}})
       subject.to_md.should eq("> My [**xxd**](http://example.com) in the world.")
     end
+
+    it "skip render background image" do
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 15, "text": "picture by me", "markups": [{"type": 3, "start": 11,"end": 15, "href": "http://example.com", "title": "", "rel": "", "anchorType": 0}]}})
+      subject.to_md.should eq("")
+    end
   end
 end

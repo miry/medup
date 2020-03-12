@@ -26,6 +26,11 @@ describe Medium::Post do
       subject = Medium::Post.from_json(post_without_name_fixture)
       subject.content.bodyModel.paragraphs.size.should eq(58)
     end
+
+    it "missing drop cap image" do
+      subject = Medium::Post.from_json(post_without_dropimage_fixture)
+      subject.content.bodyModel.paragraphs.size.should eq(39)
+    end
   end
 
   describe "#url" do

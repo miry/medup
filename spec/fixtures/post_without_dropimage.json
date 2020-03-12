@@ -1,0 +1,1450 @@
+{
+  "success": true,
+  "payload": {
+    "value": {
+      "id": "2a3f197e2d6e",
+      "versionId": "d50ad34def9",
+      "creatorId": "aff6071fbf8",
+      "homeCollectionId": "d996e6bfd56e",
+      "title": "Is Crystal production-ready yet?",
+      "detectedLanguage": "en",
+      "latestVersion": "d50ad34def9",
+      "latestPublishedVersion": "d50ad34def9",
+      "hasUnpublishedEdits": false,
+      "latestRev": 1347,
+      "createdAt": 1515052313516,
+      "updatedAt": 1529240951078,
+      "acceptedAt": 0,
+      "firstPublishedAt": 1516212062327,
+      "latestPublishedAt": 1519987098436,
+      "vote": false,
+      "experimentalCss": "",
+      "displayAuthor": "",
+      "content": {
+        "subtitle": "It’s been over 3 years since the first version of Crystal Programming Language, so is it finally production-ready?",
+        "bodyModel": {
+          "paragraphs": [
+            {
+              "name": "0dc4",
+              "type": 3,
+              "text": "Is Crystal production-ready yet?",
+              "markups": []
+            },
+            {
+              "name": "fc51",
+              "type": 4,
+              "text": "Illustration by Magdalena Tomczyk",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 16,
+                  "end": 33,
+                  "href": "https://dribbble.com/magdalenatomczyk",
+                  "title": "",
+                  "rel": "noopener",
+                  "anchorType": 0
+                }
+              ],
+              "layout": 5,
+              "metadata": {
+                "id": "1*6IRb-KWK8ptaTyIanSiVQw.png",
+                "originalWidth": 2001,
+                "originalHeight": 800,
+                "focusPercentX": 50,
+                "focusPercentY": 49
+              }
+            },
+            {
+              "name": "cbc8",
+              "type": 1,
+              "text": "Have you heard about Crystal Programming Language? It’s been over 3 years since we saw its first version, but if you’re not familiar with it, it’s a statically typed, compiled language with a very Ruby-esque syntax.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 21,
+                  "end": 49,
+                  "href": "https://crystal-lang.org",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 1,
+                  "start": 0,
+                  "end": 215
+                }
+              ],
+              "hasDropCap": true,
+              "dropCapImage": {
+                "id": "1*N4b5cPeSpC-OCHHD1tpoPg.png",
+                "originalWidth": 301,
+                "originalHeight": 300
+              }
+            },
+            {
+              "name": "651b",
+              "type": 1,
+              "text": "This has at least three implications:",
+              "markups": [
+                {
+                  "type": 1,
+                  "start": 0,
+                  "end": 37
+                }
+              ]
+            },
+            {
+              "name": "ad30",
+              "type": 10,
+              "text": "With static types, we are more likely to catch some errors before shipping our code (yes, I’m looking at you NoMethodError for nil:NilClass 🙄)",
+              "markups": [
+                {
+                  "type": 10,
+                  "start": 109,
+                  "end": 139
+                }
+              ]
+            },
+            {
+              "name": "11a8",
+              "type": 10,
+              "text": "Compiled applications should run almost as fast and efficient as those written in low-level languages like C",
+              "markups": []
+            },
+            {
+              "name": "1a04",
+              "type": 10,
+              "text": "Writing Crystal is supposed to be as easy as writing Ruby",
+              "markups": []
+            },
+            {
+              "name": "6a6c",
+              "type": 1,
+              "text": "And it actually seems to deliver all of those features. Types interference usually works really smoothly, so you often don’t even have to worry about explicitly specifying what you need. The compiler catches all uninitialized objects before you even have a chance to run your code. Execution time is within the same order of magnitude as low-level languages, and memory usage is much lower than Ruby.",
+              "markups": []
+            },
+            {
+              "name": "dd66",
+              "type": 1,
+              "text": "So should we just drop whatever we’re using and rewrite everything to Crystal? Well, probably not (yet), but let’s talk about it now.",
+              "markups": [
+                {
+                  "type": 1,
+                  "start": 2,
+                  "end": 78
+                }
+              ]
+            },
+            {
+              "name": "f9c0",
+              "type": 3,
+              "text": "What does it mean to be production-ready?",
+              "markups": []
+            },
+            {
+              "name": "0b7f",
+              "type": 1,
+              "text": "When creating a new application there are a lot of things to consider before choosing a technology stack:",
+              "markups": []
+            },
+            {
+              "name": "849f",
+              "type": 9,
+              "text": "We want our language to be fast to write, and easy to maintain.",
+              "markups": []
+            },
+            {
+              "name": "f1ea",
+              "type": 9,
+              "text": "We’d also like it to have a big ecosystem with mature frameworks which won’t break after the first update.",
+              "markups": []
+            },
+            {
+              "name": "9486",
+              "type": 9,
+              "text": "Finally, we can’t forget about tools that surround the language and make development easier. Syntax highlighting, linters, deployment tools etc.",
+              "markups": []
+            },
+            {
+              "name": "f3ed",
+              "type": 1,
+              "text": "Once we have all of the above, we can call a technology “production-ready”. So is Crystal production-ready yet?",
+              "markups": [
+                {
+                  "type": 1,
+                  "start": 79,
+                  "end": 111
+                }
+              ]
+            },
+            {
+              "name": "218c",
+              "type": 1,
+              "text": "Let’s go through that list one-by-one.",
+              "markups": []
+            },
+            {
+              "name": "6744",
+              "type": 4,
+              "text": "",
+              "markups": [],
+              "layout": 1,
+              "metadata": {
+                "id": "1*yyd-FDQPmuGK-P3Res3D8w.png",
+                "originalWidth": 700,
+                "originalHeight": 70
+              }
+            },
+            {
+              "name": "b896",
+              "type": 13,
+              "text": "Crystal is fast to write, but it keeps on changing",
+              "markups": []
+            },
+            {
+              "name": "ea37",
+              "type": 1,
+              "text": "High development speed is basically guaranteed here. With Ruby-inspired syntax it’s obviously really easy to write new code. Basically, if you love Ruby you’ll love Crystal as well. But what about its maintainability?",
+              "markups": []
+            },
+            {
+              "name": "7efb",
+              "type": 1,
+              "text": "Right now, the latest released version of Crystal is 0.24.1. Whether we like it or not, it’s officially still in a pre-release phase. The language is still evolving and there are some breaking changes from time to time — most of them, however, are quite easy to introduce into an existing project. Those changes are usually a simple class renaming or new method parameters, but even those may become cumbersome in complex applications.",
+              "markups": []
+            },
+            {
+              "name": "a7ca",
+              "type": 1,
+              "text": "Since it’s still a beta release we should expect some bugs, which would require us to update. To avoid spending weeks on rewriting your code, it may be wise to keep your Crystal projects small for now.",
+              "markups": []
+            },
+            {
+              "name": "d507",
+              "type": 4,
+              "text": "Let’s start with something small, then move on to bigger things. Like maybe a death star or something? But you wouldn’t build a death star with pre-release tools, will you? — Photo by Daniel Cheung on Unsplash",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 184,
+                  "end": 197,
+                  "href": "https://unsplash.com/photos/ZqqlOZyGG7g?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 201,
+                  "end": 209,
+                  "href": "https://unsplash.com/search/photos/lego?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                }
+              ],
+              "layout": 1,
+              "metadata": {
+                "id": "1*42VaFA9d-d7AqW8TtUcUtA.jpeg",
+                "originalWidth": 5352,
+                "originalHeight": 3573
+              }
+            },
+            {
+              "name": "b3f8",
+              "type": 13,
+              "text": "There are many shards, but is the ultimate one already there?",
+              "markups": []
+            },
+            {
+              "name": "96a2",
+              "type": 1,
+              "text": "Shards are to Crystal what gems are to Ruby. Little (or not so little) libraries which you can easily reuse in your code. Do you want to build a web application? You’ve already got kemal, lucky or amber to help you. Maybe you’re writing tests and need to do some extra stubbing? You can already find some standard stuff like webmock.cr or timecop.cr. Want some background processing? Worry not, sidekiq.cr got you covered.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 181,
+                  "end": 186,
+                  "href": "https://github.com/kemalcr/kemal",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 188,
+                  "end": 193,
+                  "href": "https://github.com/luckyframework/lucky",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 197,
+                  "end": 202,
+                  "href": "https://github.com/amberframework/amber",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 325,
+                  "end": 335,
+                  "href": "https://github.com/manastech/webmock.cr",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 339,
+                  "end": 349,
+                  "href": "https://github.com/TobiasGSmollett/timecop.cr",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 395,
+                  "end": 405,
+                  "href": "https://github.com/mperham/sidekiq.cr",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                }
+              ]
+            },
+            {
+              "name": "d206",
+              "type": 1,
+              "text": "All the Shard above have one thing in common. They are suspiciously similar to what we have in Ruby. If you noticed the cr in some names, it usually indicates Ruby-inspired shards, so it’s really straightforward to use them when coming from Ruby.",
+              "markups": [
+                {
+                  "type": 10,
+                  "start": 120,
+                  "end": 122
+                }
+              ]
+            },
+            {
+              "name": "7187",
+              "type": 1,
+              "text": "We can probably agree that one of the most important gems was Rails. It helped with community growth and made Ruby a lot more popular in production use. And if you are a Rubyist you may try to apply duck typing to Crystal — since it looks and behaves like Ruby, therefore it is Ruby, and it needs its own Rails. Or does it?",
+              "markups": []
+            },
+            {
+              "name": "5d92",
+              "type": 1,
+              "text": "Since Rails already does its job quite well do we really need something similar? What if instead of trying to mimic Ruby we went a step further and looked for something that Crystal can do what Ruby couldn’t? Since it’s faster there may be possible applications in machine learning, low-level system tooling, high-performance computation, or graphics processing. Have you seen all the “Crystal intros” which do a basic Web API and compare the code with Sinatra? 🙈 Maybe, instead of solving what‘s already been solved let’s create something new, something we’ve always wanted to try, but Ruby just couldn’t cut it.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 453,
+                  "end": 460,
+                  "href": "https://github.com/sinatra/sinatra",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                }
+              ]
+            },
+            {
+              "name": "dfd1",
+              "type": 1,
+              "text": "If you need some inspiration look at the existing shards and browse through an Awesome Crystal list.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 37,
+                  "end": 56,
+                  "href": "http://crystalshards.xyz",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 79,
+                  "end": 99,
+                  "href": "https://github.com/veelenga/awesome-crystal",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                }
+              ]
+            },
+            {
+              "name": "9424",
+              "type": 4,
+              "text": "",
+              "markups": [],
+              "layout": 1,
+              "metadata": {
+                "id": "1*yyd-FDQPmuGK-P3Res3D8w.png",
+                "originalWidth": 700,
+                "originalHeight": 70
+              }
+            },
+            {
+              "name": "8278",
+              "type": 13,
+              "text": "You can write with your favorite tools, but then it gets rough",
+              "markups": []
+            },
+            {
+              "name": "8f03",
+              "type": 1,
+              "text": "If we look at the Awesome Crystal list I’ve linked above, we can see plugins for any reasonable editor we may use. There are syntax highlighters and linters for Vim, Emacs, Atom, Visual Studio Code or Sublime. We can easily manage Crystal versions with asdf or crenv, and there is an ansible playbook and a heroku buildpack for your remote setup.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 253,
+                  "end": 257,
+                  "href": "https://github.com/marciogm/asdf-crystal",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 261,
+                  "end": 266,
+                  "href": "https://github.com/pine/crenv",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 284,
+                  "end": 300,
+                  "href": "https://github.com/CorbanR/ansible-crystal",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 307,
+                  "end": 323,
+                  "href": "https://github.com/crystal-lang/heroku-buildpack-crystal",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                }
+              ]
+            },
+            {
+              "name": "f6d6",
+              "type": 1,
+              "text": "But what if we actually want to move past web applications and create some desktop app or a command line tool? In that case we’d like to distribute our application as a single, self-contained executable. And Crystal compiler can statically link required libraries, but it has problems doing this on macOS. And since Crystal is not yet Windows-compatible, our potential reach is quite limited. But Windows support has been already discussed for a long time and seems to be a heavily worked-on feature recently, so those issues may soon become a history.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 422,
+                  "end": 439,
+                  "href": "https://github.com/crystal-lang/crystal/issues/26",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 500,
+                  "end": 508,
+                  "href": "https://github.com/crystal-lang/crystal/issues/5430",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                }
+              ]
+            },
+            {
+              "name": "9cbf",
+              "type": 3,
+              "text": "So… is Crystal production-ready or not?",
+              "markups": []
+            },
+            {
+              "name": "3202",
+              "type": 1,
+              "text": "Even though we’ve looked at different aspects of what makes software production-ready it’s still hard to give a specific answer 😳",
+              "markups": []
+            },
+            {
+              "name": "e6ac",
+              "type": 1,
+              "text": "Crystal might not have a clearly defined future yet, but it’s definitely a solid project with good development pace. While using it as a “new Ruby” to build web applications may be a dead end, there are a lot of other possible projects you can create with it. And yes, we’re even talking about building production grade software now.",
+              "markups": []
+            },
+            {
+              "name": "1d7b",
+              "type": 1,
+              "text": "Maybe just try to keep it small enough to account for possible syntax changes until Crystal 1.0 is out. Now is a great time to contribute to the community, create a new shard for others or help with language development itself.",
+              "markups": []
+            },
+            {
+              "name": "1c08",
+              "type": 4,
+              "text": "",
+              "markups": [],
+              "layout": 1,
+              "metadata": {
+                "id": "1*KtnDoZhaAkXhmLy0-y_JoA.png",
+                "originalWidth": 700,
+                "originalHeight": 35
+              }
+            },
+            {
+              "name": "d77b",
+              "type": 1,
+              "text": "If you enjoyed this post, please hit the clap button below 👏👏👏",
+              "markups": []
+            },
+            {
+              "name": "1940",
+              "type": 1,
+              "text": "You can also follow us on Facebook, Twitter and LinkedIn.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 26,
+                  "end": 34,
+                  "href": "https://www.facebook.com/Daftcode/",
+                  "title": "",
+                  "rel": "noopener",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 36,
+                  "end": 43,
+                  "href": "https://twitter.com/Daftcode_pl",
+                  "title": "",
+                  "rel": "noopener",
+                  "anchorType": 0
+                },
+                {
+                  "type": 3,
+                  "start": 48,
+                  "end": 56,
+                  "href": "https://www.linkedin.com/company/daftcode-sp-z-o-o-",
+                  "title": "",
+                  "rel": "noopener",
+                  "anchorType": 0
+                }
+              ]
+            }
+          ],
+          "sections": [
+            {
+              "name": "e9ee",
+              "startIndex": 0
+            }
+          ]
+        },
+        "postDisplay": {
+          "coverless": true
+        },
+        "metaDescription": "Have you heard about Crystal Programming Language? It’s been over 3 years since we saw its first version. So… is it finally production-ready?"
+      },
+      "virtuals": {
+        "statusForCollection": "APPROVED",
+        "allowNotes": true,
+        "previewImage": {
+          "imageId": "1*6IRb-KWK8ptaTyIanSiVQw.png",
+          "filter": "",
+          "backgroundSize": "",
+          "originalWidth": 2001,
+          "originalHeight": 800,
+          "strategy": "resample",
+          "height": 0,
+          "width": 0,
+          "focusPercentX": 50,
+          "focusPercentY": 49
+        },
+        "wordCount": 1083,
+        "imageCount": 5,
+        "readingTime": 4.9201257861635215,
+        "subtitle": "It’s been over 3 years since the first version of Crystal Programming Language, so is it finally production-ready?",
+        "publishedInCount": 1,
+        "usersBySocialRecommends": [],
+        "noIndex": false,
+        "recommends": 54,
+        "isBookmarked": false,
+        "tags": [
+          {
+            "slug": "programming",
+            "name": "Programming",
+            "postCount": 107795,
+            "metadata": {
+              "postCount": 107795,
+              "coverImage": {
+                "id": "1*_5uHflEhilD6S0cvr6wzPw.jpeg",
+                "originalWidth": 1880,
+                "originalHeight": 1254,
+                "isFeatured": true
+              }
+            },
+            "type": "Tag"
+          },
+          {
+            "slug": "crystal-lang",
+            "name": "Crystal Lang",
+            "postCount": 72,
+            "metadata": {
+              "postCount": 72,
+              "coverImage": {
+                "id": "1*KimwgjULRZzONpjGFH1sTA.png",
+                "originalWidth": 1847,
+                "originalHeight": 870,
+                "isFeatured": true
+              }
+            },
+            "type": "Tag"
+          },
+          {
+            "slug": "ruby",
+            "name": "Ruby",
+            "postCount": 10325,
+            "metadata": {
+              "postCount": 10325,
+              "coverImage": {
+                "id": "0*GY9xXMXso1-V8zpG.png",
+                "originalWidth": 1920,
+                "originalHeight": 600,
+                "isFeatured": true
+              }
+            },
+            "type": "Tag"
+          },
+          {
+            "slug": "software-development",
+            "name": "Software Development",
+            "postCount": 66652,
+            "metadata": {
+              "postCount": 66652,
+              "coverImage": {
+                "id": "1*-W_pGSIsy2UWOw_2CgiL1w.jpeg",
+                "originalWidth": 5472,
+                "originalHeight": 3648,
+                "isFeatured": true
+              }
+            },
+            "type": "Tag"
+          },
+          {
+            "slug": "programming-languages",
+            "name": "Programming Languages",
+            "postCount": 2718,
+            "metadata": {
+              "postCount": 2718,
+              "coverImage": {
+                "id": "1*i7JIQgyolSsg2FoqvTuqGg.png",
+                "originalWidth": 1122,
+                "originalHeight": 801,
+                "isFeatured": true,
+                "alt": "Wikipedia in 2000 vs Wikipedia in 2020"
+              }
+            },
+            "type": "Tag"
+          }
+        ],
+        "socialRecommendsCount": 0,
+        "responsesCreatedCount": 3,
+        "links": {
+          "entries": [
+            {
+              "url": "https://www.linkedin.com/company/daftcode-sp-z-o-o-",
+              "alts": [],
+              "httpStatus": 999
+            },
+            {
+              "url": "https://dribbble.com/magdalenatomczyk",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://twitter.com/Daftcode_pl",
+              "alts": [
+                {
+                  "type": 2,
+                  "url": "twitter://user?screen_name=Daftcode_pl"
+                },
+                {
+                  "type": 3,
+                  "url": "twitter://user?screen_name=Daftcode_pl"
+                }
+              ],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://www.facebook.com/Daftcode/",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://crystal-lang.org",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/TobiasGSmollett/timecop.cr",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "http://crystalshards.xyz",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/manastech/webmock.cr",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/mperham/sidekiq.cr",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/CorbanR/ansible-crystal",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/luckyframework/lucky",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/crystal-lang/heroku-buildpack-crystal",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/veelenga/awesome-crystal",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/kemalcr/kemal",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://unsplash.com/photos/ZqqlOZyGG7g?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/amberframework/amber",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/sinatra/sinatra",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/marciogm/asdf-crystal",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/pine/crenv",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://unsplash.com/search/photos/lego?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/crystal-lang/crystal/issues/5430",
+              "alts": [],
+              "httpStatus": 200
+            },
+            {
+              "url": "https://github.com/crystal-lang/crystal/issues/26",
+              "alts": [],
+              "httpStatus": 200
+            }
+          ],
+          "version": "0.3",
+          "generatedAt": 1519987102090
+        },
+        "isLockedPreviewOnly": false,
+        "metaDescription": "Have you heard about Crystal Programming Language? It’s been over 3 years since we saw its first version. So… is it finally production-ready?",
+        "totalClapCount": 384,
+        "sectionCount": 1,
+        "readingList": 0,
+        "topics": [
+          {
+            "topicId": "55f1c20aba7a",
+            "slug": "software-engineering",
+            "createdAt": 1491949272237,
+            "deletedAt": 0,
+            "image": {
+              "id": "1*U8FboK4lz1wqwQC6IcqxKw@2x.jpeg",
+              "originalWidth": 5507,
+              "originalHeight": 3098
+            },
+            "name": "Software Engineering",
+            "description": "Back-end to front-end.",
+            "relatedTopics": [],
+            "visibility": 1,
+            "relatedTags": [],
+            "relatedTopicIds": [],
+            "type": "Topic"
+          }
+        ]
+      },
+      "coverless": true,
+      "slug": "is-crystal-production-ready-yet",
+      "translationSourcePostId": "",
+      "translationSourceCreatorId": "",
+      "isApprovedTranslation": false,
+      "inResponseToPostId": "",
+      "inResponseToRemovedAt": 0,
+      "isTitleSynthesized": false,
+      "allowResponses": true,
+      "importedUrl": "",
+      "importedPublishedAt": 0,
+      "visibility": 0,
+      "uniqueSlug": "is-crystal-production-ready-yet-2a3f197e2d6e",
+      "previewContent": {
+        "bodyModel": {
+          "paragraphs": [
+            {
+              "name": "previewImage",
+              "type": 4,
+              "text": "",
+              "layout": 10,
+              "metadata": {
+                "id": "1*6IRb-KWK8ptaTyIanSiVQw.png",
+                "originalWidth": 2001,
+                "originalHeight": 800,
+                "focusPercentX": 50,
+                "focusPercentY": 49
+              }
+            },
+            {
+              "name": "previewTitle",
+              "type": 3,
+              "text": "Is Crystal production-ready yet?",
+              "alignment": 1
+            },
+            {
+              "name": "previewSubtitle",
+              "type": 13,
+              "text": "It’s been over 3 years since the first version of Crystal Programming…",
+              "alignment": 1
+            }
+          ],
+          "sections": [
+            {
+              "startIndex": 0
+            }
+          ]
+        },
+        "isFullContent": false,
+        "subtitle": "It’s been over 3 years since the first version of Crystal Programming Language, so is it finally production-ready?"
+      },
+      "license": 0,
+      "inResponseToMediaResourceId": "",
+      "canonicalUrl": "https://blog.daftcode.pl/is-crystal-production-ready-yet-2a3f197e2d6e",
+      "approvedHomeCollectionId": "d996e6bfd56e",
+      "newsletterId": "",
+      "webCanonicalUrl": "https://blog.daftcode.pl/is-crystal-production-ready-yet-2a3f197e2d6e",
+      "mediumUrl": "https://blog.daftcode.pl/is-crystal-production-ready-yet-2a3f197e2d6e",
+      "migrationId": "",
+      "notifyFollowers": true,
+      "notifyTwitter": false,
+      "notifyFacebook": false,
+      "responseHiddenOnParentPostAt": 0,
+      "isSeries": false,
+      "isSubscriptionLocked": false,
+      "seriesLastAppendedAt": 0,
+      "audioVersionDurationSec": 0,
+      "sequenceId": "",
+      "isEligibleForRevenue": false,
+      "isBlockedFromHightower": false,
+      "deletedAt": 0,
+      "lockedPostSource": 0,
+      "hightowerMinimumGuaranteeStartsAt": 0,
+      "hightowerMinimumGuaranteeEndsAt": 0,
+      "featureLockRequestAcceptedAt": 0,
+      "mongerRequestType": 1,
+      "layerCake": 0,
+      "socialTitle": "",
+      "socialDek": "",
+      "editorialPreviewTitle": "",
+      "editorialPreviewDek": "",
+      "curationEligibleAt": 0,
+      "isProxyPost": false,
+      "proxyPostFaviconUrl": "",
+      "proxyPostProviderName": "",
+      "proxyPostType": 0,
+      "isSuspended": false,
+      "isLimitedState": false,
+      "seoTitle": "",
+      "previewContent2": {
+        "bodyModel": {
+          "paragraphs": [
+            {
+              "name": "0dc4",
+              "type": 3,
+              "text": "Is Crystal production-ready yet?",
+              "markups": []
+            },
+            {
+              "name": "fc51",
+              "type": 4,
+              "text": "Illustration by Magdalena Tomczyk",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 16,
+                  "end": 33,
+                  "href": "https://dribbble.com/magdalenatomczyk",
+                  "title": "",
+                  "rel": "noopener",
+                  "anchorType": 0
+                }
+              ],
+              "layout": 5,
+              "metadata": {
+                "id": "1*6IRb-KWK8ptaTyIanSiVQw.png",
+                "originalWidth": 2001,
+                "originalHeight": 800,
+                "focusPercentX": 50,
+                "focusPercentY": 49
+              }
+            },
+            {
+              "name": "cbc8",
+              "type": 1,
+              "text": "Have you heard about Crystal Programming Language? It’s been over 3 years since we saw its first version, but if you’re not familiar with it, it’s a statically typed, compiled language with a very Ruby-esque syntax.",
+              "markups": [
+                {
+                  "type": 3,
+                  "start": 21,
+                  "end": 49,
+                  "href": "https://crystal-lang.org",
+                  "title": "",
+                  "rel": "",
+                  "anchorType": 0
+                },
+                {
+                  "type": 1,
+                  "start": 0,
+                  "end": 215
+                }
+              ],
+              "hasDropCap": true,
+              "dropCapImage": {
+                "id": "1*N4b5cPeSpC-OCHHD1tpoPg.png",
+                "originalWidth": 301,
+                "originalHeight": 300
+              }
+            },
+            {
+              "name": "651b",
+              "type": 1,
+              "text": "This has at least three implications:",
+              "markups": [
+                {
+                  "type": 1,
+                  "start": 0,
+                  "end": 37
+                }
+              ]
+            },
+            {
+              "name": "ad30",
+              "type": 10,
+              "text": "With static types, we are more likely to catch some errors before shipping our code (yes, I’m looking at you NoMethodError for nil:NilClass 🙄)",
+              "markups": [
+                {
+                  "type": 10,
+                  "start": 109,
+                  "end": 139
+                }
+              ]
+            },
+            {
+              "name": "11a8",
+              "type": 10,
+              "text": "Compiled applications should run almost as fast and efficient as those written in low-level languages like C",
+              "markups": []
+            }
+          ],
+          "sections": [
+            {
+              "startIndex": 0
+            }
+          ]
+        },
+        "isFullContent": false,
+        "subtitle": "It’s been over 3 years since the first version of Crystal Programming Language, so is it finally production-ready?"
+      },
+      "cardType": 0,
+      "isDistributionAlertDismissed": false,
+      "isShortform": false,
+      "shortformType": 0,
+      "type": "Post"
+    },
+    "mentionedUsers": [],
+    "collaborators": [
+      {
+        "user": {
+          "userId": "ef3ff0eecf32",
+          "name": "Katarzyna Tadeusiak",
+          "username": "kata.tadeusiak",
+          "createdAt": 1474024714625,
+          "imageId": "1*rsw4wrbjrkhY_k3TVZ5OCA.jpeg",
+          "backgroundImageId": "",
+          "bio": "UX Designer",
+          "twitterScreenName": "kata_tadeusiak",
+          "allowNotes": 1,
+          "mediumMemberAt": 0,
+          "isWriterProgramEnrolled": true,
+          "isQuarantined": false,
+          "isSuspended": false,
+          "isMembershipTrialEligible": true,
+          "type": "User"
+        },
+        "state": "visible"
+      }
+    ],
+    "hideMeter": false,
+    "collectionUserRelations": [],
+    "mode": null,
+    "references": {
+      "User": {
+        "aff6071fbf8": {
+          "userId": "aff6071fbf8",
+          "name": "Maciek Głowacki",
+          "username": "glowacki.it",
+          "createdAt": 1481880327679,
+          "imageId": "1*XQsBcsAaKoKkTu4G4Tukiw.jpeg",
+          "backgroundImageId": "",
+          "bio": "Ruby Magician @ DaftCode. I do full-stack, photography, learn Chinese and stuff.",
+          "twitterScreenName": "Bombasarkadian",
+          "socialStats": {
+            "userId": "aff6071fbf8",
+            "usersFollowedCount": 42,
+            "usersFollowedByCount": 170,
+            "type": "SocialStats"
+          },
+          "social": {
+            "userId": "lo_nszbycIhYU5Y",
+            "targetUserId": "aff6071fbf8",
+            "type": "Social"
+          },
+          "allowNotes": 1,
+          "mediumMemberAt": 0,
+          "isWriterProgramEnrolled": true,
+          "isQuarantined": false,
+          "isSuspended": false,
+          "isMembershipTrialEligible": true,
+          "type": "User"
+        }
+      },
+      "Collection": {
+        "d996e6bfd56e": {
+          "id": "d996e6bfd56e",
+          "name": "Daftcode Blog",
+          "slug": "daftcode-blog",
+          "tags": [
+            "TECHNOLOGY",
+            "DESIGN",
+            "PROGRAMMING",
+            "VENTURE BUILDER",
+            "EMPLOYER BRANDING"
+          ],
+          "creatorId": "99047c3af1bb",
+          "description": "Venture builders. Check out Daftcode Blog to read our thoughts and insights on technology, programming and design.",
+          "shortDescription": "Venture builders.",
+          "image": {
+            "imageId": "1*dk9hTX-R9S89mDOr8hbPjA.jpeg",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 164,
+            "originalHeight": 164,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "metadata": {
+            "followerCount": 2492,
+            "activeAt": 1579006059280
+          },
+          "virtuals": {
+            "permissions": {
+              "canPublish": false,
+              "canPublishAll": false,
+              "canRepublish": false,
+              "canRemove": false,
+              "canManageAll": false,
+              "canSubmit": false,
+              "canEditPosts": false,
+              "canAddWriters": false,
+              "canViewStats": false,
+              "canSendNewsletter": false,
+              "canViewLockedPosts": false,
+              "canViewCloaked": false,
+              "canEditOwnPosts": false,
+              "canBeAssignedAuthor": false,
+              "canEnrollInHightower": false,
+              "canLockPostsForMediumMembers": false,
+              "canLockOwnPostsForMediumMembers": false,
+              "canViewNewsletterV2Stats": false,
+              "canCreateNewsletterV3": false
+            },
+            "isSubscribed": false,
+            "isEnrolledInHightower": false,
+            "isEligibleForHightower": false,
+            "isSubscribedToCollectionEmails": false,
+            "isMuted": false
+          },
+          "logo": {
+            "imageId": "1*1sJQp41o6fRf90MhA98R_Q.png",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 245,
+            "originalHeight": 51,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "twitterUsername": "Daftcode_pl",
+          "facebookPageName": "Daftcode",
+          "publicEmail": "media@daftcode.com",
+          "collectionMastheadId": "37631e576fe5",
+          "domain": "blog.daftcode.pl",
+          "sections": [
+            {
+              "type": 2,
+              "collectionHeaderMetadata": {
+                "backgroundImage": {},
+                "logoImage": {
+                  "id": "1*-rL2qAiXHNBxa1jLsvQfPA@2x.png",
+                  "originalWidth": 1133,
+                  "originalHeight": 250,
+                  "alt": "Daftcode Blog"
+                },
+                "alignment": 2,
+                "layout": 5
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 1,
+                "layout": 4,
+                "number": 4,
+                "postIds": []
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 3,
+                "layout": 4,
+                "number": 1,
+                "postIds": [
+                  "f6932c4f74ed"
+                ]
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 1,
+                "layout": 4,
+                "number": 6,
+                "postIds": []
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 2,
+                "layout": 4,
+                "number": 5,
+                "postIds": [],
+                "sectionHeader": "Trending"
+              }
+            },
+            {
+              "type": 3,
+              "promoMetadata": {
+                "sectionHeader": "",
+                "promoId": "abc9d47d0858"
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 1,
+                "layout": 6,
+                "number": 6,
+                "postIds": [],
+                "sectionHeader": "Latest"
+              }
+            }
+          ],
+          "tintColor": "#FF303030",
+          "lightText": true,
+          "favicon": {
+            "imageId": "1*Ym4TeEsmSnK1GKSmD-Grtg.png",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 128,
+            "originalHeight": 128,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "colorPalette": {
+            "defaultBackgroundSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FF858484",
+                  "point": 0
+                },
+                {
+                  "color": "#FF7C7B7B",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FF727271",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FF696868",
+                  "point": 0.3
+                },
+                {
+                  "color": "#FF5F5E5E",
+                  "point": 0.4
+                },
+                {
+                  "color": "#FF555454",
+                  "point": 0.5
+                },
+                {
+                  "color": "#FF4A4949",
+                  "point": 0.6
+                },
+                {
+                  "color": "#FF3F3E3E",
+                  "point": 0.7
+                },
+                {
+                  "color": "#FF343333",
+                  "point": 0.8
+                },
+                {
+                  "color": "#FF272727",
+                  "point": 0.9
+                },
+                {
+                  "color": "#FF1A1A1A",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FFFFFFFF"
+            },
+            "tintBackgroundSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FF303030",
+                  "point": 0
+                },
+                {
+                  "color": "#FF4A4A4A",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FF626262",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FF797878",
+                  "point": 0.3
+                },
+                {
+                  "color": "#FF8E8D8D",
+                  "point": 0.4
+                },
+                {
+                  "color": "#FFA3A1A1",
+                  "point": 0.5
+                },
+                {
+                  "color": "#FFB7B5B4",
+                  "point": 0.6
+                },
+                {
+                  "color": "#FFCAC8C7",
+                  "point": 0.7
+                },
+                {
+                  "color": "#FFDDDADA",
+                  "point": 0.8
+                },
+                {
+                  "color": "#FFEFECEC",
+                  "point": 0.9
+                },
+                {
+                  "color": "#FFFFFEFE",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FF303030"
+            },
+            "highlightSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FFF5F2F1",
+                  "point": 0
+                },
+                {
+                  "color": "#FFF3F0EF",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FFF1EEEE",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FFEFECEC",
+                  "point": 0.3
+                },
+                {
+                  "color": "#FFEDEAEA",
+                  "point": 0.4
+                },
+                {
+                  "color": "#FFEBE8E8",
+                  "point": 0.5
+                },
+                {
+                  "color": "#FFE9E7E6",
+                  "point": 0.6
+                },
+                {
+                  "color": "#FFE7E5E4",
+                  "point": 0.7
+                },
+                {
+                  "color": "#FFE5E3E2",
+                  "point": 0.8
+                },
+                {
+                  "color": "#FFE3E1E0",
+                  "point": 0.9
+                },
+                {
+                  "color": "#FFE1DFDF",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FFFFFFFF"
+            }
+          },
+          "navItems": [
+            {
+              "type": 1,
+              "title": "Dev",
+              "tagSlug": "tech",
+              "url": "https://blog.daftcode.pl/tagged/tech",
+              "source": "tagSlug"
+            },
+            {
+              "type": 1,
+              "title": "Design",
+              "tagSlug": "design",
+              "url": "https://blog.daftcode.pl/tagged/design",
+              "source": "tagSlug"
+            },
+            {
+              "type": 1,
+              "title": "Events",
+              "tagSlug": "events",
+              "url": "https://blog.daftcode.pl/tagged/events",
+              "source": "tagSlug"
+            },
+            {
+              "type": 1,
+              "title": "About us",
+              "tagSlug": "about-us",
+              "url": "https://blog.daftcode.pl/tagged/about-us",
+              "source": "tagSlug"
+            },
+            {
+              "type": 3,
+              "title": "Daftcode website",
+              "url": "http://www.daftcode.com"
+            }
+          ],
+          "colorBehavior": 2,
+          "instantArticlesState": 0,
+          "acceleratedMobilePagesState": 0,
+          "googleAnalyticsId": "UA-42000629-17",
+          "ampLogo": {
+            "imageId": "",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 0,
+            "originalHeight": 0,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "header": {
+            "backgroundImage": {},
+            "logoImage": {
+              "id": "1*-rL2qAiXHNBxa1jLsvQfPA@2x.png",
+              "originalWidth": 1133,
+              "originalHeight": 250,
+              "alt": "Daftcode Blog"
+            },
+            "alignment": 2,
+            "layout": 5
+          },
+          "subscriberCount": 2492,
+          "tagline": "Venture builders.",
+          "type": "Collection"
+        }
+      },
+      "Social": {
+        "aff6071fbf8": {
+          "userId": "lo_nszbycIhYU5Y",
+          "targetUserId": "aff6071fbf8",
+          "type": "Social"
+        }
+      },
+      "SocialStats": {
+        "aff6071fbf8": {
+          "userId": "aff6071fbf8",
+          "usersFollowedCount": 42,
+          "usersFollowedByCount": 170,
+          "type": "SocialStats"
+        }
+      }
+    }
+  },
+  "v": 3,
+  "b": "40277-94e4d6e"
+}
