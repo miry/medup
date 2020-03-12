@@ -57,6 +57,8 @@ module Medium
           "### #{markup}"
         when 14
           "#{@mixtapeMetadata.try &.href}"
+        when 15
+          ""
         else
           raise "Unknown paragraph type #{@type} with text #{@text}"
         end
