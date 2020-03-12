@@ -40,7 +40,8 @@ module Medium
           records.raw.as(Array).each do |post|
             post_preview = post.raw.as(Hash)
             if post_preview["itemType"] == "postPreview"
-              result << post["postPreview"]["postId"].raw.as(String)
+              post_id = post["postPreview"]["postId"].raw.as(String)
+              result << post_id_to_url(post_id)
             end
           end
 
@@ -54,8 +55,11 @@ module Medium
         result
       end
 
-      def post(post_id : String)
-        url = "https://medium.com/@#{@user}/#{post_id}"
+      def post_by_id(post_id : String)
+        self.post_by_url(post_id_to_url(post_id))
+      end
+
+      def post_by_url(url : String)
         response = get(url)
 
         result = Post.from_json(response["payload"]["value"].to_json)
@@ -65,6 +69,10 @@ module Medium
         result.user = User.from_json(response["payload"]["references"]["User"][creator_id].to_json)
 
         result
+      end
+
+      private def post_id_to_url(post_id : String)
+        "https://medium.com/@#{@user}/#{post_id}"
       end
     end
   end

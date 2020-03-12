@@ -9,8 +9,9 @@ module Medup
     JSON_FORMAT              = "json"
 
     user : String?
+    articles : Array(String)
 
-    def initialize(token : String?, @user : String?, dist : String?, format : String?, source : String?, update : Bool?)
+    def initialize(token : String?, @user : String?, @articles : Array(String), dist : String?, format : String?, source : String?, update : Bool?)
       @client = Medium::Client.new(token, @user)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
@@ -20,12 +21,21 @@ module Medup
     end
 
     def backup
-      raise "No user set" if @user.nil?
-      posts = @client.streams(@source)
+      posts = Array(String).new
+      if !@articles.empty?
+        posts = @articles
+      elsif !@user.nil?
+        posts = @client.streams(@source)
+      end
+
+      if posts.empty?
+        raise "No articles to backup"
+      end
+
       puts "Posts count: #{posts.size}"
 
-      posts.each do |post_id|
-        process_post(post_id)
+      posts.each do |post_url|
+        process_post(post_url)
       end
     end
 
@@ -33,8 +43,8 @@ module Medup
       @client.close unless @client.nil?
     end
 
-    def process_post(post_id : String)
-      post = @client.post(post_id)
+    def process_post(post_url : String)
+      post = @client.post_by_url(post_url)
       save(post, @format)
       save_assets(post)
     rescue ex : Exception

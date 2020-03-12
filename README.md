@@ -21,6 +21,7 @@
 * Allow to download all recommended articles by user
 * Download images used inside article
 * Save posts in markdown format
+* Convert a single article in markdown format
 
 # Getting Started
 
@@ -107,6 +108,7 @@ Example of exported document (Original Medium post vs Exported Markdown):
 # Contributors
 
 - [@miry](https://github.com/miry) Michael Nikitochkin - creator, maintainer
+- [@alexanderadam](https://github.com/alexanderadam) Alexander - supporter
 
 # License
 
