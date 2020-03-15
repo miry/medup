@@ -12,9 +12,9 @@ module Medup
 
       exit = false
 
-      OptionParser.parse do |parser|
-        parser.banner = "Usage: medup [arguments]"
-        parser.on("-u USER", "--user=USER", "Medium author username. E.g: miry") { |u| user = u }
+      parser = OptionParser.parse do |parser|
+        parser.banner = "Usage: medup [arguments] [article url]"
+        parser.on("-u USER", "--user=USER", "Medium author username. Download alrticles for this author. E.g: miry") { |u| user = u }
         parser.on("-d DIRECTORY", "--directory=DIRECTORY", "Path to local directory where articles should be dumped. Default: ./posts") { |d| dist = d }
         parser.on("-f FORMAT", "--format=FORMAT", "Specify the document format. Available options: md or json. Default: md") do |f|
           format = f
@@ -34,9 +34,16 @@ module Medup
         end
       end
 
+      articles = ARGV
+
+      if user.nil? && articles.empty?
+        puts parser
+        exit = true
+      end
+
       return if exit
 
-      tool = ::Medup::Tool.new(token: token, user: user, dist: dist, format: format, source: source, update: update)
+      tool = ::Medup::Tool.new(token: token, user: user, articles: articles, dist: dist, format: format, source: source, update: update)
       tool.backup
       tool.close
     rescue ex : Exception
