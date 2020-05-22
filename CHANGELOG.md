@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+
+## [0.1.8] - 2020-05-22
+### Changed
 - Use crystal lang 0.33.0 for Docker containers
+- Use crystal lang 0.34.0
 
 ## [0.1.7] - 2020-03-15
 ### Added
