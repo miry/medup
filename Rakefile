@@ -30,7 +30,7 @@ desc "Build app in #{OUTPUT_PATH}"
 task build: BIN_PATH
 
 task BIN_PATH => [OUTPUT_PATH] do |t|
-  sh "crystal build --release -o #{t.name} src/cli.cr"
+  sh "crystal build --release --no-debug -o #{t.name} src/cli.cr"
 end
 
 desc "Run medup for provide user and distination via args."

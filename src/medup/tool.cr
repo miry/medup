@@ -90,6 +90,8 @@ module Medup
           if !iframe.nil?
             download_iframe(iframe.mediaResourceId)
           end
+        else
+          # TODO: Record unknown assets
         end
       end
     end
