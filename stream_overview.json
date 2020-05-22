@@ -1,0 +1,3394 @@
+{
+  "success": true,
+  "payload": {
+    "user": {
+      "userId": "fdf238948af6",
+      "name": "Michael Nikitochkin",
+      "username": "miry",
+      "createdAt": 1490052181028,
+      "imageId": "0*KgbjgGnH-csHuB8j.",
+      "backgroundImageId": "",
+      "bio": "software engineer. like ruby, crystal and golang. play with containers and kubernetes via terraform.",
+      "twitterScreenName": "miry_sof",
+      "facebookAccountId": "",
+      "allowNotes": 1,
+      "mediumMemberAt": 0,
+      "isWriterProgramEnrolled": true,
+      "isQuarantined": false,
+      "isSuspended": false,
+      "type": "User"
+    },
+    "streamItems": [
+      {
+        "createdAt": 1578772856570,
+        "heading": {
+          "text": "Featured",
+          "heading": {
+            "fallbackTitle": "Featured",
+            "headingBasic": {
+              "title": "Featured"
+            },
+            "headingType": "headingBasic"
+          }
+        },
+        "randomId": "bf59018473b",
+        "itemType": "heading",
+        "type": "StreamItem"
+      },
+      {
+        "createdAt": 1578772856570,
+        "postPreview": {
+          "postId": "eb0c2e36e1f5",
+          "postSuggestionReasons": [
+            {
+              "reason": 25
+            }
+          ]
+        },
+        "randomId": "ef6b1ef141c9",
+        "itemType": "postPreview",
+        "type": "StreamItem"
+      },
+      {
+        "createdAt": 1578772856570,
+        "heading": {
+          "text": "Latest",
+          "heading": {
+            "fallbackTitle": "Latest",
+            "headingBasic": {
+              "title": "Latest"
+            },
+            "headingType": "headingBasic"
+          }
+        },
+        "randomId": "a6fc5863b64c",
+        "itemType": "heading",
+        "type": "StreamItem"
+      },
+      {
+        "createdAt": 1578772856570,
+        "postPreview": {
+          "postId": "a238ba6b49c7",
+          "postSuggestionReasons": [
+            {
+              "reason": 28
+            }
+          ]
+        },
+        "randomId": "8328a3a66bac",
+        "itemType": "postPreview",
+        "type": "StreamItem"
+      },
+      {
+        "createdAt": 1578772856570,
+        "postPreview": {
+          "postId": "c624834835d8",
+          "postSuggestionReasons": [
+            {
+              "reason": 28
+            }
+          ]
+        },
+        "randomId": "32913b87f892",
+        "itemType": "postPreview",
+        "type": "StreamItem"
+      },
+      {
+        "createdAt": 1578772856570,
+        "postPreview": {
+          "postId": "c35b40c499e",
+          "postSuggestionReasons": [
+            {
+              "reason": 28
+            }
+          ]
+        },
+        "randomId": "afa36f9f3c0a",
+        "itemType": "postPreview",
+        "type": "StreamItem"
+      }
+    ],
+    "userMeta": {
+      "numberOfPostsPublished": 41,
+      "userId": "fdf238948af6",
+      "userSuggestionReason": {
+        "followeesWhoFollow": {
+          "users": []
+        },
+        "reason": "followeesWhoFollow"
+      },
+      "collectionIds": [],
+      "authorTags": [
+        {
+          "slug": "devops",
+          "name": "DevOps",
+          "postCount": 21201,
+          "metadata": {
+            "postCount": 21201,
+            "coverImage": {
+              "id": "1*PYBhcIuCopivLOiBBvG0cw.png",
+              "originalWidth": 2114,
+              "originalHeight": 814,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "aws",
+          "name": "AWS",
+          "postCount": 20311,
+          "metadata": {
+            "postCount": 20311,
+            "coverImage": {
+              "id": "1*O489vqRXtLXub1lgfcFHBw.png",
+              "originalWidth": 1920,
+              "originalHeight": 1080,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "docker",
+          "name": "Docker",
+          "postCount": 19490,
+          "metadata": {
+            "postCount": 19490,
+            "coverImage": {
+              "id": "1*4XNco5HjVRStTB1PcYq5bw.png",
+              "originalWidth": 820,
+              "originalHeight": 349,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "amazon",
+          "name": "Amazon",
+          "postCount": 18248,
+          "metadata": {
+            "postCount": 18248,
+            "coverImage": {
+              "id": "1*zgv5Hq7no8zNgc1Klxjl8g.jpeg",
+              "originalWidth": 3000,
+              "originalHeight": 2000,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "tutorial",
+          "name": "Tutorial",
+          "postCount": 15377,
+          "metadata": {
+            "postCount": 15377,
+            "coverImage": {
+              "id": "1*90vm9ynO9VQsbyAsz2Icnw.png",
+              "originalWidth": 755,
+              "originalHeight": 260,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "linux",
+          "name": "Linux",
+          "postCount": 13421,
+          "metadata": {
+            "postCount": 13421,
+            "coverImage": {
+              "id": "1*3xjUHruhwpEK2vdNPmhJZA.gif",
+              "originalWidth": 2500,
+              "originalHeight": 420,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "automation",
+          "name": "Automation",
+          "postCount": 12754,
+          "metadata": {
+            "postCount": 12754,
+            "coverImage": {
+              "id": "1*PHnnR3PlyYOY8w3YzXesnQ.jpeg",
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "hacking",
+          "name": "Hacking",
+          "postCount": 10422,
+          "metadata": {
+            "postCount": 10422,
+            "coverImage": {
+              "id": "1*wyBozKnyF8CkssIexZ5O8g.png",
+              "originalWidth": 2746,
+              "originalHeight": 1622,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "ruby",
+          "name": "Ruby",
+          "postCount": 10326,
+          "metadata": {
+            "postCount": 10326,
+            "coverImage": {
+              "id": "1*geL6I7JlOTgxAidqWfTFPQ.jpeg",
+              "originalWidth": 1091,
+              "originalHeight": 970,
+              "isFeatured": true,
+              "alt": "Koichi Sasada (ko1) and Yusuke Endoh (mame)"
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "github",
+          "name": "Github",
+          "postCount": 10192,
+          "metadata": {
+            "postCount": 10192,
+            "coverImage": {
+              "id": "0*QkLHzS3THKhgPPDL",
+              "originalWidth": 5000,
+              "originalHeight": 3313,
+              "isFeatured": true,
+              "unsplashPhotoId": "842ofHC6MaI"
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "kubernetes",
+          "name": "Kubernetes",
+          "postCount": 9955,
+          "metadata": {
+            "postCount": 9955,
+            "coverImage": {
+              "id": "1*PYBhcIuCopivLOiBBvG0cw.png",
+              "originalWidth": 2114,
+              "originalHeight": 814,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "git",
+          "name": "Git",
+          "postCount": 9606,
+          "metadata": {
+            "postCount": 9606,
+            "coverImage": {
+              "id": "1*4XNco5HjVRStTB1PcYq5bw.png",
+              "originalWidth": 820,
+              "originalHeight": 349,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "golang",
+          "name": "Golang",
+          "postCount": 7009,
+          "metadata": {
+            "postCount": 7009,
+            "coverImage": {
+              "id": "0*6ckeNrLmPAOsI_oC.jpeg",
+              "originalWidth": 1400,
+              "originalHeight": 760,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "google-cloud-platform",
+          "name": "Google Cloud Platform",
+          "postCount": 6293,
+          "metadata": {
+            "postCount": 6293,
+            "coverImage": {
+              "id": "1*wtZTkDJtdPU7aKKLPynPNA.jpeg",
+              "originalWidth": 1600,
+              "originalHeight": 900,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "questions",
+          "name": "Questions",
+          "postCount": 5864,
+          "metadata": {
+            "postCount": 5864,
+            "coverImage": {
+              "id": "0*UP31H1lvDcsMTh9X",
+              "originalWidth": 6016,
+              "originalHeight": 4000,
+              "isFeatured": true,
+              "unsplashPhotoId": "mbKApJz6RSU"
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "continuous-integration",
+          "name": "Continuous Integration",
+          "postCount": 4832,
+          "metadata": {
+            "postCount": 4832,
+            "coverImage": {
+              "id": "1*I4vrPQGQU2nJPn5o-lx-kQ.jpeg",
+              "originalWidth": 1199,
+              "originalHeight": 899
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "beginner",
+          "name": "Beginner",
+          "postCount": 3623,
+          "metadata": {
+            "postCount": 3623,
+            "coverImage": {
+              "id": "1*WSlnvCJelr8hsJi4u3tJKA.jpeg",
+              "originalWidth": 599,
+              "originalHeight": 339,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "rails",
+          "name": "Rails",
+          "postCount": 3397,
+          "metadata": {
+            "postCount": 3397,
+            "coverImage": {
+              "id": "0*JNrtss-oJXLAkGyz",
+              "originalWidth": 4593,
+              "originalHeight": 3185,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "macos",
+          "name": "Macos",
+          "postCount": 2293,
+          "metadata": {
+            "postCount": 2293,
+            "coverImage": {
+              "id": "1*YjTQPoLF2JtK_JLNW1S5JQ.jpeg",
+              "originalWidth": 4380,
+              "originalHeight": 2895,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "command-line",
+          "name": "Command Line",
+          "postCount": 1418,
+          "metadata": {
+            "postCount": 1418,
+            "coverImage": {
+              "id": "1*XXI-kg18liPn4XcfZmoqQQ.jpeg",
+              "originalWidth": 6016,
+              "originalHeight": 4016
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "vim",
+          "name": "Vim",
+          "postCount": 1286,
+          "metadata": {
+            "postCount": 1286,
+            "coverImage": {
+              "id": "1*k4Apq5raYNmzuPJT-bhVmw.png",
+              "originalWidth": 736,
+              "originalHeight": 476,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "terraform",
+          "name": "Terraform",
+          "postCount": 1231,
+          "metadata": {
+            "postCount": 1231,
+            "coverImage": {
+              "id": "1*P4a1gIH6PeWgY8DQ2iqBWQ.jpeg",
+              "originalWidth": 1541,
+              "originalHeight": 661
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "ssl-certificate",
+          "name": "Ssl Certificate",
+          "postCount": 780,
+          "metadata": {
+            "postCount": 780,
+            "coverImage": {
+              "id": "1*u3H8gEJcWCqmcAGEUS6frA.png",
+              "originalWidth": 392,
+              "originalHeight": 212,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "packers",
+          "name": "Packers",
+          "postCount": 629,
+          "metadata": {
+            "postCount": 629,
+            "coverImage": {
+              "id": "1*vR8fo-ig3JchKOX-JjamnA.png",
+              "originalWidth": 1920,
+              "originalHeight": 1080,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "benchmark",
+          "name": "Benchmark",
+          "postCount": 612,
+          "metadata": {
+            "postCount": 612,
+            "coverImage": {
+              "id": "1*crxDIvpyETiqyJpUOibQZQ.png",
+              "originalWidth": 600,
+              "originalHeight": 371,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "prometheus",
+          "name": "Prometheus",
+          "postCount": 575,
+          "metadata": {
+            "postCount": 575,
+            "coverImage": {
+              "id": "1*WSlnvCJelr8hsJi4u3tJKA.jpeg",
+              "originalWidth": 599,
+              "originalHeight": 339,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "assets",
+          "name": "Assets",
+          "postCount": 564,
+          "metadata": {
+            "postCount": 564,
+            "coverImage": {
+              "id": "1*TYLClOdEex25oqg3uQuVJA.png",
+              "originalWidth": 2872,
+              "originalHeight": 1538,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "crystals",
+          "name": "Crystals",
+          "postCount": 471,
+          "metadata": {
+            "postCount": 471,
+            "coverImage": {
+              "id": "1*5efPKpPTb2qYCzF9AgFXYg.jpeg",
+              "originalWidth": 1024,
+              "originalHeight": 1024,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "elastic-beanstalk",
+          "name": "Elastic Beanstalk",
+          "postCount": 339,
+          "metadata": {
+            "postCount": 339,
+            "coverImage": {
+              "id": "1*3qBzGSlqAHKE_t3aLOaxrQ.png",
+              "originalWidth": 1154,
+              "originalHeight": 653,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "debug",
+          "name": "Debug",
+          "postCount": 308,
+          "metadata": {
+            "postCount": 308,
+            "coverImage": {
+              "id": "0*r5E5ofV-QSHY1BJ2.png",
+              "originalWidth": 787,
+              "originalHeight": 382,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "certificate",
+          "name": "Certificate",
+          "postCount": 289,
+          "metadata": {
+            "postCount": 289,
+            "coverImage": {
+              "id": "1*3rYEAJvkNXRNxUkYSXPhLg.png",
+              "originalWidth": 1550,
+              "originalHeight": 966,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "pull-request",
+          "name": "Pull Request",
+          "postCount": 279,
+          "metadata": {
+            "postCount": 279,
+            "coverImage": {
+              "id": "1*hKpI04xMYmOR4tkCffU6Lw.png",
+              "originalWidth": 691,
+              "originalHeight": 311,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "tcp",
+          "name": "Tcp",
+          "postCount": 199,
+          "metadata": {
+            "postCount": 199,
+            "coverImage": {
+              "id": "1*zzOLg6eFiK0yUqTtIeCbeg.jpeg",
+              "originalWidth": 574,
+              "originalHeight": 323,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "minikube",
+          "name": "Minikube",
+          "postCount": 196,
+          "metadata": {
+            "postCount": 196,
+            "coverImage": {
+              "id": "1*I-qzGFy92P1YZ_H02uwU2g.jpeg",
+              "originalWidth": 1044,
+              "originalHeight": 296,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "be",
+          "name": "Be",
+          "postCount": 165,
+          "metadata": {
+            "postCount": 165,
+            "coverImage": {
+              "id": "1*GMtd1qmvVFilLyZEGopYhw.png",
+              "originalWidth": 967,
+              "originalHeight": 358,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "openid-connect",
+          "name": "Openid Connect",
+          "postCount": 161,
+          "metadata": {
+            "postCount": 161,
+            "coverImage": {
+              "id": "1*aqERfEmDaHbU3uW9BHZG7w.png",
+              "originalWidth": 1375,
+              "originalHeight": 1275,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "hub",
+          "name": "Hub",
+          "postCount": 136,
+          "metadata": {
+            "postCount": 136,
+            "coverImage": {
+              "id": "0*zIWLNgbqZlD-9dyR",
+              "originalWidth": 1600,
+              "originalHeight": 601
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "tcp-ip",
+          "name": "Tcp Ip",
+          "postCount": 122,
+          "metadata": {
+            "postCount": 122,
+            "coverImage": {
+              "id": "1*VWLNSrNJAwRADu1d3p8kBA.jpeg",
+              "originalWidth": 1510,
+              "originalHeight": 964,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "wireshark",
+          "name": "Wireshark",
+          "postCount": 118,
+          "metadata": {
+            "postCount": 118,
+            "coverImage": {
+              "id": "1*dXu-hBtB1dnIQrZlUSCDTg.png",
+              "originalWidth": 935,
+              "originalHeight": 362,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "rbac",
+          "name": "Rbac",
+          "postCount": 74,
+          "metadata": {
+            "postCount": 74,
+            "coverImage": {
+              "id": "1*8P5jTtgPENuotClxd_0BTw.png",
+              "originalWidth": 2115,
+              "originalHeight": 1158,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "kubeadm",
+          "name": "Kubeadm",
+          "postCount": 70,
+          "metadata": {
+            "postCount": 70,
+            "coverImage": {
+              "id": "1*saWjul2SQ3OOqbGY9JTV4A.jpeg",
+              "originalWidth": 1500,
+              "originalHeight": 469,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "cracking",
+          "name": "Cracking",
+          "postCount": 69,
+          "metadata": {
+            "postCount": 69,
+            "coverImage": {
+              "id": "1*vKIdDhcS5_mz685blykj0w.jpeg",
+              "originalWidth": 640,
+              "originalHeight": 425,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "qemu",
+          "name": "Qemu",
+          "postCount": 49,
+          "metadata": {
+            "postCount": 49,
+            "coverImage": {
+              "id": "0*wysQWuTvHJaST1jY.png",
+              "originalWidth": 960,
+              "originalHeight": 1049,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "cri",
+          "name": "Cri",
+          "postCount": 28,
+          "metadata": {
+            "postCount": 28,
+            "coverImage": {
+              "id": "1*KenLR5QTinvFh4vqE9QMlQ.png",
+              "originalWidth": 790,
+              "originalHeight": 360,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "xf",
+          "name": "Xf",
+          "postCount": 10,
+          "metadata": {
+            "postCount": 10,
+            "coverImage": {
+              "id": "0*CVCNRMwSGKbZed-8.jpg",
+              "originalWidth": 708,
+              "originalHeight": 400,
+              "externalSrc": "http://xm.xii.jp/etj/img/1001171141101_1576052939.jpg"
+            }
+          },
+          "type": "Tag"
+        },
+        {
+          "slug": "google-charts",
+          "name": "Google Charts",
+          "postCount": 9,
+          "metadata": {
+            "postCount": 9,
+            "coverImage": {
+              "id": "1*JtIzdKbj49e8C_UeRUDA7A.jpeg",
+              "originalWidth": 2096,
+              "originalHeight": 804,
+              "isFeatured": true
+            }
+          },
+          "type": "Tag"
+        }
+      ],
+      "featuredPostId": "",
+      "topWriterInTags": [],
+      "type": "UserMeta"
+    },
+    "userNavItemList": {
+      "userNavItems": [
+        {
+          "title": "Profile",
+          "url": "https://medium.com/@miry",
+          "systemItem": {
+            "systemType": 1
+          },
+          "navType": "systemItem"
+        },
+        {
+          "title": "Claps",
+          "url": "https://medium.com/@miry/has-recommended",
+          "systemItem": {
+            "systemType": 4
+          },
+          "navType": "systemItem"
+        },
+        {
+          "title": "Highlights",
+          "url": "https://medium.com/@miry/highlights",
+          "systemItem": {
+            "systemType": 5
+          },
+          "navType": "systemItem"
+        },
+        {
+          "title": "Responses",
+          "url": "https://medium.com/@miry/responses",
+          "systemItem": {
+            "systemType": 3
+          },
+          "navType": "systemItem"
+        }
+      ]
+    },
+    "userNavActiveIndex": 0,
+    "profileTypeName": "overview",
+    "isStandaloneEditPage": false,
+    "references": {
+      "Collection": {
+        "e1c377b08620": {
+          "id": "e1c377b08620",
+          "name": "JTWay by JetThoughts",
+          "slug": "jetthoughts",
+          "tags": [
+            "REACT NATIVE",
+            "JAVASCRIPT",
+            "WEB DEVELOPMENT",
+            "RUBY ON RAILS",
+            "MOBILE APP DEVELOPMENT"
+          ],
+          "creatorId": "c25432962b48",
+          "description": "The best way to build a product with Ruby on Rails, React, Vue.js and Kubernetes by distributed remote teams.",
+          "shortDescription": "The best way to build a product with Ruby on Rails, React…",
+          "image": {
+            "imageId": "1*IcFOgBgwqlMoT3n7fi3vAQ.jpeg",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 200,
+            "originalHeight": 200,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "metadata": {
+            "followerCount": 156,
+            "activeAt": 1578647376907
+          },
+          "virtuals": {
+            "permissions": {
+              "canPublish": false,
+              "canPublishAll": false,
+              "canRepublish": false,
+              "canRemove": false,
+              "canManageAll": false,
+              "canSubmit": false,
+              "canEditPosts": false,
+              "canAddWriters": false,
+              "canViewStats": false,
+              "canSendNewsletter": false,
+              "canViewLockedPosts": false,
+              "canViewCloaked": false,
+              "canEditOwnPosts": false,
+              "canBeAssignedAuthor": false,
+              "canEnrollInHightower": false,
+              "canLockPostsForMediumMembers": false,
+              "canLockOwnPostsForMediumMembers": false,
+              "canViewNewsletterV2Stats": false
+            },
+            "isSubscribed": false,
+            "isEnrolledInHightower": false,
+            "isEligibleForHightower": false,
+            "isSubscribedToCollectionEmails": false
+          },
+          "logo": {
+            "imageId": "1*QJ67839NXNqzrjuPhVJ03g.jpeg",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 367,
+            "originalHeight": 90,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "twitterUsername": "jetthoughts",
+          "facebookPageName": "jetthoughts",
+          "publicEmail": "jtway@jetthoughts.com",
+          "collectionMastheadId": "2ceec3d0a80e",
+          "domain": "jtway.co",
+          "sections": [
+            {
+              "type": 2,
+              "collectionHeaderMetadata": {
+                "title": "JTway with Ruby on Rails, React, Vue.js and Kubernetes",
+                "description": "Time-tested solutions, experience & thoughts on web & mobile development, tonnes of remote work hacks. Helps non-technical founders grow successful distributed teams.",
+                "backgroundImage": {},
+                "logoImage": {
+                  "id": "1*YxJCvO6-JwJ52fZQecAWQQ@2x.jpeg",
+                  "originalWidth": 1400,
+                  "originalHeight": 284,
+                  "alt": "JTWay by JetThoughts"
+                },
+                "alignment": 2,
+                "layout": 6
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 2,
+                "layout": 4,
+                "number": 4,
+                "postIds": []
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 3,
+                "layout": 2,
+                "number": 1,
+                "postIds": [
+                  "5c638133f899"
+                ]
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 1,
+                "layout": 5,
+                "number": 5,
+                "postIds": []
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 3,
+                "layout": 4,
+                "number": 3,
+                "postIds": [
+                  "8c21213b4d0c",
+                  "42cf048ea491",
+                  "b4a21fb66c4d"
+                ]
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 1,
+                "layout": 4,
+                "number": 7,
+                "postIds": []
+              }
+            }
+          ],
+          "tintColor": "#FF1B2B38",
+          "lightText": true,
+          "favicon": {
+            "imageId": "1*IcFOgBgwqlMoT3n7fi3vAQ.png",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 200,
+            "originalHeight": 200,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "colorPalette": {
+            "defaultBackgroundSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FF768797",
+                  "point": 0
+                },
+                {
+                  "color": "#FF6E7E8C",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FF667481",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FF5E6A75",
+                  "point": 0.3
+                },
+                {
+                  "color": "#FF56606A",
+                  "point": 0.4
+                },
+                {
+                  "color": "#FF4D565E",
+                  "point": 0.5
+                },
+                {
+                  "color": "#FF444B52",
+                  "point": 0.6
+                },
+                {
+                  "color": "#FF3A4045",
+                  "point": 0.7
+                },
+                {
+                  "color": "#FF2F3438",
+                  "point": 0.8
+                },
+                {
+                  "color": "#FF24282B",
+                  "point": 0.9
+                },
+                {
+                  "color": "#FF181A1D",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FFFFFFFF"
+            },
+            "tintBackgroundSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FF1B2B38",
+                  "point": 0
+                },
+                {
+                  "color": "#FF384753",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FF525F6B",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FF6A7681",
+                  "point": 0.3
+                },
+                {
+                  "color": "#FF818C96",
+                  "point": 0.4
+                },
+                {
+                  "color": "#FF97A1AA",
+                  "point": 0.5
+                },
+                {
+                  "color": "#FFADB5BD",
+                  "point": 0.6
+                },
+                {
+                  "color": "#FFC2C8CF",
+                  "point": 0.7
+                },
+                {
+                  "color": "#FFD6DBE1",
+                  "point": 0.8
+                },
+                {
+                  "color": "#FFEAEDF2",
+                  "point": 0.9
+                },
+                {
+                  "color": "#FFFEFFFF",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FF1B2B38"
+            },
+            "highlightSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FFF0F3F7",
+                  "point": 0
+                },
+                {
+                  "color": "#FFEEF1F6",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FFEBF0F5",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FFE8EEF5",
+                  "point": 0.3
+                },
+                {
+                  "color": "#FFE5ECF4",
+                  "point": 0.4
+                },
+                {
+                  "color": "#FFE3EAF3",
+                  "point": 0.5
+                },
+                {
+                  "color": "#FFE0E9F2",
+                  "point": 0.6
+                },
+                {
+                  "color": "#FFDDE7F2",
+                  "point": 0.7
+                },
+                {
+                  "color": "#FFDAE5F1",
+                  "point": 0.8
+                },
+                {
+                  "color": "#FFD7E4F0",
+                  "point": 0.9
+                },
+                {
+                  "color": "#FFD4E2EF",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FFFFFFFF"
+            }
+          },
+          "navItems": [
+            {
+              "type": 5,
+              "title": "All",
+              "url": "https://jtway.co/archive"
+            },
+            {
+              "type": 1,
+              "title": "Ruby on Rails",
+              "tagSlug": "ruby-on-rails",
+              "url": "https://jtway.co/tagged/ruby-on-rails",
+              "source": "tagSlug"
+            },
+            {
+              "type": 1,
+              "title": "React",
+              "tagSlug": "react",
+              "url": "https://jtway.co/tagged/react",
+              "source": "tagSlug"
+            },
+            {
+              "type": 1,
+              "title": "Startup",
+              "tagSlug": "startup",
+              "url": "https://jtway.co/tagged/startup",
+              "source": "tagSlug"
+            },
+            {
+              "type": 1,
+              "title": "Playbook",
+              "tagSlug": "process",
+              "url": "https://jtway.co/tagged/process",
+              "source": "tagSlug"
+            },
+            {
+              "type": 3,
+              "title": "JetThoughts",
+              "url": "https://www.jetthoughts.com/?utm_source=navigation&utm_medium=blog"
+            }
+          ],
+          "colorBehavior": 2,
+          "instantArticlesState": 0,
+          "acceleratedMobilePagesState": 0,
+          "googleAnalyticsId": "UA-10749382-8",
+          "ampLogo": {
+            "imageId": "",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 0,
+            "originalHeight": 0,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "header": {
+            "title": "JTway with Ruby on Rails, React, Vue.js and Kubernetes",
+            "description": "Time-tested solutions, experience & thoughts on web & mobile development, tonnes of remote work hacks. Helps non-technical founders grow successful distributed teams.",
+            "backgroundImage": {},
+            "logoImage": {
+              "id": "1*YxJCvO6-JwJ52fZQecAWQQ@2x.jpeg",
+              "originalWidth": 1400,
+              "originalHeight": 284,
+              "alt": "JTWay by JetThoughts"
+            },
+            "alignment": 2,
+            "layout": 6
+          },
+          "paidForDomainAt": 1491131615831,
+          "subscriberCount": 156,
+          "type": "Collection"
+        },
+        "449033851f89": {
+          "id": "449033851f89",
+          "name": "Notes and Tips in Full Stack Development",
+          "slug": "notes-and-tips-in-full-stack-development",
+          "tags": [
+            "DOCKER",
+            "BASH",
+            "LINUX"
+          ],
+          "creatorId": "fdf238948af6",
+          "description": "My small hacks or notes about untrivial problems",
+          "shortDescription": "My small hacks or notes about untrivial problems",
+          "image": {
+            "imageId": "1*_Q1oRrEOngFHPt6f07PGMA.jpeg",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 200,
+            "originalHeight": 200,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "metadata": {
+            "followerCount": 6,
+            "activeAt": 1547419392889
+          },
+          "virtuals": {
+            "permissions": {
+              "canPublish": false,
+              "canPublishAll": false,
+              "canRepublish": false,
+              "canRemove": false,
+              "canManageAll": false,
+              "canSubmit": false,
+              "canEditPosts": false,
+              "canAddWriters": false,
+              "canViewStats": false,
+              "canSendNewsletter": false,
+              "canViewLockedPosts": false,
+              "canViewCloaked": false,
+              "canEditOwnPosts": false,
+              "canBeAssignedAuthor": false,
+              "canEnrollInHightower": false,
+              "canLockPostsForMediumMembers": false,
+              "canLockOwnPostsForMediumMembers": false,
+              "canViewNewsletterV2Stats": false
+            },
+            "isSubscribed": false,
+            "isEnrolledInHightower": false,
+            "isEligibleForHightower": false,
+            "isSubscribedToCollectionEmails": false
+          },
+          "logo": {
+            "imageId": "1*9yZ6lV8svDIxMZ-zpJQ5eA.jpeg",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 5184,
+            "originalHeight": 3456,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "twitterUsername": "miry_sof",
+          "publicEmail": "nikitochkin.michael@gmail.com",
+          "sections": [
+            {
+              "type": 2,
+              "collectionHeaderMetadata": {
+                "backgroundImage": {},
+                "logoImage": {},
+                "alignment": 2,
+                "layout": 4
+              }
+            },
+            {
+              "type": 1,
+              "postListMetadata": {
+                "source": 1,
+                "layout": 6,
+                "number": 7,
+                "postIds": []
+              }
+            }
+          ],
+          "favicon": {
+            "imageId": "",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 0,
+            "originalHeight": 0,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "colorPalette": {
+            "defaultBackgroundSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FF02B875",
+                  "point": 0
+                },
+                {
+                  "color": "#FF00AB6B",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FF1C9963",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FF092E20",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FFFFFFFF"
+            },
+            "highlightSpectrum": {
+              "colorPoints": [
+                {
+                  "color": "#FFFFFFFF",
+                  "point": 0
+                },
+                {
+                  "color": "#FFE9FDF0",
+                  "point": 0.1
+                },
+                {
+                  "color": "#FFE2FAEE",
+                  "point": 0.2
+                },
+                {
+                  "color": "#FFADFFCF",
+                  "point": 0.6
+                },
+                {
+                  "color": "#FF7DFFB3",
+                  "point": 1
+                }
+              ],
+              "backgroundColor": "#FFFFFFFF"
+            }
+          },
+          "navItems": [],
+          "colorBehavior": 1,
+          "instantArticlesState": 0,
+          "acceleratedMobilePagesState": 0,
+          "ampLogo": {
+            "imageId": "",
+            "filter": "",
+            "backgroundSize": "",
+            "originalWidth": 0,
+            "originalHeight": 0,
+            "strategy": "resample",
+            "height": 0,
+            "width": 0
+          },
+          "header": {
+            "backgroundImage": {},
+            "logoImage": {},
+            "alignment": 2,
+            "layout": 4
+          },
+          "subscriberCount": 6,
+          "type": "Collection"
+        }
+      },
+      "User": {
+        "fdf238948af6": {
+          "userId": "fdf238948af6",
+          "name": "Michael Nikitochkin",
+          "username": "miry",
+          "createdAt": 1490052181028,
+          "imageId": "0*KgbjgGnH-csHuB8j.",
+          "backgroundImageId": "",
+          "bio": "software engineer. like ruby, crystal and golang. play with containers and kubernetes via terraform.",
+          "twitterScreenName": "miry_sof",
+          "facebookAccountId": "",
+          "allowNotes": 1,
+          "mediumMemberAt": 0,
+          "isWriterProgramEnrolled": true,
+          "isQuarantined": false,
+          "isSuspended": false,
+          "type": "User"
+        }
+      },
+      "Post": {
+        "eb0c2e36e1f5": {
+          "id": "eb0c2e36e1f5",
+          "versionId": "cb661a3b7e67",
+          "creatorId": "fdf238948af6",
+          "homeCollectionId": "e1c377b08620",
+          "title": "Listen to localhost",
+          "detectedLanguage": "en",
+          "latestVersion": "cb661a3b7e67",
+          "latestPublishedVersion": "cb661a3b7e67",
+          "hasUnpublishedEdits": false,
+          "latestRev": 1708,
+          "createdAt": 1569619999219,
+          "updatedAt": 1573209674070,
+          "acceptedAt": 0,
+          "firstPublishedAt": 1570171191161,
+          "latestPublishedAt": 1573209673817,
+          "vote": false,
+          "experimentalCss": "",
+          "displayAuthor": "",
+          "content": {
+            "subtitle": "How many processes can listen on same port in localhost? I know the answer from school time, and it is ONE port per application.",
+            "postDisplay": {
+              "coverless": true
+            },
+            "metaDescription": "How many processes can listen on the same port in the localhost? Depends on OS configuration and socket options, you could run multiple apps on the localhost with the same port."
+          },
+          "virtuals": {
+            "statusForCollection": "APPROVED",
+            "allowNotes": true,
+            "previewImage": {
+              "imageId": "1*sI6NGALyiE-KR11LR2Yi1g.png",
+              "filter": "",
+              "backgroundSize": "",
+              "originalWidth": 6127,
+              "originalHeight": 2921,
+              "strategy": "resample",
+              "height": 0,
+              "width": 0
+            },
+            "wordCount": 1210,
+            "imageCount": 2,
+            "readingTime": 4.949371069182391,
+            "subtitle": "How many processes can listen on same port in localhost? I know the answer from school time, and it is ONE port per application.",
+            "publishedInCount": 1,
+            "usersBySocialRecommends": [],
+            "noIndex": false,
+            "recommends": 4,
+            "isBookmarked": false,
+            "tags": [
+              {
+                "slug": "crystals",
+                "name": "Crystal",
+                "postCount": 0,
+                "metadata": {
+                  "postCount": 0,
+                  "coverImage": {
+                    "id": "1*ej45RIXj_nDfDaeHzR6TVw.jpeg",
+                    "originalWidth": 960,
+                    "originalHeight": 601
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "tcp",
+                "name": "Tcp",
+                "postCount": 199,
+                "metadata": {
+                  "postCount": 199,
+                  "coverImage": {
+                    "id": "1*zzOLg6eFiK0yUqTtIeCbeg.jpeg",
+                    "originalWidth": 574,
+                    "originalHeight": 323,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "tcp-ip",
+                "name": "Tcp Ip",
+                "postCount": 122,
+                "metadata": {
+                  "postCount": 122,
+                  "coverImage": {
+                    "id": "1*VWLNSrNJAwRADu1d3p8kBA.jpeg",
+                    "originalWidth": 1510,
+                    "originalHeight": 964,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "beginner",
+                "name": "Beginner",
+                "postCount": 3623,
+                "metadata": {
+                  "postCount": 3623,
+                  "coverImage": {
+                    "id": "1*WSlnvCJelr8hsJi4u3tJKA.jpeg",
+                    "originalWidth": 599,
+                    "originalHeight": 339,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              }
+            ],
+            "socialRecommendsCount": 0,
+            "responsesCreatedCount": 0,
+            "links": {
+              "entries": [
+                {
+                  "url": "https://en.wikipedia.org/wiki/Loop_device",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://crystal-lang.org/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://crystal-lang.org/reference/installation/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.linkedin.com/in/michaelnikitochkin/",
+                  "alts": [],
+                  "httpStatus": 999
+                },
+                {
+                  "url": "https://crystal-lang.org/api/0.31.0/Socket/Addrinfo.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.geeksforgeeks.org/data-structures/linked-list/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/crystal-lang/crystal/blob/master/src/socket/tcp_server.cr",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/crystal-lang/crystal/blob/master/src/socket/tcp_server.cr#L32",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://unsplash.com/@dsmacinnes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/crystal-lang/crystal/blob/master/src/socket/addrinfo.cr#L101",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://unsplash.com/collections/4488740/misbehaving?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "http://man7.org/linux/man-pages/man3/getaddrinfo.3.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/latest",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/trending",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                }
+              ],
+              "version": "0.3",
+              "generatedAt": 1573209677253
+            },
+            "isLockedPreviewOnly": false,
+            "metaDescription": "How many processes can listen on the same port in the localhost? Depends on OS configuration and socket options, you could run multiple apps on the localhost with the same port.",
+            "totalClapCount": 13,
+            "sectionCount": 3,
+            "readingList": 0,
+            "topics": [
+              {
+                "topicId": "55f1c20aba7a",
+                "slug": "software-engineering",
+                "createdAt": 1491949272237,
+                "deletedAt": 0,
+                "image": {
+                  "id": "1*U8FboK4lz1wqwQC6IcqxKw@2x.jpeg",
+                  "originalWidth": 5507,
+                  "originalHeight": 3098
+                },
+                "name": "Software Engineering",
+                "description": "Back-end to front-end.",
+                "relatedTopics": [],
+                "visibility": 1,
+                "relatedTags": [],
+                "relatedTopicIds": [],
+                "type": "Topic"
+              },
+              {
+                "topicId": "decb52b64abf",
+                "slug": "programming",
+                "createdAt": 1493934116328,
+                "deletedAt": 0,
+                "image": {
+                  "id": "1*iPa136b1cGEO7lvoXg6uHQ@2x.jpeg",
+                  "originalWidth": 6016,
+                  "originalHeight": 4016
+                },
+                "name": "Programming",
+                "description": "The good, the bad, the buggy.",
+                "relatedTopics": [],
+                "visibility": 1,
+                "relatedTags": [],
+                "relatedTopicIds": [],
+                "type": "Topic"
+              }
+            ]
+          },
+          "coverless": true,
+          "slug": "listen-to-localhost",
+          "translationSourcePostId": "",
+          "translationSourceCreatorId": "",
+          "isApprovedTranslation": false,
+          "inResponseToPostId": "",
+          "inResponseToRemovedAt": 0,
+          "isTitleSynthesized": false,
+          "allowResponses": true,
+          "importedUrl": "",
+          "importedPublishedAt": 0,
+          "visibility": 2,
+          "uniqueSlug": "listen-to-localhost-eb0c2e36e1f5",
+          "previewContent": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "previewImage",
+                  "type": 4,
+                  "text": "",
+                  "layout": 10,
+                  "metadata": {
+                    "id": "1*sI6NGALyiE-KR11LR2Yi1g.png",
+                    "originalWidth": 6127,
+                    "originalHeight": 2921,
+                    "isFeatured": true
+                  }
+                },
+                {
+                  "name": "previewTitle",
+                  "type": 3,
+                  "text": "Listen to localhost",
+                  "alignment": 1
+                },
+                {
+                  "name": "previewSubtitle",
+                  "type": 13,
+                  "text": "How many processes can listen on same port in localhost? I know the answer from…",
+                  "alignment": 1
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "How many processes can listen on same port in localhost? I know the answer from school time, and it is ONE port per application."
+          },
+          "license": 0,
+          "inResponseToMediaResourceId": "",
+          "canonicalUrl": "",
+          "approvedHomeCollectionId": "e1c377b08620",
+          "newsletterId": "",
+          "suggestionReason": {
+            "reason": 25
+          },
+          "webCanonicalUrl": "",
+          "mediumUrl": "",
+          "migrationId": "",
+          "notifyFollowers": true,
+          "notifyTwitter": false,
+          "notifyFacebook": false,
+          "responseHiddenOnParentPostAt": 0,
+          "isSeries": false,
+          "isSubscriptionLocked": true,
+          "seriesLastAppendedAt": 0,
+          "audioVersionDurationSec": 0,
+          "sequenceId": "",
+          "isEligibleForRevenue": false,
+          "isBlockedFromHightower": false,
+          "deletedAt": 0,
+          "lockedPostSource": 6,
+          "hightowerMinimumGuaranteeStartsAt": 0,
+          "hightowerMinimumGuaranteeEndsAt": 0,
+          "featureLockRequestAcceptedAt": 0,
+          "mongerRequestType": 1,
+          "layerCake": 3,
+          "socialTitle": "",
+          "socialDek": "",
+          "editorialPreviewTitle": "",
+          "editorialPreviewDek": "",
+          "curationEligibleAt": 1570171189974,
+          "primaryTopicId": "decb52b64abf",
+          "isProxyPost": false,
+          "proxyPostFaviconUrl": "",
+          "proxyPostProviderName": "",
+          "proxyPostType": 0,
+          "isSuspended": false,
+          "isLimitedState": false,
+          "seoTitle": "",
+          "previewContent2": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "29e2",
+                  "type": 3,
+                  "text": "Listen to localhost",
+                  "markups": []
+                },
+                {
+                  "name": "7d47",
+                  "type": 4,
+                  "text": "Photo by Danielle MacInnes on Unsplash",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 9,
+                      "end": 26,
+                      "href": "https://unsplash.com/@dsmacinnes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                      "title": "",
+                      "rel": "noopener",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 30,
+                      "end": 38,
+                      "href": "https://unsplash.com/collections/4488740/misbehaving?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                      "title": "",
+                      "rel": "noopener",
+                      "anchorType": 0
+                    }
+                  ],
+                  "layout": 3,
+                  "metadata": {
+                    "id": "1*sI6NGALyiE-KR11LR2Yi1g.png",
+                    "originalWidth": 6127,
+                    "originalHeight": 2921,
+                    "isFeatured": true
+                  }
+                },
+                {
+                  "name": "76d8",
+                  "type": 1,
+                  "text": "How many processes can ‘listen to’ the same port of localhost? I know the answer, and it is ONE port.",
+                  "markups": [
+                    {
+                      "type": 1,
+                      "start": 92,
+                      "end": 96
+                    },
+                    {
+                      "type": 2,
+                      "start": 52,
+                      "end": 61
+                    }
+                  ],
+                  "hasDropCap": true
+                },
+                {
+                  "name": "0baf",
+                  "type": 6,
+                  "text": "TL;DR Depends on OS configuration and socket options, you could run multiple apps on localhost with the same port.",
+                  "markups": [
+                    {
+                      "type": 1,
+                      "start": 0,
+                      "end": 5
+                    },
+                    {
+                      "type": 2,
+                      "start": 0,
+                      "end": 85
+                    },
+                    {
+                      "type": 2,
+                      "start": 94,
+                      "end": 114
+                    }
+                  ]
+                },
+                {
+                  "name": "688f",
+                  "type": 1,
+                  "text": "Run a server Crystal application to listen to port 3000",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 13,
+                      "end": 20,
+                      "href": "https://crystal-lang.org/",
+                      "title": "",
+                      "rel": "noopener",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 1,
+                      "start": 13,
+                      "end": 21
+                    }
+                  ]
+                },
+                {
+                  "name": "d3ae",
+                  "type": 8,
+                  "text": "[terminal 1] $ cat <<CODE | crystal eval\nrequire \"socket\"\ns = TCPServer.new(\"localhost\", 3000)\nwhile c = s.accept?\n   c << \"pong\\n\"\n   c.close()\nend\nCODE",
+                  "markups": []
+                },
+                {
+                  "name": "618c",
+                  "type": 1,
+                  "text": "I shrank it into one command, so you can start doing experiments right now (if you have Crystal installed, of course). Feel free to save the code to a file and run it via crystal run .",
+                  "markups": [
+                    {
+                      "type": 10,
+                      "start": 171,
+                      "end": 182
+                    },
+                    {
+                      "type": 3,
+                      "start": 88,
+                      "end": 105,
+                      "href": "https://crystal-lang.org/reference/installation/",
+                      "title": "",
+                      "rel": "noopener",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 2,
+                      "start": 0,
+                      "end": 2
+                    },
+                    {
+                      "type": 2,
+                      "start": 8,
+                      "end": 9
+                    },
+                    {
+                      "type": 2,
+                      "start": 16,
+                      "end": 171
+                    },
+                    {
+                      "type": 2,
+                      "start": 182,
+                      "end": 184
+                    }
+                  ]
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "How many processes can listen on same port in localhost? I know the answer from school time, and it is ONE port per application."
+          },
+          "cardType": 0,
+          "isDistributionAlertDismissed": false,
+          "type": "Post"
+        },
+        "a238ba6b49c7": {
+          "id": "a238ba6b49c7",
+          "versionId": "a453bf248407",
+          "creatorId": "fdf238948af6",
+          "homeCollectionId": "e1c377b08620",
+          "title": "How to automate building local virtual machines with Packer",
+          "detectedLanguage": "en",
+          "latestVersion": "a453bf248407",
+          "latestPublishedVersion": "a453bf248407",
+          "hasUnpublishedEdits": false,
+          "latestRev": 903,
+          "createdAt": 1574542440858,
+          "updatedAt": 1575243035790,
+          "acceptedAt": 0,
+          "firstPublishedAt": 1574770015872,
+          "latestPublishedAt": 1574872220847,
+          "vote": false,
+          "experimentalCss": "",
+          "displayAuthor": "",
+          "content": {
+            "subtitle": "We will learn how to create a disk image base on a remote iso disk image. Auto install packages and configure a virtual machine with a…",
+            "postDisplay": {
+              "coverless": true
+            },
+            "metaDescription": "Tutorial how to use packer with Qemu"
+          },
+          "virtuals": {
+            "statusForCollection": "APPROVED",
+            "allowNotes": true,
+            "previewImage": {
+              "imageId": "1*pMnhyb-qARBFLnRkPObL8Q.jpeg",
+              "filter": "",
+              "backgroundSize": "",
+              "originalWidth": 5184,
+              "originalHeight": 3456,
+              "strategy": "resample",
+              "height": 0,
+              "width": 0
+            },
+            "wordCount": 1139,
+            "imageCount": 2,
+            "readingTime": 4.681446540880503,
+            "subtitle": "We will learn how to create a disk image base on a remote iso disk image. Auto install packages and configure a virtual machine with a…",
+            "publishedInCount": 1,
+            "usersBySocialRecommends": [],
+            "noIndex": false,
+            "recommends": 3,
+            "isBookmarked": false,
+            "tags": [
+              {
+                "slug": "packers",
+                "name": "Packer",
+                "postCount": 0,
+                "metadata": {
+                  "postCount": 0,
+                  "coverImage": {
+                    "id": "1*JfT3qVpYDtTqva_ZQvRF5A.png",
+                    "originalWidth": 640,
+                    "originalHeight": 480,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "qemu",
+                "name": "Qemu",
+                "postCount": 49,
+                "metadata": {
+                  "postCount": 49,
+                  "coverImage": {
+                    "id": "0*wysQWuTvHJaST1jY.png",
+                    "originalWidth": 960,
+                    "originalHeight": 1049,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "automation",
+                "name": "Automation",
+                "postCount": 12754,
+                "metadata": {
+                  "postCount": 12754,
+                  "coverImage": {
+                    "id": "1*PHnnR3PlyYOY8w3YzXesnQ.jpeg",
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "linux",
+                "name": "Linux",
+                "postCount": 13421,
+                "metadata": {
+                  "postCount": 13421,
+                  "coverImage": {
+                    "id": "1*3xjUHruhwpEK2vdNPmhJZA.gif",
+                    "originalWidth": 2500,
+                    "originalHeight": 420,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "continuous-integration",
+                "name": "Continuous Integration",
+                "postCount": 4832,
+                "metadata": {
+                  "postCount": 4832,
+                  "coverImage": {
+                    "id": "1*I4vrPQGQU2nJPn5o-lx-kQ.jpeg",
+                    "originalWidth": 1199,
+                    "originalHeight": 899
+                  }
+                },
+                "type": "Tag"
+              }
+            ],
+            "socialRecommendsCount": 0,
+            "responsesCreatedCount": 0,
+            "links": {
+              "entries": [
+                {
+                  "url": "http://{{",
+                  "alts": [],
+                  "httpStatus": 0
+                },
+                {
+                  "url": "https://www.linkedin.com/in/michaelnikitochkin/",
+                  "alts": [],
+                  "httpStatus": 999
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/index.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/provisioners/index.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/intro/getting-started/install.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/virtualbox.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/vmware.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/guides/index.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://docs.centos.org/en-US/centos/install-guide/Kickstart2/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/qemu.html#iso_urls",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/qemu.html#iso_url",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/qemu.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/qemu.html#http_directory",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/qemu.html#headless",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.packer.io/docs/builders/qemu.html#disk_image",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry/samples/tree/packer-build-automate/experiments/3-packer-images/",
+                  "alts": [],
+                  "httpStatus": 404
+                },
+                {
+                  "url": "http://twitter.com/Graphical",
+                  "alts": [
+                    {
+                      "type": 3,
+                      "url": "twitter://user?screen_name=graphical"
+                    },
+                    {
+                      "type": 2,
+                      "url": "twitter://user?screen_name=graphical"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "http://twitter.com/Core",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "twitter://user?screen_name=core"
+                    },
+                    {
+                      "type": 3,
+                      "url": "twitter://user?screen_name=core"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://unsplash.com/@stefano_intintoli?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "http://twitter.com/Base",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "twitter://user?screen_name=BASE"
+                    },
+                    {
+                      "type": 3,
+                      "url": "twitter://user?screen_name=BASE"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "http://twitter.com/Development",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "twitter://user?screen_name=development"
+                    },
+                    {
+                      "type": 3,
+                      "url": "twitter://user?screen_name=development"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.qemu.org/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://unsplash.com/s/photos/how-to?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry/samples/tree/master/experiments/3-packer-images/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "http://mirror.de.leaseweb.net/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-%7B%7B",
+                  "alts": [],
+                  "httpStatus": 404
+                },
+                {
+                  "url": "http://mirror.de.leaseweb.net/centos/7/isos/x86_64/sha256sum.txt",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry/samples/blob/master/experiments/3-packer-images/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry/samples/blob/master/experiments/3-packer-images/http/ks.cfg",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/latest",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/trending",
+                  "alts": [
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry",
+                  "alts": [],
+                  "httpStatus": 200
+                }
+              ],
+              "version": "0.3",
+              "generatedAt": 1574872223236
+            },
+            "isLockedPreviewOnly": false,
+            "metaDescription": "Tutorial how to use packer with Qemu",
+            "totalClapCount": 11,
+            "sectionCount": 4,
+            "readingList": 0,
+            "topics": []
+          },
+          "coverless": true,
+          "slug": "how-to-automate-building-local-virtual-machines-with-packer",
+          "translationSourcePostId": "",
+          "translationSourceCreatorId": "",
+          "isApprovedTranslation": false,
+          "inResponseToPostId": "",
+          "inResponseToRemovedAt": 0,
+          "isTitleSynthesized": false,
+          "allowResponses": true,
+          "importedUrl": "",
+          "importedPublishedAt": 0,
+          "visibility": 0,
+          "uniqueSlug": "how-to-automate-building-local-virtual-machines-with-packer-a238ba6b49c7",
+          "previewContent": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "previewImage",
+                  "type": 4,
+                  "text": "",
+                  "layout": 10,
+                  "metadata": {
+                    "id": "1*pMnhyb-qARBFLnRkPObL8Q.jpeg",
+                    "originalWidth": 5184,
+                    "originalHeight": 3456,
+                    "isFeatured": true
+                  }
+                },
+                {
+                  "name": "7f57",
+                  "type": 3,
+                  "text": "How to automate building local virtual machines with Packer",
+                  "markups": [],
+                  "alignment": 1
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "We will learn how to create a disk image base on a remote iso disk image. Auto install packages and configure a virtual machine with a…"
+          },
+          "license": 0,
+          "inResponseToMediaResourceId": "",
+          "canonicalUrl": "",
+          "approvedHomeCollectionId": "e1c377b08620",
+          "newsletterId": "",
+          "webCanonicalUrl": "https://github.com/miry/samples/blob/master/experiments/3-packer-images/README.md",
+          "mediumUrl": "",
+          "migrationId": "",
+          "notifyFollowers": true,
+          "notifyTwitter": false,
+          "notifyFacebook": false,
+          "responseHiddenOnParentPostAt": 0,
+          "isSeries": false,
+          "isSubscriptionLocked": false,
+          "seriesLastAppendedAt": 0,
+          "audioVersionDurationSec": 0,
+          "sequenceId": "",
+          "isEligibleForRevenue": false,
+          "isBlockedFromHightower": false,
+          "deletedAt": 0,
+          "lockedPostSource": 0,
+          "hightowerMinimumGuaranteeStartsAt": 0,
+          "hightowerMinimumGuaranteeEndsAt": 0,
+          "featureLockRequestAcceptedAt": 0,
+          "mongerRequestType": 1,
+          "layerCake": 4,
+          "socialTitle": "",
+          "socialDek": "",
+          "editorialPreviewTitle": "",
+          "editorialPreviewDek": "",
+          "curationEligibleAt": 0,
+          "isProxyPost": false,
+          "proxyPostFaviconUrl": "",
+          "proxyPostProviderName": "",
+          "proxyPostType": 0,
+          "isSuspended": false,
+          "isLimitedState": false,
+          "seoTitle": "",
+          "previewContent2": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "d019",
+                  "type": 4,
+                  "text": "Photo by Stefano Intintoli on Unsplash",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 9,
+                      "end": 26,
+                      "href": "https://unsplash.com/@stefano_intintoli?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 30,
+                      "end": 38,
+                      "href": "https://unsplash.com/s/photos/how-to?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    }
+                  ],
+                  "layout": 3,
+                  "metadata": {
+                    "id": "1*pMnhyb-qARBFLnRkPObL8Q.jpeg",
+                    "originalWidth": 5184,
+                    "originalHeight": 3456,
+                    "isFeatured": true
+                  }
+                },
+                {
+                  "name": "7f57",
+                  "type": 3,
+                  "text": "How to automate building local virtual machines with Packer",
+                  "markups": []
+                },
+                {
+                  "name": "339f",
+                  "type": 1,
+                  "text": "We will learn how to create a disk image base on a remote iso disk image. Auto install packages and configure a virtual machine with a small configuration file. Setup another disk image, this time, the source would have a different format.",
+                  "markups": [
+                    {
+                      "type": 10,
+                      "start": 58,
+                      "end": 61
+                    }
+                  ],
+                  "hasDropCap": true
+                },
+                {
+                  "name": "550c",
+                  "type": 1,
+                  "text": "Before we continue, all the sources are available in Github.",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 53,
+                      "end": 59,
+                      "href": "https://github.com/miry/samples/tree/master/experiments/3-packer-images/",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    }
+                  ]
+                },
+                {
+                  "name": "d0e9",
+                  "type": 1,
+                  "text": "There are multiple ways to build a virtual machine for experiments. One of the ways is to use Packer. Packer has a big list of integrations: cloud providers, virtual machines, and containers.",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 94,
+                      "end": 100,
+                      "href": "https://www.packer.io/",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 102,
+                      "end": 108,
+                      "href": "https://www.packer.io/",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 119,
+                      "end": 123,
+                      "href": "https://www.packer.io/docs/builders/index.html",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 1,
+                      "start": 94,
+                      "end": 100
+                    },
+                    {
+                      "type": 1,
+                      "start": 102,
+                      "end": 108
+                    }
+                  ]
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "We will learn how to create a disk image base on a remote iso disk image. Auto install packages and configure a virtual machine with a…"
+          },
+          "cardType": 0,
+          "isDistributionAlertDismissed": false,
+          "type": "Post"
+        },
+        "c624834835d8": {
+          "id": "c624834835d8",
+          "versionId": "edfb7afc2e00",
+          "creatorId": "fdf238948af6",
+          "homeCollectionId": "e1c377b08620",
+          "title": "Convert Github Issue to Pull request",
+          "detectedLanguage": "en",
+          "latestVersion": "edfb7afc2e00",
+          "latestPublishedVersion": "edfb7afc2e00",
+          "hasUnpublishedEdits": false,
+          "latestRev": 1323,
+          "createdAt": 1570312669539,
+          "updatedAt": 1575475430399,
+          "acceptedAt": 0,
+          "firstPublishedAt": 1570555715159,
+          "latestPublishedAt": 1575475429816,
+          "vote": false,
+          "experimentalCss": "",
+          "displayAuthor": "",
+          "content": {
+            "subtitle": "Manage Github issues more effectively with command line tool.",
+            "postDisplay": {
+              "coverless": true
+            },
+            "metaDescription": "A short example how can you improve working with Issues and Pull requests processes in Github."
+          },
+          "virtuals": {
+            "statusForCollection": "APPROVED",
+            "allowNotes": true,
+            "previewImage": {
+              "imageId": "1*0dQuG3aJ3tGIFe3R6KgqpA.jpeg",
+              "filter": "",
+              "backgroundSize": "",
+              "originalWidth": 8606,
+              "originalHeight": 5737,
+              "strategy": "resample",
+              "height": 0,
+              "width": 0
+            },
+            "wordCount": 639,
+            "imageCount": 3,
+            "readingTime": 2.961320754716981,
+            "subtitle": "Manage Github issues more effectively with command line tool.",
+            "publishedInCount": 1,
+            "usersBySocialRecommends": [],
+            "noIndex": false,
+            "recommends": 3,
+            "isBookmarked": false,
+            "tags": [
+              {
+                "slug": "github",
+                "name": "Github",
+                "postCount": 10192,
+                "metadata": {
+                  "postCount": 10192,
+                  "coverImage": {
+                    "id": "0*QkLHzS3THKhgPPDL",
+                    "originalWidth": 5000,
+                    "originalHeight": 3313,
+                    "isFeatured": true,
+                    "unsplashPhotoId": "842ofHC6MaI"
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "hub",
+                "name": "Hub",
+                "postCount": 136,
+                "metadata": {
+                  "postCount": 136,
+                  "coverImage": {
+                    "id": "0*zIWLNgbqZlD-9dyR",
+                    "originalWidth": 1600,
+                    "originalHeight": 601
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "git",
+                "name": "Git",
+                "postCount": 9606,
+                "metadata": {
+                  "postCount": 9606,
+                  "coverImage": {
+                    "id": "1*4XNco5HjVRStTB1PcYq5bw.png",
+                    "originalWidth": 820,
+                    "originalHeight": 349,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "pull-request",
+                "name": "Pull Request",
+                "postCount": 279,
+                "metadata": {
+                  "postCount": 279,
+                  "coverImage": {
+                    "id": "1*hKpI04xMYmOR4tkCffU6Lw.png",
+                    "originalWidth": 691,
+                    "originalHeight": 311,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "command-line",
+                "name": "Command Line",
+                "postCount": 1418,
+                "metadata": {
+                  "postCount": 1418,
+                  "coverImage": {
+                    "id": "1*XXI-kg18liPn4XcfZmoqQQ.jpeg",
+                    "originalWidth": 6016,
+                    "originalHeight": 4016
+                  }
+                },
+                "type": "Tag"
+              }
+            ],
+            "socialRecommendsCount": 0,
+            "responsesCreatedCount": 0,
+            "links": {
+              "entries": [
+                {
+                  "url": "https://hub.github.com/hub-pull-request.1.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://hub.github.com/hub.1.html#github-oauth-authentication",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://hub.github.com/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://en.wikipedia.org/wiki/Don%27t_repeat_yourself",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/settings/tokens",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.linkedin.com/in/michaelnikitochkin/",
+                  "alts": [],
+                  "httpStatus": 999
+                },
+                {
+                  "url": "https://github.com/github/hub",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://unsplash.com/s/photos/outdoor?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://unsplash.com/@harleydavidson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/latest",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/trending",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry",
+                  "alts": [],
+                  "httpStatus": 200
+                }
+              ],
+              "version": "0.3",
+              "generatedAt": 1575475432111
+            },
+            "isLockedPreviewOnly": false,
+            "metaDescription": "A short example how can you improve working with Issues and Pull requests processes in Github.",
+            "totalClapCount": 11,
+            "sectionCount": 3,
+            "readingList": 0,
+            "topics": []
+          },
+          "coverless": true,
+          "slug": "convert-github-issue-to-pull-request",
+          "translationSourcePostId": "",
+          "translationSourceCreatorId": "",
+          "isApprovedTranslation": false,
+          "inResponseToPostId": "",
+          "inResponseToRemovedAt": 0,
+          "isTitleSynthesized": false,
+          "allowResponses": true,
+          "importedUrl": "",
+          "importedPublishedAt": 0,
+          "visibility": 0,
+          "uniqueSlug": "convert-github-issue-to-pull-request-c624834835d8",
+          "previewContent": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "previewImage",
+                  "type": 4,
+                  "text": "",
+                  "layout": 10,
+                  "metadata": {
+                    "id": "1*0dQuG3aJ3tGIFe3R6KgqpA.jpeg",
+                    "originalWidth": 8606,
+                    "originalHeight": 5737,
+                    "isFeatured": true
+                  }
+                },
+                {
+                  "name": "previewTitle",
+                  "type": 3,
+                  "text": "Convert Github Issue to Pull request",
+                  "alignment": 1
+                },
+                {
+                  "name": "previewSubtitle",
+                  "type": 13,
+                  "text": "Manage Github issues more effectively with command line tool.",
+                  "alignment": 1
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "Manage Github issues more effectively with command line tool."
+          },
+          "license": 0,
+          "inResponseToMediaResourceId": "",
+          "canonicalUrl": "",
+          "approvedHomeCollectionId": "e1c377b08620",
+          "newsletterId": "",
+          "webCanonicalUrl": "",
+          "mediumUrl": "",
+          "migrationId": "",
+          "notifyFollowers": true,
+          "notifyTwitter": false,
+          "notifyFacebook": false,
+          "responseHiddenOnParentPostAt": 0,
+          "isSeries": false,
+          "isSubscriptionLocked": false,
+          "seriesLastAppendedAt": 0,
+          "audioVersionDurationSec": 0,
+          "sequenceId": "",
+          "isEligibleForRevenue": false,
+          "isBlockedFromHightower": false,
+          "deletedAt": 0,
+          "lockedPostSource": 0,
+          "hightowerMinimumGuaranteeStartsAt": 0,
+          "hightowerMinimumGuaranteeEndsAt": 0,
+          "featureLockRequestAcceptedAt": 0,
+          "mongerRequestType": 1,
+          "layerCake": 4,
+          "socialTitle": "",
+          "socialDek": "",
+          "editorialPreviewTitle": "",
+          "editorialPreviewDek": "",
+          "curationEligibleAt": 1570555713200,
+          "isProxyPost": false,
+          "proxyPostFaviconUrl": "",
+          "proxyPostProviderName": "",
+          "proxyPostType": 0,
+          "isSuspended": false,
+          "isLimitedState": false,
+          "seoTitle": "",
+          "previewContent2": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "6cd1",
+                  "type": 4,
+                  "text": "Photo by Harley-Davidson on Unsplash",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 9,
+                      "end": 24,
+                      "href": "https://unsplash.com/@harleydavidson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                      "title": "",
+                      "rel": "noopener",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 28,
+                      "end": 36,
+                      "href": "https://unsplash.com/s/photos/outdoor?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+                      "title": "",
+                      "rel": "noopener",
+                      "anchorType": 0
+                    }
+                  ],
+                  "layout": 1,
+                  "metadata": {
+                    "id": "1*0dQuG3aJ3tGIFe3R6KgqpA.jpeg",
+                    "originalWidth": 8606,
+                    "originalHeight": 5737,
+                    "isFeatured": true
+                  }
+                },
+                {
+                  "name": "71e7",
+                  "type": 3,
+                  "text": "Convert GitHub Issue to Pull request",
+                  "markups": []
+                },
+                {
+                  "name": "565e",
+                  "type": 1,
+                  "text": "The typical difficulty for most GitHub users is to manage 2 cards per task (an Issue and a connected Pull request). It consumes a lot of time and energy to maintain a project, mainly when you create an Issue before you start coding.",
+                  "markups": [
+                    {
+                      "type": 1,
+                      "start": 48,
+                      "end": 74
+                    },
+                    {
+                      "type": 2,
+                      "start": 76,
+                      "end": 84
+                    },
+                    {
+                      "type": 2,
+                      "start": 101,
+                      "end": 113
+                    },
+                    {
+                      "type": 2,
+                      "start": 202,
+                      "end": 207
+                    }
+                  ]
+                },
+                {
+                  "name": "ffb5",
+                  "type": 6,
+                  "text": "TL;DR: hub pull-request attaches a branch to the existing GitHub issue or creates a new pull request: hub pull-request -i <issue number>",
+                  "markups": [
+                    {
+                      "type": 10,
+                      "start": 102,
+                      "end": 136
+                    },
+                    {
+                      "type": 1,
+                      "start": 0,
+                      "end": 6
+                    },
+                    {
+                      "type": 1,
+                      "start": 7,
+                      "end": 10
+                    },
+                    {
+                      "type": 1,
+                      "start": 11,
+                      "end": 23
+                    }
+                  ]
+                },
+                {
+                  "name": "c00a",
+                  "type": 1,
+                  "text": "The most common steps for new users are:",
+                  "markups": []
+                },
+                {
+                  "name": "d498",
+                  "type": 9,
+                  "text": "Create “Issue #1”;",
+                  "markups": [
+                    {
+                      "type": 2,
+                      "start": 7,
+                      "end": 17
+                    }
+                  ]
+                },
+                {
+                  "name": "fa84",
+                  "type": 9,
+                  "text": "Start work on the problem in a new branch;",
+                  "markups": []
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "Manage Github issues more effectively with command line tool."
+          },
+          "cardType": 0,
+          "isDistributionAlertDismissed": false,
+          "type": "Post"
+        },
+        "c35b40c499e": {
+          "id": "c35b40c499e",
+          "versionId": "395ff946ab61",
+          "creatorId": "fdf238948af6",
+          "homeCollectionId": "449033851f89",
+          "title": "Modify binary files with VIM",
+          "detectedLanguage": "en",
+          "latestVersion": "395ff946ab61",
+          "latestPublishedVersion": "395ff946ab61",
+          "hasUnpublishedEdits": false,
+          "latestRev": 351,
+          "createdAt": 1547408143447,
+          "updatedAt": 1547419747453,
+          "acceptedAt": 0,
+          "firstPublishedAt": 1547419392748,
+          "latestPublishedAt": 1547419747453,
+          "vote": false,
+          "experimentalCss": "",
+          "displayAuthor": "",
+          "content": {
+            "subtitle": "Edit binary files in Linux with Vim",
+            "postDisplay": {
+              "coverless": true
+            },
+            "metaDescription": "Sometime I need to open binaries, change few bytes with own values and execute again. Found one of the most easy solution, that have on each machine."
+          },
+          "virtuals": {
+            "statusForCollection": "APPROVED",
+            "allowNotes": true,
+            "previewImage": {
+              "imageId": "0*FbFs8aNmqNLKw4BM",
+              "filter": "",
+              "backgroundSize": "",
+              "originalWidth": 5760,
+              "originalHeight": 3840,
+              "strategy": "resample",
+              "height": 0,
+              "width": 0
+            },
+            "wordCount": 250,
+            "imageCount": 1,
+            "readingTime": 1.1433962264150943,
+            "subtitle": "Edit binary files in Linux with Vim",
+            "publishedInCount": 1,
+            "usersBySocialRecommends": [],
+            "noIndex": false,
+            "recommends": 1,
+            "isBookmarked": false,
+            "tags": [
+              {
+                "slug": "vim",
+                "name": "Vim",
+                "postCount": 1286,
+                "metadata": {
+                  "postCount": 1286,
+                  "coverImage": {
+                    "id": "1*k4Apq5raYNmzuPJT-bhVmw.png",
+                    "originalWidth": 736,
+                    "originalHeight": 476,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "debug",
+                "name": "Debug",
+                "postCount": 308,
+                "metadata": {
+                  "postCount": 308,
+                  "coverImage": {
+                    "id": "0*r5E5ofV-QSHY1BJ2.png",
+                    "originalWidth": 787,
+                    "originalHeight": 382,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "linux",
+                "name": "Linux",
+                "postCount": 13421,
+                "metadata": {
+                  "postCount": 13421,
+                  "coverImage": {
+                    "id": "1*3xjUHruhwpEK2vdNPmhJZA.gif",
+                    "originalWidth": 2500,
+                    "originalHeight": 420,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "cracking",
+                "name": "Cracking",
+                "postCount": 69,
+                "metadata": {
+                  "postCount": 69,
+                  "coverImage": {
+                    "id": "1*vKIdDhcS5_mz685blykj0w.jpeg",
+                    "originalWidth": 640,
+                    "originalHeight": 425,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              },
+              {
+                "slug": "hacking",
+                "name": "Hacking",
+                "postCount": 10422,
+                "metadata": {
+                  "postCount": 10422,
+                  "coverImage": {
+                    "id": "1*wyBozKnyF8CkssIexZ5O8g.png",
+                    "originalWidth": 2746,
+                    "originalHeight": 1622,
+                    "isFeatured": true
+                  }
+                },
+                "type": "Tag"
+              }
+            ],
+            "socialRecommendsCount": 0,
+            "responsesCreatedCount": 0,
+            "links": {
+              "entries": [
+                {
+                  "url": "https://unsplash.com?utm_source=medium&utm_medium=referral",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "http://vim.wikia.com/wiki/Hex_dump",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://unsplash.com/@markusspiske?utm_source=medium&utm_medium=referral",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.ultraedit.com/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.linkedin.com/in/michaelnikitochkin/",
+                  "alts": [],
+                  "httpStatus": 999
+                },
+                {
+                  "url": "http://www.winhex.com/winhex/hex-editor.html",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.ghisler.com/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/latest",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://jtway.co/trending",
+                  "alts": [
+                    {
+                      "type": 2,
+                      "url": "medium://jetthoughts"
+                    },
+                    {
+                      "type": 3,
+                      "url": "medium://jetthoughts"
+                    }
+                  ],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://pubnative.net/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://www.farmanager.com/",
+                  "alts": [],
+                  "httpStatus": 200
+                },
+                {
+                  "url": "https://github.com/miry",
+                  "alts": [],
+                  "httpStatus": 200
+                }
+              ],
+              "version": "0.3",
+              "generatedAt": 1547419749124
+            },
+            "isLockedPreviewOnly": false,
+            "metaDescription": "Sometime I need to open binaries, change few bytes with own values and execute again. Found one of the most easy solution, that have on each machine.",
+            "totalClapCount": 2,
+            "sectionCount": 2,
+            "readingList": 0,
+            "topics": []
+          },
+          "coverless": true,
+          "slug": "modify-binary-files-with-vim",
+          "translationSourcePostId": "",
+          "translationSourceCreatorId": "",
+          "isApprovedTranslation": false,
+          "inResponseToPostId": "",
+          "inResponseToRemovedAt": 0,
+          "isTitleSynthesized": false,
+          "allowResponses": true,
+          "importedUrl": "",
+          "importedPublishedAt": 0,
+          "visibility": 0,
+          "uniqueSlug": "modify-binary-files-with-vim-c35b40c499e",
+          "previewContent": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "previewImage",
+                  "type": 4,
+                  "text": "",
+                  "layout": 10,
+                  "metadata": {
+                    "id": "0*FbFs8aNmqNLKw4BM",
+                    "originalWidth": 5760,
+                    "originalHeight": 3840,
+                    "isFeatured": true,
+                    "unsplashPhotoId": "70Rir5vB96U"
+                  }
+                },
+                {
+                  "name": "previewTitle",
+                  "type": 3,
+                  "text": "Modify binary files with VIM",
+                  "alignment": 1
+                },
+                {
+                  "name": "previewSubtitle",
+                  "type": 13,
+                  "text": "Edit binary files in Linux with Vim",
+                  "alignment": 1
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "Edit binary files in Linux with Vim"
+          },
+          "license": 0,
+          "inResponseToMediaResourceId": "",
+          "canonicalUrl": "",
+          "approvedHomeCollectionId": "449033851f89",
+          "newsletterId": "",
+          "webCanonicalUrl": "",
+          "mediumUrl": "",
+          "migrationId": "",
+          "notifyFollowers": true,
+          "notifyTwitter": false,
+          "notifyFacebook": false,
+          "responseHiddenOnParentPostAt": 0,
+          "isSeries": false,
+          "isSubscriptionLocked": false,
+          "seriesLastAppendedAt": 0,
+          "audioVersionDurationSec": 0,
+          "sequenceId": "",
+          "isEligibleForRevenue": false,
+          "isBlockedFromHightower": false,
+          "deletedAt": 0,
+          "lockedPostSource": 0,
+          "hightowerMinimumGuaranteeStartsAt": 0,
+          "hightowerMinimumGuaranteeEndsAt": 0,
+          "featureLockRequestAcceptedAt": 0,
+          "mongerRequestType": 1,
+          "layerCake": 0,
+          "socialTitle": "",
+          "socialDek": "",
+          "editorialPreviewTitle": "",
+          "editorialPreviewDek": "",
+          "curationEligibleAt": 0,
+          "isProxyPost": false,
+          "proxyPostFaviconUrl": "",
+          "proxyPostProviderName": "",
+          "proxyPostType": 0,
+          "isSuspended": false,
+          "isLimitedState": false,
+          "seoTitle": "",
+          "previewContent2": {
+            "bodyModel": {
+              "paragraphs": [
+                {
+                  "name": "d2a9",
+                  "type": 3,
+                  "text": "Modify binary files with VIM",
+                  "markups": []
+                },
+                {
+                  "name": "78ee",
+                  "type": 6,
+                  "text": "TL;DR xxd ./bin/app | vim — and :%!xxd -r > ./bin/new_app",
+                  "markups": [
+                    {
+                      "type": 10,
+                      "start": 6,
+                      "end": 27
+                    },
+                    {
+                      "type": 10,
+                      "start": 32,
+                      "end": 57
+                    }
+                  ]
+                },
+                {
+                  "name": "7eb1",
+                  "type": 4,
+                  "text": "Photo by Markus Spiske on Unsplash",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 9,
+                      "end": 22,
+                      "href": "https://unsplash.com/@markusspiske?utm_source=medium&utm_medium=referral",
+                      "title": "",
+                      "rel": "photo-creator",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 26,
+                      "end": 34,
+                      "href": "https://unsplash.com?utm_source=medium&utm_medium=referral",
+                      "title": "",
+                      "rel": "photo-source",
+                      "anchorType": 0
+                    }
+                  ],
+                  "layout": 3,
+                  "metadata": {
+                    "id": "0*FbFs8aNmqNLKw4BM",
+                    "originalWidth": 5760,
+                    "originalHeight": 3840,
+                    "isFeatured": true,
+                    "unsplashPhotoId": "70Rir5vB96U"
+                  }
+                },
+                {
+                  "name": "218a",
+                  "type": 1,
+                  "text": "When I was a student, I used a lot Windows. It was hard times and we had to crack tools like Total Commander or FAR manager or upgrade Diablo’s heroes in saves files. I used editors like: WinHex and UltraEdit .",
+                  "markups": [
+                    {
+                      "type": 3,
+                      "start": 93,
+                      "end": 108,
+                      "href": "https://www.ghisler.com/",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 112,
+                      "end": 123,
+                      "href": "https://www.farmanager.com/",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 188,
+                      "end": 194,
+                      "href": "http://www.winhex.com/winhex/hex-editor.html",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    },
+                    {
+                      "type": 3,
+                      "start": 199,
+                      "end": 208,
+                      "href": "https://www.ultraedit.com/",
+                      "title": "",
+                      "rel": "",
+                      "anchorType": 0
+                    }
+                  ],
+                  "hasDropCap": true
+                },
+                {
+                  "name": "9006",
+                  "type": 1,
+                  "text": "Today I came to similar problem modify binary file in Linux terminal. I started search with one requirements:",
+                  "markups": []
+                },
+                {
+                  "name": "8c05",
+                  "type": 10,
+                  "text": "it should be cross distributive solution",
+                  "markups": []
+                },
+                {
+                  "name": "bc1f",
+                  "type": 10,
+                  "text": "should be easy to use with Vim (as main my editor for linux machines)",
+                  "markups": []
+                }
+              ],
+              "sections": [
+                {
+                  "startIndex": 0
+                }
+              ]
+            },
+            "isFullContent": false,
+            "subtitle": "Edit binary files in Linux with Vim"
+          },
+          "cardType": 0,
+          "isDistributionAlertDismissed": false,
+          "type": "Post"
+        }
+      },
+      "Social": {
+        "fdf238948af6": {
+          "userId": "lo_QW8oX4Ol6Jgr",
+          "targetUserId": "fdf238948af6",
+          "type": "Social"
+        }
+      },
+      "SocialStats": {
+        "fdf238948af6": {
+          "userId": "fdf238948af6",
+          "usersFollowedCount": 41,
+          "usersFollowedByCount": 43,
+          "type": "SocialStats"
+        }
+      }
+    },
+    "paging": {
+      "path": "https://medium.com/_/api/users/fdf238948af6/profile/stream",
+      "next": {
+        "limit": 10,
+        "to": "1547419392748",
+        "source": "overview",
+        "ignoredIds": [
+          "eb0c2e36e1f5"
+        ],
+        "page": 2
+      }
+    }
+  },
+  "v": 3,
+  "b": "39671-f817248"
+}
