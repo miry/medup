@@ -31,11 +31,14 @@ module Medium
     private def data
       return @data if @data
 
-      if @response.body
-        _data = self.class.json(@response)
-        @data = _data
+      case @response.status_code
+      when 429
+      else
+        if @response.body
+          _data = self.class.json(@response)
+          @data = _data
+        end
       end
-
       return @data
     end
 

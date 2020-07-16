@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- Download posts in 2 concurent processes (#17, @miry)
 
 ## [0.1.8] - 2020-05-22
 ### Changed
