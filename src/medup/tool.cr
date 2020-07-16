@@ -8,11 +8,12 @@ module Medup
     MARKDOWN_FORMAT          = "md"
     JSON_FORMAT              = "json"
 
+    token : String
     user : String?
     articles : Array(String)
 
-    def initialize(token : String?, @user : String?, @articles : Array(String), dist : String?, format : String?, source : String?, update : Bool?)
-      @client = Medium::Client.new(token, @user)
+    def initialize(@token : String, @user : String?, @articles : Array(String), dist : String?, format : String?, source : String?, update : Bool?)
+      @client = Medium::Client.new(@token, @user)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
@@ -32,11 +33,30 @@ module Medup
         raise "No articles to backup"
       end
 
+      process_posts_async(posts)
+    end
+
+    def process_posts_async(posts)
       puts "Posts count: #{posts.size}"
 
+      channel_start = Channel(String).new(2)
+      channel_finished = Channel(String).new(2)
+
       posts.each do |post_url|
-        process_post(post_url)
+        spawn do
+          channel_start.send(post_url)
+          process_post(post_url)
+          channel_finished.send(post_url)
+        end
       end
+
+      posts.size.times do
+        channel_start.receive?
+        channel_finished.receive?
+      end
+
+      channel_start.close
+      channel_finished.close
     end
 
     def close : Nil
@@ -44,11 +64,15 @@ module Medup
     end
 
     def process_post(post_url : String)
-      post = @client.post_by_url(post_url)
+      client = Medium::Client.new(@token, @user)
+      post = client.post_by_url(post_url)
       save(post, @format)
       save_assets(post)
     rescue ex : Exception
       STDERR.puts "ERROR: #{ex.inspect}"
+      STDERR.puts ex.inspect_with_backtrace
+    ensure
+      client.close unless client.nil?
     end
 
     def save(post, format = "json")
