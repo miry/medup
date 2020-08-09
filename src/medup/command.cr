@@ -25,7 +25,7 @@ module Medup
           end
         end
         parser.on("-r", "--recommended", "Export all posts to wich user clapped / has recommended") { source = ::Medup::Tool::SOURCE_RECOMMENDED_POSTS }
-        parser.on("-u", "--update", "Overwrite existing articles files, if the same article exists") { update = true }
+        parser.on("--update", "Overwrite existing articles files, if the same article exists") { update = true }
         parser.on("-h", "--help", "Show this help") { puts parser; exit = true }
         parser.on("-v", "--version", "Print current version") { puts ::Medup::VERSION; exit = true }
 

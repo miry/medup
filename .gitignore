@@ -3,3 +3,4 @@ bin/
 posts/
 build/
 _output/
+tmp/

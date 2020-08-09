@@ -4,7 +4,7 @@ module Medium
       klass = case response.status_code
               when 400..499 then ::Medium::ClientError
               when 500..599 then ::Medium::ServerError
-              else return
+              else               return
               end
       klass.new(response)
     end

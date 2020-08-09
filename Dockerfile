@@ -1,4 +1,4 @@
-FROM crystallang/crystal:0.34.0 as builder
+FROM crystallang/crystal:0.35.1 as builder
 
 WORKDIR /app
 COPY ./shard.yml /app/
