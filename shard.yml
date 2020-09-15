@@ -14,3 +14,8 @@ targets:
 crystal: 0.35.1
 
 license: LGPL-3.0
+
+development_dependencies:
+  webmock:
+    github: manastech/webmock.cr
+    branch: master

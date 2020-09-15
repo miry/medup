@@ -104,11 +104,6 @@ module Medup
       # puts post.to_pretty_json
       post.content.bodyModel.paragraphs.each do |paragraph|
         case paragraph.type
-        when 4
-          metadata = paragraph.metadata
-          if !metadata.nil?
-            download_image(metadata.id)
-          end
         when 11
           iframe = paragraph.iframe
           if !iframe.nil?
@@ -126,20 +121,6 @@ module Medup
 
     def download_iframe(name : String)
       download_to_assets("https://medium.com/media/#{name}", name + ".html")
-    end
-
-    def download_url(href)
-      uri = URI.parse href
-      name = "#{uri.host}_#{uri.path}".gsub(/[\@\/]+/, "_")
-      filepath = File.join(@dist_path, "assets", name)
-
-      return if File.exists?(filepath)
-
-      puts "Download #{href} file to #{filepath}"
-
-      HTTP::Client.get(href) do |response|
-        File.write(filepath, response.body_io)
-      end
     end
 
     def download_to_assets(src, filename)

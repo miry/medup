@@ -2,7 +2,7 @@ FROM crystallang/crystal:0.35.1 as builder
 
 WORKDIR /app
 COPY ./shard.yml /app/
-RUN shards install
+RUN shards install --production -v
 
 COPY . /app/
 RUN shards build --production -v

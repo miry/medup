@@ -1,3 +1,5 @@
+require "base64"
+
 module Medium
   class Post
     class Paragraph
@@ -19,49 +21,69 @@ module Medium
         strict: true
       )
 
-      def to_md
-        case @type
-        when 1
-          markup
-        when 2
-          "# #{markup}"
-        when 3
-          "# #{markup}"
-        when 4
-          # "[#{@text}](https://miro.medium.com/#{metadata.try(&.id)})"
-          if @href
-            "[![#{@text}](./assets/#{metadata.try(&.id)})](#{@href})"
-          else
-            "![#{@text}](./assets/#{metadata.try(&.id)})"
-          end
-        when 6
-          "> #{markup}"
-        when 7
-          ">> #{markup}"
-        when 8
-          "```\n#{@text}\n```"
-        when 9
-          "* #{markup}"
-        when 10
-          "1. #{markup}"
-        when 11
-          if @iframe.nil?
-            "<!-- Missing iframe -->"
-          else
-            frame = @iframe.not_nil!
-            "<iframe src=\"./assets/#{frame.mediaResourceId}.html\"></iframe>"
-            # Support Frame mode with inline content. Github does not support it.
-            # "<frame>#{frame.get}</frame>"
-          end
-        when 13
-          "### #{markup}"
-        when 14
-          "#{@mixtapeMetadata.try &.href}"
-        when 15
-          ""
-        else
-          raise "Unknown paragraph type #{@type} with text #{@text}"
-        end
+      def to_md : Tuple(String, String)
+        content : String = ""
+        assets = ""
+        content = case @type
+                  when 1
+                    markup
+                  when 2
+                    "# #{markup}"
+                  when 3
+                    "# #{markup}"
+                  when 4
+                    m = metadata
+                    if !m.nil? && !m.id.nil?
+                      asset_id = Base64.strict_encode(m.id || "")
+                      assets = "[image_ref_#{asset_id}]: data:image/png;base64,"
+                      img = "![#{@text}][image_ref_#{asset_id}]"
+                      encoded = download_image(m.id || "")
+                      assets += encoded
+                      if @href
+                        img = "[#{img}](#{@href})"
+                      end
+                      img
+                    else
+                      ""
+                    end
+                  when 6
+                    "> #{markup}"
+                  when 7
+                    ">> #{markup}"
+                  when 8
+                    "```\n#{@text}\n```"
+                  when 9
+                    "* #{markup}"
+                  when 10
+                    "1. #{markup}"
+                  when 11
+                    if @iframe.nil?
+                      "<!-- Missing iframe -->"
+                    else
+                      frame = @iframe.not_nil!
+                      "<iframe src=\"./assets/#{frame.mediaResourceId}.html\"></iframe>"
+                      # Support Frame mode with inline content. Github does not support it.
+                      # "<frame>#{frame.get}</frame>"
+                    end
+                  when 13
+                    "### #{markup}"
+                  when 14
+                    "#{@mixtapeMetadata.try &.href}"
+                  when 15
+                    ""
+                  else
+                    raise "Unknown paragraph type #{@type} with text #{@text}"
+                  end
+        return content, assets
+      end
+
+      def download_image(name : String)
+        download_url("https://miro.medium.com/#{name}")
+      end
+
+      def download_url(src)
+        response = HTTP::Client.get(src)
+        Base64.strict_encode(response.body)
       end
 
       def markup
