@@ -73,7 +73,7 @@ describe Medium::Post::Paragraph do
     end
 
     it "render iframe inline" do
-      subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 11, "text": "", "markups": [], "iframe":{"mediaResourceId": "e7722acf2886364130e03d2c7ad29de7"}}})
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 11, "text": "", "markups": [], "iframe":{"mediaResourceId": "e7722acf2*886364130e03d2c7ad29de7"}}})
       subject.to_md[0].should eq(%{<iframe src="./assets/e7722acf2886364130e03d2c7ad29de7.html"></iframe>})
     end
 

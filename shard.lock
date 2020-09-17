@@ -4,3 +4,7 @@ shards:
     git: https://github.com/manastech/webmock.cr.git
     version: 0.13.0+git.commit.bb3eab30f6c7d1fdc0a7ff14cd136d68e860d1a7
 
+  zaru_crystal:
+    git: https://github.com/szTheory/zaru_crystal.git
+    version: 1.0.0+git.commit.7b8e64c33455b92165488611e166522ff0fcb7c0
+
