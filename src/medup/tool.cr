@@ -115,12 +115,9 @@ module Medup
       end
     end
 
-    def download_image(name : String)
-      download_to_assets("https://miro.medium.com/#{name}", name)
-    end
-
     def download_iframe(name : String)
-      download_to_assets("https://medium.com/media/#{name}", name + ".html")
+      filename = Zaru.sanitize!(name)
+      download_to_assets("https://medium.com/media/#{name}", filename + ".html")
     end
 
     def download_to_assets(src, filename)

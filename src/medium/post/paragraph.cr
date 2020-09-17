@@ -1,4 +1,4 @@
-require "base64"
+require "zaru_crystal/zaru"
 
 module Medium
   class Post
@@ -61,7 +61,8 @@ module Medium
                       "<!-- Missing iframe -->"
                     else
                       frame = @iframe.not_nil!
-                      "<iframe src=\"./assets/#{frame.mediaResourceId}.html\"></iframe>"
+                      asset_id = Zaru.sanitize!(frame.mediaResourceId)
+                      "<iframe src=\"./assets/#{asset_id}.html\"></iframe>"
                       # Support Frame mode with inline content. Github does not support it.
                       # "<frame>#{frame.get}</frame>"
                     end
