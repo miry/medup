@@ -15,6 +15,32 @@
 * [Contributors](#contributors)
 * [License](#license)
 
+# Usage
+
+## Export post
+
+Export a single medium post to local
+
+```shell
+medup https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094
+```
+
+## Author's posts
+
+Export all articles written by single author to special folder `posts/miry`
+
+```shell
+medium -u miry -d posts/miry
+```
+
+## User's recommendations
+
+Export all articles recommended by `miry`:
+
+```shell
+medium -u miry -d posts/recommendations -r
+```
+
 # Features
 
 * Discover all articles from user account available in public
