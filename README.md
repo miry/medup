@@ -39,6 +39,7 @@ Run export command for **Medium** author *miry* and save articles to local folde
 
 ```shell
 $ medup -u miry -d .
+$ medup -d . https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094
 ```
 
 ## Docker
@@ -89,7 +90,8 @@ In the directory, you can find 2 format of files: `.json` and `.md`.
 - *JSON* format is the raw, what *Medium* returns.
 - *Markdown* format is simple implementation of block formated text.
 
-Images and `IFRAME` content are located in `posts/assets`.
+Images encoded in the result document.
+`IFRAME` content are located in `posts/assets`.
 
 ## Markdown
 

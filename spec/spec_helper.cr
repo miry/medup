@@ -1,5 +1,14 @@
 require "spec"
+require "webmock"
+
 require "../src/medup"
+
+Spec.before_suite do
+  WebMock.stub(:get, "https://miro.medium.com/0*FbFs8aNmqNLKw4BM")
+    .to_return(body: "some binary content")
+  WebMock.stub(:get, "https://miro.medium.com/1*NVLl4oVmMQtumKL-DVV1rA.png")
+    .to_return(body: "some binary content")
+end
 
 def fixtures(name)
   raw = File.read(File.join("spec", "fixtures", name))

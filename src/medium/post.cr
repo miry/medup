@@ -39,8 +39,13 @@ module Medium
       end
 
       result += "---\n\n"
-      result +
-        @content.bodyModel.paragraphs.map(&.to_md).join("\n\n")
+      assets = "\n"
+      @content.bodyModel.paragraphs.map do |paragraph|
+        content, footer = paragraph.to_md
+        result += content + "\n\n"
+        assets += footer + "\n" unless footer.empty?
+      end
+      result + assets
     end
 
     def to_pretty_json
