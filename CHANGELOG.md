@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- Embed images to single document (#3, @miry)
 - Download posts in 2 concurent processes (#17, @miry)
 - Use crystal lang 0.35.1
 
