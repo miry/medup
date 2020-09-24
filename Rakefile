@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'rake/phony'
+require 'net/http'
+require 'json'
 
 def version
   `shards version`.chop!
@@ -56,5 +58,22 @@ namespace :github do
   desc "Create Github release"
   task :release do
     sh "hub release create -m 'v#{version}' v#{version}"
+  end
+end
+
+namespace :post do
+  desc "Download and format the original JSON of the post"
+  task :fetch, [:url] do |t, args|
+    uri = URI(args.url)
+    uri.query = "format=json" if uri.query.nil?
+    response = Net::HTTP.get(uri)
+    content = response[16..-1]
+    json = JSON.parse(content)
+
+    filename = uri.path.split('/').last + '.json'
+    puts "Download to #{filename}"
+    open(filename, 'w') do |f|
+      f.write(JSON.pretty_generate(json))
+    end
   end
 end
