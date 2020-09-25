@@ -8,6 +8,8 @@ module Medium
     JSON.mapping(
       title: String,
       slug: String,
+      createdAt: Int64,
+      updatedAt: Int64,
       content: PostContent,
       virtuals: PostVirtuals
     )
@@ -63,6 +65,10 @@ module Medium
     # Comma seprated list of tags
     def tags
       @virtuals.tags.join ",", &.slug
+    end
+
+    def created_at
+      Time.unix_ms(@createdAt)
     end
   end
 

@@ -77,7 +77,8 @@ module Medup
 
     def save(post, format = "json")
       slug = post.slug
-      filename = slug + "." + format
+      created_at = post.created_at
+      filename = created_at.to_s("%F") + "-" + slug + "." + format
       filepath = File.join(@dist, filename)
       unless File.directory?(@dist)
         puts "Create directory #{@dist}"
