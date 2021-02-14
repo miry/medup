@@ -1,4 +1,5 @@
 name: medup
+repository: https://github.com/miry/medup.git
 version: 0.1.9
 
 authors:
