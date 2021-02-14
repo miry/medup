@@ -1,3 +1,4 @@
+require "json_mapping"
 require "zaru_crystal/zaru"
 
 module Medium

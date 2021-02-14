@@ -1,3 +1,5 @@
+require "json_mapping"
+
 module Medium
   class Post
     class Tag

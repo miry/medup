@@ -1,3 +1,5 @@
+require "json_mapping"
+
 module Medium
   class User
     JSON.mapping(

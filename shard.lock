@@ -1,10 +1,14 @@
 version: 2.0
 shards:
+  json_mapping:
+    git: https://github.com/crystal-lang/json_mapping.cr.git
+    version: 0.1.0
+
   webmock:
     git: https://github.com/manastech/webmock.cr.git
-    version: 0.13.0+git.commit.bb3eab30f6c7d1fdc0a7ff14cd136d68e860d1a7
+    version: 0.14.0+git.commit.42b347cdd64e13193e46167a03593944ae2b3d20
 
   zaru_crystal:
     git: https://github.com/szTheory/zaru_crystal.git
-    version: 1.0.0+git.commit.7b8e64c33455b92165488611e166522ff0fcb7c0
+    version: 1.0.0+git.commit.e68d3113fa0eb79ea680d83b809386301172827a
 

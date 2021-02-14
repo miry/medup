@@ -1,3 +1,4 @@
+require "json_mapping"
 require "./post/*"
 
 module Medium
