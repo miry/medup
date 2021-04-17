@@ -6,12 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.10] - 2021-04-17
 ### Added
 - Allow to download pure orginal JSON by url (@miry)
 
 ### Changed
 - Add ISO8601 format date in the result post filename (@miry)
 - Use crystal lang 0.36.1 (@miry)
+- Use crystal lang 1.0.0 (@miry)
+- Update docker image to use alpine instead ubuntu and static linked libs (@miry)
 
 ## [0.1.9] - 2020-09-17
 ### Changed

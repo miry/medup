@@ -1,26 +1,13 @@
-FROM crystallang/crystal:0.35.1 as builder
+FROM crystallang/crystal:1.0.0-alpine as builder
 
 WORKDIR /app
-COPY ./shard.yml /app/
+COPY ./shard.yml ./shard.lock /app/
 RUN shards install --production -v
 
 COPY . /app/
-RUN shards build --production -v
+RUN shards build --production -v --static
 
-FROM ubuntu:bionic
-RUN \
-  apt-get update && \
-  apt-get install -y \
-    ca-certificates \
-    libssl1.1 \
-    libssl-dev \
-    libevent-2.1.6 \
-    libxml2-dev \
-    libyaml-dev \
-    libgmp-dev \
-    libevent-dev && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+FROM alpine:latest
 WORKDIR /
 COPY --from=builder /app/bin/medup .
 

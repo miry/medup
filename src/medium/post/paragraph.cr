@@ -1,5 +1,6 @@
 require "json_mapping"
 require "zaru_crystal/zaru"
+require "json_mapping"
 
 module Medium
   class Post

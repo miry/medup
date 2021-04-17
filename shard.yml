@@ -1,6 +1,6 @@
 name: medup
 repository: https://github.com/miry/medup.git
-version: 0.1.9
+version: 0.1.10
 
 authors:
   - Michael Nikitochkin <miry.sof@gmail.com>
@@ -12,7 +12,7 @@ targets:
   medup:
     main: src/cli.cr
 
-crystal: 0.36.1
+crystal: 1.0.0
 
 license: LGPL-3.0
 
