@@ -1,15 +1,31 @@
-FROM crystallang/crystal:1.0.0-alpine as builder
+# Build layer
+FROM crystallang/crystal:1.0.0-alpine as build
 
+# Install development tools required for building
+RUN apk --no-cache add \
+    ruby-rake \
+    ruby-json
+
+# Initialoze the working directory
 WORKDIR /app
-COPY ./shard.yml ./shard.lock /app/
+
+# Cache install package dependicies
+COPY ./shard.* /app/
 RUN shards install --production -v
 
+# Build the app
 COPY . /app/
-RUN shards build --production --static --release --no-debug -v
+RUN rake build:static
 
-FROM scratch
+# Runtime layer
+FROM scratch as runtime
+# Put the binary in the ROOT folder
 WORKDIR /
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert.pem
-COPY --from=builder /app/bin/medup .
+# Don't run as root
+USER 1001
+
+# Copy/install required assets like CA certificates
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert.pem
+COPY --from=build /app/_output/medup .
 
 ENTRYPOINT ["/medup"]
