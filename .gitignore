@@ -4,3 +4,5 @@ posts/
 build/
 _output/
 tmp/
+lib/
+_output/
