@@ -5,10 +5,11 @@ COPY ./shard.yml ./shard.lock /app/
 RUN shards install --production -v
 
 COPY . /app/
-RUN shards build --production -v --static
+RUN shards build --production --static --release --no-debug -v
 
-FROM alpine:latest
+FROM scratch
 WORKDIR /
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert.pem
 COPY --from=builder /app/bin/medup .
 
 ENTRYPOINT ["/medup"]
