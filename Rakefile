@@ -31,7 +31,9 @@ namespace :fmt do
   end
 end
 
-task :setup
+task :setup do
+  sh "shards install"
+end
 
 task release: %i[test docker:push]
 
@@ -53,7 +55,6 @@ namespace :build do
     sh "crystal build --release --no-debug --static -o #{BIN_PATH} src/cli.cr"
   end
 end
-
 
 desc "Run #{APP_NAME} for provide user and distination via args."
 task :run, [:user, :dist] => :build do |t, args|
@@ -86,19 +87,21 @@ namespace :github do
   end
 end
 
-namespace :post do
-  desc "Download and format the original JSON of the post"
-  task :fetch, [:url] do |t, args|
-    uri = URI(args.url)
-    uri.query = "format=json" if uri.query.nil?
-    response = Net::HTTP.get(uri)
-    content = response[16..-1]
-    json = JSON.parse(content)
+namespace :dev do
+  namespace :post do
+    desc "Download and format the original JSON of the post"
+    task :fetch, [:url] do |t, args|
+      uri = URI(args.url)
+      uri.query = "format=json" if uri.query.nil?
+      response = Net::HTTP.get(uri)
+      content = response[16..-1]
+      json = JSON.parse(content)
 
-    filename = uri.path.split('/').last + '.json'
-    puts "Download to #{filename}"
-    open(filename, 'w') do |f|
-      f.write(JSON.pretty_generate(json))
+      filename = uri.path.split('/').last + '.json'
+      puts "Download to #{filename}"
+      open(filename, 'w') do |f|
+        f.write(JSON.pretty_generate(json))
+      end
     end
   end
 end

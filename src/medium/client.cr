@@ -7,14 +7,15 @@ require "./client/*"
 module Medium
   class Client
     @http : HTTP::Client?
-    @@default = Medium::Client.new("", "")
+    @@default = Medium::Client.new("", "", "")
 
-    include Medium::Connection
-    include Medium::Client::Users
-    include Medium::Client::Posts
     include Medium::Client::Media
+    include Medium::Client::Posts
+    include Medium::Client::Publications
+    include Medium::Client::Users
+    include Medium::Connection
 
-    def initialize(@token : String, @user : String?)
+    def initialize(@token : String, @user : String?, @publication : String?)
     end
 
     def self.default=(client : Medium::Client)
