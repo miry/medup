@@ -10,10 +10,11 @@ module Medup
 
     token : String
     user : String?
+    publication : String?
     articles : Array(String)
 
-    def initialize(@token : String, @user : String?, @articles : Array(String), dist : String?, format : String?, source : String?, update : Bool?)
-      @client = Medium::Client.new(@token, @user)
+    def initialize(@token : String, @user : String?, @publication : String?, @articles : Array(String), dist : String?, format : String?, source : String?, update : Bool?)
+      @client = Medium::Client.new(@token, @user, @publication)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
@@ -23,15 +24,15 @@ module Medup
 
     def backup
       posts = Array(String).new
-      if !@articles.empty?
-        posts = @articles
-      elsif !@user.nil?
-        posts = @client.streams(@source)
-      end
+      posts = if !@articles.empty?
+                @articles
+              elsif !@user.nil?
+                @client.streams(@source)
+              elsif !@publication.nil?
+                @client.collection_archive
+              end
 
-      if posts.empty?
-        raise "No articles to backup"
-      end
+      raise "No articles to backup" if posts.nil? || posts.empty?
 
       process_posts_async(posts)
     end
@@ -64,7 +65,7 @@ module Medup
     end
 
     def process_post(post_url : String)
-      client = Medium::Client.new(@token, @user)
+      client = Medium::Client.new(@token, @user, @publication)
       post = client.post_by_url(post_url)
       save(post, @format)
       save_assets(post)

@@ -5,6 +5,7 @@ module Medup
     def self.run
       token = ENV.fetch("MEDIUM_TOKEN", "")
       user = nil
+      publication = nil
       dist = ::Medup::Tool::DIST_PATH
       format = ::Medup::Tool::MARKDOWN_FORMAT
       source = ::Medup::Tool::SOURCE_AUTHOR_POSTS
@@ -15,6 +16,7 @@ module Medup
       parser = OptionParser.parse do |parser|
         parser.banner = "Usage: medup [arguments] [article url]"
         parser.on("-u USER", "--user=USER", "Medium author username. Download alrticles for this author. E.g: miry") { |u| user = u }
+        parser.on("-p PUBLICATION", "--publication=PUBLICATION", "Medium publication slug. Download articles for the publication. E.g: jetthoughts") { |pub| publication = pub }
         parser.on("-d DIRECTORY", "--directory=DIRECTORY", "Path to local directory where articles should be dumped. Default: ./posts") { |d| dist = d }
         parser.on("-f FORMAT", "--format=FORMAT", "Specify the document format. Available options: md or json. Default: md") do |f|
           format = f
@@ -36,14 +38,14 @@ module Medup
 
       articles = ARGV
 
-      if user.nil? && articles.empty?
+      if user.nil? && publication.nil? && articles.empty?
         puts parser
         exit = true
       end
 
       return if exit
 
-      tool = ::Medup::Tool.new(token: token, user: user, articles: articles, dist: dist, format: format, source: source, update: update)
+      tool = ::Medup::Tool.new(token: token, user: user, publication: publication, articles: articles, dist: dist, format: format, source: source, update: update)
       tool.backup
       tool.close
     rescue ex : Exception
