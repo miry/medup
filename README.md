@@ -9,6 +9,7 @@
 
 # Table of Contents
 
+* [Usage](#usage)
 * [Features](#features)
 * [Getting Started](#getting-started)
 * [Contributing](#contributing)
