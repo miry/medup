@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Use crystal version from shard for Dockerfile (@miry)
+
 ## [0.2.0] - 2022-03-20
 ### Changed
 - Use crystal lang 1.3.2 (#31, @miry)
 
 ### Added
-- Export posts from a publication (#31, @miry)
+- Export posts from a publication with option `--publication=NAME` (#31, @miry)
 - Allow to save images to assets folder with option `--assets-images` (#33, @miry)
 
 ## [0.1.10] - 2021-04-17

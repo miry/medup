@@ -12,6 +12,13 @@ def version
   end
 end
 
+def crystal_version
+  @crytsal_version ||= begin
+    shard = YAML.load_file("shard.yml")
+    shard["crystal"]
+  end
+end
+
 task default: %i[test]
 
 desc "Run tests"
@@ -65,7 +72,8 @@ end
 namespace :docker do
   desc "Build docker image"
   task :build do
-    sh "docker build -f Dockerfile -t #{DOCKER_IMAGE}:#{version} -t #{DOCKER_IMAGE}:latest ."
+    sh "docker build --build-arg CRYSTAL_VERSION=#{crystal_version} " \
+       "-f Dockerfile -t #{DOCKER_IMAGE}:#{version} -t #{DOCKER_IMAGE}:latest ."
   end
 
   desc "Push docker image to Hub Docker"

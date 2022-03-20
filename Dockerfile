@@ -1,5 +1,6 @@
 # Build layer
-FROM crystallang/crystal:1.0.0-alpine as build
+ARG CRYSTAL_VERSION=1.3.2
+FROM crystallang/crystal:${CRYSTAL_VERSION}-alpine as build
 
 # Install development tools required for building
 RUN apk --no-cache add \
