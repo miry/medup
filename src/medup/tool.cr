@@ -3,6 +3,7 @@ require "http/client"
 module Medup
   class Tool
     DIST_PATH                = "./posts"
+    ASSETS_DIR_NAME          = "assets"
     SOURCE_AUTHOR_POSTS      = "overview"
     SOURCE_RECOMMENDED_POSTS = "has-recommended"
     MARKDOWN_FORMAT          = "md"
@@ -12,11 +13,13 @@ module Medup
     user : String?
     publication : String?
     articles : Array(String)
+    options : Array(Options)
 
-    def initialize(@token : String, @user : String?, @publication : String?, @articles : Array(String), dist : String?, format : String?, source : String?, update : Bool?)
+    def initialize(@token : String, @user : String?, @publication : String?, @articles : Array(String), @options : Array(Medup::Options), dist : String?, format : String?, source : String?, update : Bool?)
       @client = Medium::Client.new(@token, @user, @publication)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
+      @assets_dist = File.join(@dist, ASSETS_DIR_NAME)
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
       @format = (format || MARKDOWN_FORMAT).as(String)
       @update = update.nil? ? false : update.not_nil!
@@ -34,6 +37,8 @@ module Medup
 
       raise "No articles to backup" if posts.nil? || posts.empty?
 
+      create_directory(@dist)
+      create_directory(@assets_dist)
       process_posts_async(posts)
     end
 
@@ -79,18 +84,9 @@ module Medup
     def save(post, format = "json")
       slug = post.slug
       created_at = post.created_at
+
       filename = created_at.to_s("%F") + "-" + slug + "." + format
       filepath = File.join(@dist, filename)
-      unless File.directory?(@dist)
-        puts "Create directory #{@dist}"
-        Dir.mkdir_p(@dist)
-      end
-
-      assets_dir = File.join(@dist, "/assets")
-      unless File.directory?(assets_dir)
-        puts "Create directory #{assets_dir}"
-        Dir.mkdir_p(assets_dir)
-      end
 
       if File.exists?(filepath)
         return unless @update
@@ -99,6 +95,7 @@ module Medup
       end
       puts "Create file #{filepath}"
 
+      post.options = @options
       File.write(filepath, post.format(format))
     end
 
@@ -106,6 +103,11 @@ module Medup
       # puts post.to_pretty_json
       post.content.bodyModel.paragraphs.each do |paragraph|
         case paragraph.type
+        when 4
+          metadata = paragraph.metadata
+          if !metadata.nil? && !metadata.id.nil?
+            download_image(metadata.id)
+          end
         when 11
           iframe = paragraph.iframe
           if !iframe.nil?
@@ -117,13 +119,24 @@ module Medup
       end
     end
 
+    def create_directory(path)
+      unless File.directory?(path)
+        puts "Create directory #{path}"
+        Dir.mkdir_p(path)
+      end
+    end
+
+    def download_image(name : String)
+      download_to_assets("https://miro.medium.com/#{name}", name)
+    end
+
     def download_iframe(name : String)
       filename = Zaru.sanitize!(name)
       download_to_assets("https://medium.com/media/#{name}", filename + ".html")
     end
 
     def download_to_assets(src, filename)
-      filepath = File.join(@dist, "assets", filename)
+      filepath = File.join(@assets_dist, filename)
       return if File.exists?(filepath)
 
       puts "Download file #{src} to #{filepath}"

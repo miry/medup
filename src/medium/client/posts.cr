@@ -132,7 +132,6 @@ module Medium
                   day_bucket["year"].raw.as(String),
                   day_bucket["month"].raw.as(String),
                   day_bucket["day"].raw.as(String))
-
               end
             end
           end

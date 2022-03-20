@@ -9,7 +9,7 @@ describe Medium::Post::Paragraph do
   end
 
   describe "#to_md" do
-    it "should render header" do
+    it "renders header" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 3, "text": "Modify binary files with VIM", "markups": []}})
       subject.to_md[0].should eq("# Modify binary files with VIM")
     end
@@ -29,6 +29,12 @@ describe Medium::Post::Paragraph do
       content, assets = subject.to_md
       content.should eq("![Photo][image_ref_MCpGYkZzOGFObXFOTEt3NEJN]")
       assets.should match(/^\[image_ref_MCpGYkZzOGFObXFOTEt3NEJN\]:/)
+    end
+
+    it "renders images with assets" do
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "78ee", "type": 4, "text": "Photo", "layout": 3, "metadata":{"id":"0*FbFs8aNmqNLKw4BM.png"}, "markups": []}})
+      content, assets = subject.to_md([::Medup::Options::ASSETS_IMAGE])
+      content.should eq("![Photo](./assets/0*FbFs8aNmqNLKw4BM.png)")
     end
 
     it "render number list" do

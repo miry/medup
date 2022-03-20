@@ -9,6 +9,8 @@ module Medup
       dist = ::Medup::Tool::DIST_PATH
       format = ::Medup::Tool::MARKDOWN_FORMAT
       source = ::Medup::Tool::SOURCE_AUTHOR_POSTS
+      options = Array(::Medup::Options).new
+
       update = false
 
       exit = false
@@ -26,6 +28,7 @@ module Medup
             exit = true
           end
         end
+        parser.on("--assets-images", "Download images in assets folder. By default all images encoded in the same markdown document.") { options << ::Medup::Options::ASSETS_IMAGE }
         parser.on("-r", "--recommended", "Export all posts to wich user clapped / has recommended") { source = ::Medup::Tool::SOURCE_RECOMMENDED_POSTS }
         parser.on("--update", "Overwrite existing articles files, if the same article exists") { update = true }
         parser.on("-h", "--help", "Show this help") { puts parser; exit = true }
@@ -38,14 +41,25 @@ module Medup
 
       articles = ARGV
 
-      if user.nil? && publication.nil? && articles.empty?
+      if !exit && user.nil? && publication.nil? && articles.empty?
         puts parser
         exit = true
       end
 
       return if exit
 
-      tool = ::Medup::Tool.new(token: token, user: user, publication: publication, articles: articles, dist: dist, format: format, source: source, update: update)
+      tool = ::Medup::Tool.new(
+        token: token,
+        user: user,
+        publication: publication,
+        articles: articles,
+        dist: dist,
+        format: format,
+        source: source,
+        update: update,
+        options: options
+      )
+
       tool.backup
       tool.close
     rescue ex : Exception

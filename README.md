@@ -33,6 +33,14 @@ Export all articles written by single author to special folder `posts/miry`
 medium -u miry -d posts/miry
 ```
 
+## Publication's posts
+
+Export all articles written by single author to special folder `posts/miry`
+
+```shell
+medium -p jetthoughts -d posts/jetthoughts
+```
+
 ## User's recommendations
 
 Export all articles recommended by `miry`:

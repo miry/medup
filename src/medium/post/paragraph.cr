@@ -23,7 +23,7 @@ module Medium
         strict: true
       )
 
-      def to_md : Tuple(String, String)
+      def to_md(options : Array(Medup::Options) = Array(Medup::Options).new) : Tuple(String, String)
         content : String = ""
         assets = ""
         content = case @type
@@ -36,15 +36,23 @@ module Medium
                   when 4
                     m = metadata
                     if !m.nil? && !m.id.nil?
-                      asset_id = Base64.strict_encode(m.id || "")
-                      assets = "[image_ref_#{asset_id}]: data:image/png;base64,"
-                      img = "![#{@text}][image_ref_#{asset_id}]"
-                      encoded = download_image(m.id || "")
-                      assets += encoded
-                      if @href
-                        img = "[#{img}](#{@href})"
+                      asset_id = Base64.strict_encode(m.id)
+                      if options.includes?(Medup::Options::ASSETS_IMAGE)
+                        if @href
+                          "[![#{@text}](./assets/#{m.id})](#{@href})"
+                        else
+                          "![#{@text}](./assets/#{m.id})"
+                        end
+                      else
+                        assets = "[image_ref_#{asset_id}]: data:image/png;base64,"
+                        img = "![#{@text}][image_ref_#{asset_id}]"
+                        encoded = download_image(m.id || "")
+                        assets += encoded
+                        if @href
+                          img = "[#{img}](#{@href})"
+                        end
+                        img
                       end
-                      img
                     else
                       ""
                     end

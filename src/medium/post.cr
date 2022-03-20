@@ -5,6 +5,7 @@ module Medium
   class Post
     property url : String = ""
     property user : Medium::User?
+    property options : Array(Medup::Options) = Array(Medup::Options).new
 
     JSON.mapping(
       title: String,
@@ -44,7 +45,7 @@ module Medium
       result += "---\n\n"
       assets = "\n"
       @content.bodyModel.paragraphs.map do |paragraph|
-        content, footer = paragraph.to_md
+        content, footer = paragraph.to_md(@options)
         result += content + "\n\n"
         assets += footer + "\n" unless footer.empty?
       end

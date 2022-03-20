@@ -7,10 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Use crystal lang 1.3.2 (@miry)
+- Use crystal lang 1.3.2 (#31, @miry)
 
 ### Added
 - Export posts from a publication (#31, @miry)
+- Allow to save images to assets folder with option `--assets-images` (#33, @miry)
 
 ## [0.1.10] - 2021-04-17
 ### Added
