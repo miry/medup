@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Use crystal version from shard for Dockerfile (@miry)
 
+### Fixed
+- Skip download assets images without option `--assets-images` (@miry)
+
 ## [0.2.0] - 2022-03-20
 ### Changed
 - Use crystal lang 1.3.2 (#31, @miry)

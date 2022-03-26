@@ -100,10 +100,10 @@ module Medup
     end
 
     def save_assets(post)
-      # puts post.to_pretty_json
       post.content.bodyModel.paragraphs.each do |paragraph|
         case paragraph.type
         when 4
+          next unless @options.includes?(Medup::Options::ASSETS_IMAGE)
           metadata = paragraph.metadata
           if !metadata.nil? && !metadata.id.nil?
             download_image(metadata.id)
