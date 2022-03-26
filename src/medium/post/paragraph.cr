@@ -105,8 +105,8 @@ module Medium
 
         result : String = ""
         _markups = @markups
-        return result if markups.nil?
-        markups.not_nil!.each do |m|
+        return result if _markups.nil?
+        _markups.each do |m|
           if open_elements.has_key?(m.start)
             open_elements[m.start] << m
           else
@@ -121,9 +121,13 @@ module Medium
         end
 
         @text += " "
-        @text.each_char_with_index do |c, i|
-          if close_elements.has_key?(i)
-            close_elements[i].each do |m|
+        char_index = 0
+        # Grapheme is an experimental feature from Crystal to return symbols as
+        # rendered, instead of static width bytes. It helpes to easy identify
+        # emoji symbols chain.
+        @text.each_grapheme do |symbol|
+          if close_elements.has_key?(char_index)
+            close_elements[char_index].each do |m|
               case m.type
               when 1 # bold
                 result += "**"
@@ -140,8 +144,8 @@ module Medium
             end
           end
 
-          if open_elements.has_key?(i)
-            open_elements[i].each do |m|
+          if open_elements.has_key?(char_index)
+            open_elements[char_index].each do |m|
               case m.type
               when 1 # bold
                 result += "**"
@@ -157,7 +161,9 @@ module Medium
             end
           end
 
-          result += c
+          result += symbol.to_s
+          # Medium count each emoji symbol as 4 bytes, when Crystal uses 2 bytes.
+          char_index += symbol.size == 1 ? 1 : symbol.size * 2
         end
 
         result.rchop

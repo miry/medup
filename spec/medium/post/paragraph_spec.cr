@@ -57,6 +57,30 @@ describe Medium::Post::Paragraph do
       subject.to_md[0].should eq("# render title with picture")
     end
 
+    it "render title with links" do
+      entity_raw = %{
+        {
+          "name": "2612",
+          "type": 13,
+          "text": "🇺🇦 JetThoughts: REsize Amazon EBS volumes without a reboot",
+          "markups": [
+            {
+              "type": 3,
+              "start": 0,
+              "end": 16,
+              "href": "https://jtway.co/resize-amazon-ebs-volumes-without-a-reboot-ca118b010b44",
+              "title": "",
+              "rel": "",
+              "anchorType": 0
+            }
+          ]
+        }
+      }
+
+      subject = Medium::Post::Paragraph.from_json(entity_raw)
+      subject.to_md[0].should eq("### [🇺🇦 JetThoughts](https://jtway.co/resize-amazon-ebs-volumes-without-a-reboot-ca118b010b44): REsize Amazon EBS volumes without a reboot")
+    end
+
     it "render code block" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 8, "text": "puts hello", "markups": []}})
       subject.to_md[0].should eq("```\nputs hello\n```")
