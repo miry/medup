@@ -31,6 +31,12 @@ describe "CommandLine", tags: "e2e" do
   end
 
   it "download medium from custom domain" do
+    actual = run_with ["https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"]
+    actual[0].should contain(%{200 OK})
+    actual[1].should eq("")
+  end
+
+  it "download medium from custom domain" do
     actual = run_with ["https://jtway.co/git-minimum-for-effective-project-development-841a0b865ef0"]
     actual[0].should contain(%{307 Temporary Redirect})
     actual[0].should contain(%{200 OK})

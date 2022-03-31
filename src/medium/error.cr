@@ -1,11 +1,16 @@
 module Medium
   class Error < Exception
+    VALID_TYPES = [
+      "text/json",
+      "application/json",
+    ]
+
     def self.from_response(response : HTTP::Client::Response)
       klass = case response.status_code
               when 400..499 then ::Medium::ClientError
               when 500..599 then ::Medium::ServerError
               else
-                return if response.content_type == "text/json"
+                return if VALID_TYPES.includes?(response.content_type)
                 return ::Medium::InvalidContentError.new("unsupported content type #{response.content_type}")
               end
       klass.new(response)

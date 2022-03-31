@@ -27,7 +27,7 @@ task test: :fmt do
 end
 
 namespace :test do
-  task e2e: :build do
+  task e2e: [:test, :build] do
     sh "crystal spec spec/e2e/cli.cr"
   end
 end

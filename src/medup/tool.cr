@@ -28,7 +28,7 @@ module Medup
     def backup
       posts = Array(String).new
       posts = if !@articles.empty?
-                @articles
+                @client.normalize_urls(@articles)
               elsif !@user.nil?
                 @client.streams(@source)
               elsif !@publication.nil?

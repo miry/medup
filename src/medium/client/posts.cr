@@ -55,6 +55,21 @@ module Medium
         result
       end
 
+      def normalize_urls(urls : Array(String)) : Array(String)
+        result = Array(String).new
+
+        urls.each do |url|
+          post_id = post_id_from_url(url)
+          if post_id
+            result << post_id_to_url(post_id)
+          else
+            result << url
+          end
+        end
+
+        return result
+      end
+
       # Publication home page. Returns only favorite articles
       def collection_stream
         p = publication
@@ -158,6 +173,10 @@ module Medium
 
       private def post_id_to_url(post_id : String)
         "https://medium.com/@#{@user}/#{post_id}"
+      end
+
+      def post_id_from_url(url : String)
+        %r{^https://medium.com/.*-(?<post_id>[^-]*)$}.match(url).try &.["post_id"]
       end
     end
   end
