@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Update command line argument parse view. During error make sure the exit code is 1 (@miry)
+
+### Fixed
+- Custom domain posts returns excpetions, fixed the problem (@miry)
+
+### Added
+- Add integration tests to test command line output (@miry)
 
 ## [0.2.1] - 2022-03-27
 ### Changed

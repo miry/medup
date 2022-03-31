@@ -26,6 +26,12 @@ task test: :fmt do
   sh "crystal spec"
 end
 
+namespace :test do
+  task e2e: :build do
+    sh "crystal spec spec/e2e/cli.cr"
+  end
+end
+
 desc "Format crystal sources codes"
 task :fmt do
   sh "crystal tool format"

@@ -13,10 +13,10 @@ module Medup
 
       update = false
 
-      exit = false
+      should_exit = false
 
       parser = OptionParser.parse do |parser|
-        parser.banner = "Usage: medup [arguments] [article url]"
+        parser.banner = "Usage:\n  medup [arguments] [article url]\n"
         parser.on("-u USER", "--user=USER", "Medium author username. Download alrticles for this author. E.g: miry") { |u| user = u }
         parser.on("-p PUBLICATION", "--publication=PUBLICATION", "Medium publication slug. Download articles for the publication. E.g: jetthoughts") { |pub| publication = pub }
         parser.on("-d DIRECTORY", "--directory=DIRECTORY", "Path to local directory where articles should be dumped. Default: ./posts") { |d| dist = d }
@@ -25,28 +25,37 @@ module Medup
           unless [::Medup::Tool::MARKDOWN_FORMAT, ::Medup::Tool::JSON_FORMAT].includes?(format)
             puts "Unknown format option: #{format}"
             puts parser
-            exit = true
+            should_exit = true
           end
         end
         parser.on("--assets-images", "Download images in assets folder. By default all images encoded in the same markdown document.") { options << ::Medup::Options::ASSETS_IMAGE }
         parser.on("-r", "--recommended", "Export all posts to wich user clapped / has recommended") { source = ::Medup::Tool::SOURCE_RECOMMENDED_POSTS }
         parser.on("--update", "Overwrite existing articles files, if the same article exists") { update = true }
-        parser.on("-h", "--help", "Show this help") { puts parser; exit = true }
-        parser.on("-v", "--version", "Print current version") { puts ::Medup::VERSION; exit = true }
+        parser.on("-h", "--help", "Show this help") { puts parser; should_exit = true }
+        parser.on("-v", "--version", "Print current version") { puts ::Medup::VERSION; should_exit = true }
 
-        parser.unknown_args do |before, after|
-          msg = (before | after).join(" ")
+        parser.missing_option do |option_flag|
+          STDERR.puts "error: flag needs an argument: #{option_flag}"
+          STDERR.puts "See 'medup --help' for usage."
+          exit(1)
+        end
+
+        parser.invalid_option do |option_flag|
+          STDERR.puts "error: unknown flag: #{option_flag}"
+          STDERR.puts "See 'medup --help' for usage."
+          exit(1)
         end
       end
 
       articles = ARGV
 
-      if !exit && user.nil? && publication.nil? && articles.empty?
-        puts parser
-        exit = true
+      if !should_exit && user.nil? && publication.nil? && articles.empty?
+        STDERR.puts "error: Missing of the required arguments"
+        STDERR.puts "See 'medup --help' for usage."
+        exit(1)
       end
 
-      return if exit
+      return if should_exit
 
       tool = ::Medup::Tool.new(
         token: token,
@@ -63,7 +72,10 @@ module Medup
       tool.backup
       tool.close
     rescue ex : Exception
-      STDERR.puts "ERROR: #{ex.inspect}"
+      STDERR.puts "error: #{ex.inspect}"
+      STDERR.puts ex.inspect_with_backtrace
+      STDERR.puts "See 'medup --help' for usage."
+      exit(1)
     end
   end
 end
