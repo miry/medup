@@ -6,7 +6,7 @@ require "./client/*"
 
 module Medium
   class Client
-    @http : HTTP::Client?
+    @http = Hash(String, HTTP::Client).new
     @@default = Medium::Client.new("", "", "")
 
     include Medium::Client::Media
@@ -27,7 +27,9 @@ module Medium
     end
 
     def close
-      http.close unless @http.nil?
+      @http.each do |_, client|
+        client.close
+      end
     end
   end
 end

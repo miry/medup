@@ -4,7 +4,9 @@ module Medium
       klass = case response.status_code
               when 400..499 then ::Medium::ClientError
               when 500..599 then ::Medium::ServerError
-              else               return
+              else
+                return if response.content_type == "text/json"
+                return ::Medium::InvalidContentError.new("unsupported content type #{response.content_type}")
               end
       klass.new(response)
     end
@@ -12,7 +14,15 @@ module Medium
     @data : JSON::Any? = nil
 
     def initialize(@response : HTTP::Client::Response = nil)
-      super(build_error_message)
+      message = case @response.content_type
+                when "text/html"
+                  @response.status_message
+                when "text/correct"
+                  build_error_message
+                else
+                  raise "unknown #{@response.content_type}"
+                end
+      super(message)
     end
 
     def build_error_message
@@ -50,4 +60,6 @@ module Medium
   class ClientError < Error; end
 
   class ServerError < Error; end
+
+  class InvalidContentError < Exception; end
 end

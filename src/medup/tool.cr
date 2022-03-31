@@ -74,8 +74,10 @@ module Medup
       post = client.post_by_url(post_url)
       save(post, @format)
       save_assets(post)
+    rescue ex : ::Medium::Error | ::Medium::InvalidContentError
+      STDERR.puts "error: could not process #{post_url}: #{ex.message}"
     rescue ex : Exception
-      STDERR.puts "ERROR: #{ex.inspect}"
+      STDERR.puts "error: #{ex.inspect}"
       STDERR.puts ex.inspect_with_backtrace
     ensure
       client.close unless client.nil?
