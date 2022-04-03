@@ -1,11 +1,19 @@
+# docker.io/miry/medup
+
 # Build layer
 ARG CRYSTAL_VERSION=1.3.2
+ARG USER=1001
+
 FROM crystallang/crystal:${CRYSTAL_VERSION}-alpine as build
 
 # Install development tools required for building
 RUN apk --no-cache add \
     ruby-rake \
-    ruby-json
+    ruby-json \
+ && mkdir /app \
+ && chown 1001:1001 /app
+
+USER ${USER}
 
 # Initialoze the working directory
 WORKDIR /app
@@ -16,14 +24,15 @@ RUN shards install --production -v
 
 # Build the app
 COPY . /app/
-RUN rake build:static
+RUN rake build:static \
+ && chmod 555 /app/_output/medup
 
 # Runtime layer
 FROM scratch as runtime
-# Put the binary in the ROOT folder
+
+USER ${USER}
+
 WORKDIR /
-# Don't run as root
-USER 1001
 
 # Copy/install required assets like CA certificates
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert.pem

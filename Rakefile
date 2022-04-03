@@ -44,16 +44,18 @@ namespace :fmt do
   end
 end
 
+desc "Prepare development environment"
 task :setup do
   sh "shards install"
 end
 
-task release: %i[test docker:push]
+desc "Release conatiner image"
+task release: %i[test container:push]
 
 APP_NAME = "medup"
 OUTPUT_PATH = "_output"
 BIN_PATH = "#{OUTPUT_PATH}/#{APP_NAME}"
-DOCKER_IMAGE = "miry/#{APP_NAME}"
+CONTAINER_IMAGE = "miry/#{APP_NAME}"
 directory OUTPUT_PATH
 
 desc "Build app in #{OUTPUT_PATH}"
@@ -75,22 +77,28 @@ task :run, [:user, :dist] => :build do |t, args|
   sh "#{BIN_PATH} -u #{args.user} -d #{args.dist}"
 end
 
-namespace :docker do
-  desc "Build docker image"
+namespace :container do
+  desc "Build a container image for "
   task :build do
-    sh "docker build --build-arg CRYSTAL_VERSION=#{crystal_version} " \
-       "-f Dockerfile -t #{DOCKER_IMAGE}:#{version} -t #{DOCKER_IMAGE}:latest ."
+    sh "podman image build " \
+       "--build-arg CRYSTAL_VERSION=#{crystal_version} " \
+       "-f Containerfile " \
+       "--runtime-flag debug " \
+       "-t #{CONTAINER_IMAGE}:#{version} " \
+       "-t #{CONTAINER_IMAGE}:latest ."
   end
 
   desc "Push docker image to Hub Docker"
   task push: :build do
-    sh "docker push #{DOCKER_IMAGE}:#{version}"
-    sh "docker push #{DOCKER_IMAGE}:latest"
+    sh "podman image push #{CONTAINER_IMAGE}:#{version}"
+    sh "podman image push #{CONTAINER_IMAGE}:latest"
   end
 
-  desc "Test the docker image"
-  task :test, :build do |t, args|
-    sh "docker run --rm -it #{DOCKER_IMAGE}:#{version} -u miry"
+  desc "Test the container image"
+  task :test do
+    sh "podman container run " \
+       "--mount type=tmpfs,tmpfs-size=512M,destination=/posts " \
+       "--rm -it #{CONTAINER_IMAGE}:#{version} -u miry"
   end
 end
 
@@ -122,6 +130,7 @@ end
 
 desc "Run overcommit checks"
 task :overcommit do
-  sh "bundle check --gemfile=.overcommit_gems.rb || bundle install --gemfile=.overcommit_gems.rb"
+  sh "bundle check --gemfile=.overcommit_gems.rb || bundle install " \
+     "--gemfile=.overcommit_gems.rb"
   sh "bundle exec --gemfile=.overcommit_gems.rb overcommit -r"
 end

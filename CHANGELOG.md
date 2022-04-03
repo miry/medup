@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Update command line argument parse view. During error make sure the exit code is 1 (@miry)
+- Use `podman` instead of `docker` (#35, @miry)
 
 ### Fixed
 - Custom domain posts returns excpetions, fixed the problem (@miry)
