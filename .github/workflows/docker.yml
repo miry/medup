@@ -1,9 +1,13 @@
 ---
+
 name: Docker
-on: push
+
+on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       -
         uses: actions/checkout@v2
@@ -11,5 +15,5 @@ jobs:
         uses: ruby/setup-ruby@v1
       -
         name: Build the Docker image
-        run: rake docker:build
+        run: rake container:build
 ...

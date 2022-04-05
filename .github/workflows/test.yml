@@ -1,3 +1,5 @@
+---
+
 name: Crystal CI
 
 on: [push]
@@ -11,10 +13,19 @@ jobs:
 
     steps:
       -
-        uses: actions/checkout@v1
+        name: Checkout
+        uses: actions/checkout@v2
       -
         name: Install dependencies
         run: shards install
       -
-        name: Run tests
+        name: Tests
         run: crystal spec
+      -
+        name: Build
+        run: |
+          mkdir -p _output
+          crystal build --release --no-debug -o _output/medup src/cli.cr
+      -
+        name: E2E
+        run: crystal spec spec/e2e/cli.cr
