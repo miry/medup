@@ -13,8 +13,8 @@ describe Medup::Command do
     end
 
     it "detect posts with jetthoughts" do
-      actual = Medup::Command.extract_targets(["https://example.com/oops"])
-      actual[:articles].should eq(["https://example.com/oops"])
+      actual = Medup::Command.extract_targets(["https://example.com/oops", "http://example.com/oops"])
+      actual[:articles].should eq(["https://example.com/oops", "http://example.com/oops"])
     end
 
     it "mix targets" do

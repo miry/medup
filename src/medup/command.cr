@@ -16,7 +16,7 @@ module Medup
       should_exit = false
 
       parser = OptionParser.parse do |parser|
-        parser.banner = "Usage:\n  medup [arguments] [article url]\n"
+        parser.banner = "Usage:\n  medup [arguments] [@user or publication name or url]\n"
         parser.on("-u USER", "--user=USER", "Medium author username. Download alrticles for this author. E.g: miry") { |u| user = u }
         parser.on("-p PUBLICATION", "--publication=PUBLICATION", "Medium publication slug. Download articles for the publication. E.g: jetthoughts") { |pub| publication = pub }
         parser.on("-d DIRECTORY", "--directory=DIRECTORY", "Path to local directory where articles should be dumped. Default: ./posts") { |d| dist = d }
@@ -125,7 +125,7 @@ module Medup
         case word
         when /^\@.*/
           users << word[1..]
-        when /^https:\/\/.*/
+        when /^https?:\/\/.*/
           articles << word
         else
           publications << word

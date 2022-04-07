@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Add integration tests to test command line output (@miry)
+- Extract targets(user, publication, single post) base on pattern. Download articles for different targets in same process. (#36, @miry)
 
 ## [0.2.1] - 2022-03-27
 ### Changed

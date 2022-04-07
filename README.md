@@ -31,15 +31,13 @@ medup https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-
 Export all articles written by single author to special folder `posts/miry`
 
 ```shell
-medium -u miry -d posts/miry
+medup -u miry -d posts/miry
 ```
 
-## Publication's posts
-
-Export all articles written by single author to special folder `posts/miry`
+Alternative:
 
 ```shell
-medium -p jetthoughts -d posts/jetthoughts
+medup @miry -d posts/miry
 ```
 
 ## User's recommendations
@@ -47,13 +45,47 @@ medium -p jetthoughts -d posts/jetthoughts
 Export all articles recommended by `miry`:
 
 ```shell
-medium -u miry -d posts/recommendations -r
+medup -u miry -d posts/recommendations -r
 ```
+
+Alternative:
+
+```shell
+medup @miry -d posts/recommendations -r
+```
+
+## Publication's posts
+
+Export all articles written by single author to special folder `posts/miry`
+
+```shell
+medup -p jetthoughts -d posts/jetthoughts
+```
+
+Alternative:
+
+```shell
+medup jetthoughts -d posts/jetthoughts
+```
+
+## Mix
+
+```shell
+medup -u miry @pftg -p jetthoughts notes-and-tips-in-full-stack-development https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094
+```
+
+It would download all articles for:
+1. user `@miry`
+1. user `@pftg`
+1. publication `jetthoughts`
+1. publication `notes-and-tips-in-full-stack-development`
+1. single post "Medup backups articles"
 
 # Features
 
 * Discover all articles from user account available in public
 * Allow to download all recommended articles by user
+* Discover all articles from publisher, that available in public
 * Download images used inside article
 * Save posts in markdown format
 * Convert a single article in markdown format
