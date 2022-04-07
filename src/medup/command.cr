@@ -57,20 +57,58 @@ module Medup
 
       return if should_exit
 
-      tool = ::Medup::Tool.new(
-        token: token,
-        user: user,
-        publication: publication,
-        articles: articles,
-        dist: dist,
-        format: format,
-        source: source,
-        update: update,
-        options: options
-      )
+      targets = extract_targets(articles)
 
-      tool.backup
-      tool.close
+      # Backup single posts
+      if targets[:articles].size > 0
+        tool = ::Medup::Tool.new(
+          token: token,
+          user: nil,
+          publication: nil,
+          articles: targets[:articles],
+          dist: dist,
+          format: format,
+          source: source,
+          update: update,
+          options: options
+        )
+        tool.backup
+        tool.close
+      end
+
+      # Backup articles per user
+      (targets[:users] + [user]).compact.each do |u|
+        tool = ::Medup::Tool.new(
+          token: token,
+          user: u,
+          publication: nil,
+          articles: Array(String).new,
+          dist: dist,
+          format: format,
+          source: source,
+          update: update,
+          options: options
+        )
+        tool.backup
+        tool.close
+      end
+
+      # Backup articles per publication
+      (targets[:publications] + [publication]).compact.each do |p|
+        tool = ::Medup::Tool.new(
+          token: token,
+          user: nil,
+          publication: p,
+          articles: Array(String).new,
+          dist: dist,
+          format: format,
+          source: source,
+          update: update,
+          options: options
+        )
+        tool.backup
+        tool.close
+      end
     rescue ex : Exception
       STDERR.puts "error: #{ex.inspect}"
       STDERR.puts ex.inspect_with_backtrace
