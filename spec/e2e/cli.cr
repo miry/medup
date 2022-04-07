@@ -12,7 +12,7 @@ describe "CommandLine", tags: "e2e" do
 
     it "prints help" do
       actual = run_with ["--help"]
-      actual[0].should contain("Usage:\n  medup [arguments] [article url]\n\n")
+      actual[0].should contain("Usage:\n  medup [arguments] [@user or publication name or url]\n\n")
     end
 
     it "handles unknown options" do
@@ -154,6 +154,17 @@ describe "CommandLine", tags: "e2e" do
 
     it "download posts from user" do
       actual = run_with ["--user", "kristinazakharchenko"]
+      actual[0].should contain(%{GET /@kristinazakharchenko?format=json => 200 OK})
+      actual[0].should contain(%{GET /_/api/users/a002e103d8f7/profile/stream?format=json&limit=100&source=overview => 200 OK})
+      actual[1].should eq("")
+
+      actual = Dir.new("posts").entries
+      actual.should contain("assets")
+      actual.should contain("2022-03-25-i-was-born-into-a-military-family-now-im-making-bulletproof-vests-for-ukraine.md")
+    end
+
+    it "download posts from user without option" do
+      actual = run_with ["@kristinazakharchenko"]
       actual[0].should contain(%{GET /@kristinazakharchenko?format=json => 200 OK})
       actual[0].should contain(%{GET /_/api/users/a002e103d8f7/profile/stream?format=json&limit=100&source=overview => 200 OK})
       actual[1].should eq("")

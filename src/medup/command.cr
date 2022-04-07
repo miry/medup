@@ -16,7 +16,7 @@ module Medup
       should_exit = false
 
       parser = OptionParser.parse do |parser|
-        parser.banner = "Usage:\n  medup [arguments] [article url]\n"
+        parser.banner = "Usage:\n  medup [arguments] [@user or publication name or url]\n"
         parser.on("-u USER", "--user=USER", "Medium author username. Download alrticles for this author. E.g: miry") { |u| user = u }
         parser.on("-p PUBLICATION", "--publication=PUBLICATION", "Medium publication slug. Download articles for the publication. E.g: jetthoughts") { |pub| publication = pub }
         parser.on("-d DIRECTORY", "--directory=DIRECTORY", "Path to local directory where articles should be dumped. Default: ./posts") { |d| dist = d }
@@ -57,25 +57,82 @@ module Medup
 
       return if should_exit
 
-      tool = ::Medup::Tool.new(
-        token: token,
-        user: user,
-        publication: publication,
-        articles: articles,
-        dist: dist,
-        format: format,
-        source: source,
-        update: update,
-        options: options
-      )
+      targets = extract_targets(articles)
 
-      tool.backup
-      tool.close
+      # Backup single posts
+      if targets[:articles].size > 0
+        tool = ::Medup::Tool.new(
+          token: token,
+          user: nil,
+          publication: nil,
+          articles: targets[:articles],
+          dist: dist,
+          format: format,
+          source: source,
+          update: update,
+          options: options
+        )
+        tool.backup
+        tool.close
+      end
+
+      # Backup articles per user
+      (targets[:users] + [user]).compact.each do |u|
+        tool = ::Medup::Tool.new(
+          token: token,
+          user: u,
+          publication: nil,
+          articles: Array(String).new,
+          dist: dist,
+          format: format,
+          source: source,
+          update: update,
+          options: options
+        )
+        tool.backup
+        tool.close
+      end
+
+      # Backup articles per publication
+      (targets[:publications] + [publication]).compact.each do |p|
+        tool = ::Medup::Tool.new(
+          token: token,
+          user: nil,
+          publication: p,
+          articles: Array(String).new,
+          dist: dist,
+          format: format,
+          source: source,
+          update: update,
+          options: options
+        )
+        tool.backup
+        tool.close
+      end
     rescue ex : Exception
       STDERR.puts "error: #{ex.inspect}"
       STDERR.puts ex.inspect_with_backtrace
       STDERR.puts "See 'medup --help' for usage."
       exit(1)
+    end
+
+    def self.extract_targets(input)
+      users = Array(String).new
+      publications = Array(String).new
+      articles = Array(String).new
+
+      input.each do |word|
+        case word
+        when /^\@.*/
+          users << word[1..]
+        when /^https?:\/\/.*/
+          articles << word
+        else
+          publications << word
+        end
+      end
+
+      return {users: users, publications: publications, articles: articles}
     end
   end
 end
