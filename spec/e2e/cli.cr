@@ -163,6 +163,17 @@ describe "CommandLine", tags: "e2e" do
       actual.should contain("2022-03-25-i-was-born-into-a-military-family-now-im-making-bulletproof-vests-for-ukraine.md")
     end
 
+    it "download posts from user without option", focus: true do
+      actual = run_with ["@kristinazakharchenko"]
+      actual[0].should contain(%{GET /@kristinazakharchenko?format=json => 200 OK})
+      actual[0].should contain(%{GET /_/api/users/a002e103d8f7/profile/stream?format=json&limit=100&source=overview => 200 OK})
+      actual[1].should eq("")
+
+      actual = Dir.new("posts").entries
+      actual.should contain("assets")
+      actual.should contain("2022-03-25-i-was-born-into-a-military-family-now-im-making-bulletproof-vests-for-ukraine.md")
+    end
+
     it "download posts from user recommendations" do
       actual = run_with ["--user", "doctorow", "--recommended"]
       actual[0].should contain(%{GET /@doctorow?format=json => 200 OK})

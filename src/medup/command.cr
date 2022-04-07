@@ -77,5 +77,24 @@ module Medup
       STDERR.puts "See 'medup --help' for usage."
       exit(1)
     end
+
+    def self.extract_targets(input)
+      users = Array(String).new
+      publications = Array(String).new
+      articles = Array(String).new
+
+      input.each do |word|
+        case word
+        when /^\@.*/
+          users << word[1..]
+        when /^https:\/\/.*/
+          articles << word
+        else
+          publications << word
+        end
+      end
+
+      return {users: users, publications: publications, articles: articles}
+    end
   end
 end
