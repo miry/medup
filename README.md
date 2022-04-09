@@ -178,6 +178,7 @@ Example of exported document (Original Medium post vs Exported Markdown):
 
 - [@miry](https://github.com/miry) Michael Nikitochkin - creator, maintainer
 - [@alexanderadam](https://github.com/alexanderadam) Alexander - supporter
+- [@clawfire](https://github.com/clawfire) Thibault Milan - supporter
 
 # License
 
