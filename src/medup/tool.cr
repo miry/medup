@@ -15,7 +15,17 @@ module Medup
     articles : Array(String)
     options : Array(Options)
 
-    def initialize(@token : String, @user : String?, @publication : String?, @articles : Array(String), @options : Array(Medup::Options), dist : String?, format : String?, source : String?, update : Bool?)
+    def initialize(
+      @token : String = "",
+      dist : String? = DIST_PATH,
+      format : String? = MARKDOWN_FORMAT,
+      source : String? = SOURCE_AUTHOR_POSTS,
+      update : Bool? = false,
+      @user : String? = nil,
+      @publication : String? = nil,
+      @articles : Array(String) = Array(String).new,
+      @options : Array(Medup::Options) = Array(Medup::Options).new
+    )
       @client = Medium::Client.new(@token, @user, @publication)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)

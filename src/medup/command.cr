@@ -63,8 +63,6 @@ module Medup
       if targets[:articles].size > 0
         tool = ::Medup::Tool.new(
           token: token,
-          user: nil,
-          publication: nil,
           articles: targets[:articles],
           dist: dist,
           format: format,
@@ -81,8 +79,6 @@ module Medup
         tool = ::Medup::Tool.new(
           token: token,
           user: u,
-          publication: nil,
-          articles: Array(String).new,
           dist: dist,
           format: format,
           source: source,
@@ -97,9 +93,7 @@ module Medup
       (targets[:publications] + [publication]).compact.each do |p|
         tool = ::Medup::Tool.new(
           token: token,
-          user: nil,
           publication: p,
-          articles: Array(String).new,
           dist: dist,
           format: format,
           source: source,
