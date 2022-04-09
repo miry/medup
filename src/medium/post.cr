@@ -35,6 +35,7 @@ module Medium
         slug: #{@slug}\n\
         description: #{seo_description}\n\
         tags: #{tags}\n"
+      assets = Hash(String, String).new
 
       unless @user.nil?
         user = @user.not_nil!
@@ -43,13 +44,25 @@ module Medium
       end
 
       result += "---\n\n"
-      assets = "\n"
+      footer = "\n"
+
       @content.bodyModel.paragraphs.map do |paragraph|
-        content, footer = paragraph.to_md(@options)
+        content, asset_name, asset_content = paragraph.to_md(@options)
         result += content + "\n\n"
-        assets += footer + "\n" unless footer.empty?
+        if !asset_content.empty?
+          if paragraph.type == 11 ||
+             (paragraph.type == 4 &&
+             options.includes?(Medup::Options::ASSETS_IMAGE))
+            assets[asset_name] = asset_content
+          else
+            footer += asset_content + "\n"
+          end
+        end
       end
-      result + assets
+
+      result += footer
+
+      return result, assets
     end
 
     def to_pretty_json

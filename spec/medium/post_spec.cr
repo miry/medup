@@ -44,7 +44,24 @@ describe Medium::Post do
   describe "#to_md" do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.to_md.size.should eq(3042)
+      content, assets = subject.to_md
+      content.size.should eq(3106)
+      assets.size.should eq(1)
+      assets.keys.should eq([
+        "ab24f0b378f797307fddc32f10a99685.html",
+      ])
+    end
+
+    it "render full page without images" do
+      subject = Medium::Post.from_json(post_fixture)
+      subject.options = [Medup::Options::ASSETS_IMAGE]
+      content, assets = subject.to_md
+      content.size.should eq(2832)
+      assets.keys.should eq([
+        "0*FbFs8aNmqNLKw4BM.png",
+        "ab24f0b378f797307fddc32f10a99685.html",
+        "1*NVLl4oVmMQtumKL-DVV1rA.png",
+      ])
     end
 
     it "renders header" do
@@ -62,7 +79,19 @@ describe Medium::Post do
     it "renders image" do
       subject = Medium::Post.from_json(post_fixture)
       paragraph = subject.content.bodyModel.paragraphs[2]
-      paragraph.to_md[0].should eq("![Photo by Markus Spiske on Unsplash][image_ref_MCpGYkZzOGFObXFOTEt3NEJN]")
+      actual = paragraph.to_md
+      actual[0].should eq("![Photo by Markus Spiske on Unsplash][image_ref_MCpGYkZzOGFObXFOTEt3NEJN]")
+      actual[1].should eq("0*FbFs8aNmqNLKw4BM.png")
+      actual[2][0..64].should eq("[image_ref_MCpGYkZzOGFObXFOTEt3NEJN]: data:image/png;base64,iVBOR")
+    end
+
+    it "renders image in assets" do
+      subject = Medium::Post.from_json(post_fixture)
+      paragraph = subject.content.bodyModel.paragraphs[2]
+      actual = paragraph.to_md([Medup::Options::ASSETS_IMAGE])
+      actual[0].should eq("![Photo by Markus Spiske on Unsplash](./assets/0*FbFs8aNmqNLKw4BM.png)")
+      actual[1].should eq("0*FbFs8aNmqNLKw4BM.png")
+      actual[2].size.should eq(66)
     end
 
     describe "paragraph text" do
@@ -131,31 +160,31 @@ describe Medium::Post do
     describe "metadata" do
       it "stores description information in metadata" do
         subject = Medium::Post.from_json(post_fixture)
-        subject.to_md.should contain(%{description: Sometime I need to open binaries})
+        subject.to_md[0].should contain(%{description: Sometime I need to open binaries})
       end
 
       it "stores subtitle information in metadata" do
         subject = Medium::Post.from_json(post_fixture)
-        subject.to_md.should contain(%{subtitle: Edit binary files in Linux with Vim})
+        subject.to_md[0].should contain(%{subtitle: Edit binary files in Linux with Vim})
       end
 
       it "stores tags information in metadata" do
         subject = Medium::Post.from_json(post_fixture)
-        subject.to_md.should contain(%{tags: vim,debug,linux,cracking,hacking})
+        subject.to_md[0].should contain(%{tags: vim,debug,linux,cracking,hacking})
       end
 
       it "stores author name information in metadata" do
         subject = Medium::Post.from_json(post_fixture)
         user = Medium::User.from_json(user_fixture)
         subject.user = user
-        subject.to_md.should contain(%{author: Michael Nikitochkin})
+        subject.to_md[0].should contain(%{author: Michael Nikitochkin})
       end
 
       it "stores username information in metadata" do
         subject = Medium::Post.from_json(post_fixture)
         user = Medium::User.from_json(user_fixture)
         subject.user = user
-        subject.to_md.should contain(%{username: miry})
+        subject.to_md[0].should contain(%{username: miry})
       end
     end
   end

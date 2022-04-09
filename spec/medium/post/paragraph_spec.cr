@@ -26,15 +26,18 @@ describe Medium::Post::Paragraph do
 
     it "renders images" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "78ee", "type": 4, "text": "Photo", "layout": 3, "metadata":{"id":"0*FbFs8aNmqNLKw4BM"}, "markups": []}})
-      content, assets = subject.to_md
+      content, asset_name, assets = subject.to_md
       content.should eq("![Photo][image_ref_MCpGYkZzOGFObXFOTEt3NEJN]")
       assets.should match(/^\[image_ref_MCpGYkZzOGFObXFOTEt3NEJN\]:/)
+      asset_name.should eq("0*FbFs8aNmqNLKw4BM.png")
     end
 
     it "renders images with assets" do
-      subject = Medium::Post::Paragraph.from_json(%{{"name": "78ee", "type": 4, "text": "Photo", "layout": 3, "metadata":{"id":"0*FbFs8aNmqNLKw4BM.png"}, "markups": []}})
-      content, assets = subject.to_md([::Medup::Options::ASSETS_IMAGE])
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "78ee", "type": 4, "text": "Photo", "layout": 3, "metadata":{"id":"0*FbFs8aNmqNLKw4BM"}, "markups": []}})
+      content, asset_name, assets = subject.to_md([::Medup::Options::ASSETS_IMAGE])
       content.should eq("![Photo](./assets/0*FbFs8aNmqNLKw4BM.png)")
+      assets.size.should eq(66)
+      asset_name.should eq("0*FbFs8aNmqNLKw4BM.png")
     end
 
     it "render number list" do

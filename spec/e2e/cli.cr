@@ -69,11 +69,16 @@ describe "CommandLine", tags: "e2e" do
       actual = run_with ["https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"]
       actual[0].should contain(%{Posts count: 1})
       actual[0].should contain(%{200 OK})
+      actual[0].should contain(%{GET https://medium.com/media/d0aa4300e50ebcf6d244dd91e836bc5f => 200 OK})
+      actual[0].should contain(%{Create asset ./posts/assets/d0aa4300e50ebcf6d244dd91e836bc5f.html})
       actual[1].should eq("")
 
       actual = Dir.new("posts").entries
       actual.should contain("assets")
       actual.should contain("2020-09-16-medup-backups-articles.md")
+
+      actual = Dir.new("posts/assets").entries
+      actual.should contain("d0aa4300e50ebcf6d244dd91e836bc5f.html")
     end
 
     it "download medium from custom domain" do
@@ -91,11 +96,17 @@ describe "CommandLine", tags: "e2e" do
     it "saves images in assets folder" do
       actual = run_with ["--assets-images", "https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"]
       actual[0].should contain(%{Posts count: 1})
-      actual[0].should contain(%{Download file https://miro.medium.com/1*CSF4xue7yFfg-9-wxAkDWw.jpeg to ./posts/assets/1*CSF4xue7yFfg-9-wxAkDWw.jpeg})
+      actual[0].should contain(%{GET https://miro.medium.com/1*CSF4xue7yFfg-9-wxAkDWw.jpeg => 200 OK})
+      actual[0].should contain(%{GET https://miro.medium.com/0*LZaURw4xtfA74nu9 => 200 OK})
+      actual[0].should contain(%{GET https://medium.com/media/d0aa4300e50ebcf6d244dd91e836bc5f => 200 OK})
+      actual[0].should contain(%{Create asset ./posts/assets/0*LZaURw4xtfA74nu9.jpeg})
+      actual[0].should contain(%{Create asset ./posts/assets/d0aa4300e50ebcf6d244dd91e836bc5f.html})
       actual[1].should eq("")
 
       actual = Dir.new("posts/assets").entries
       actual.should contain("1*CSF4xue7yFfg-9-wxAkDWw.jpeg")
+      actual.should contain("0*LZaURw4xtfA74nu9.jpeg")
+      actual.should contain("d0aa4300e50ebcf6d244dd91e836bc5f.html")
     end
 
     it "skip existing aritcles" do

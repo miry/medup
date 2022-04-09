@@ -73,7 +73,6 @@ module Medup
       client = Medium::Client.new(@token, @user, @publication)
       post = client.post_by_url(post_url)
       save(post, @format)
-      save_assets(post)
     rescue ex : ::Medium::Error | ::Medium::InvalidContentError
       STDERR.puts "error: could not process #{post_url}: #{ex.message}"
     rescue ex : Exception
@@ -98,26 +97,19 @@ module Medup
       puts "Create file #{filepath}"
 
       post.options = @options
-      File.write(filepath, post.format(format))
-    end
 
-    def save_assets(post)
-      post.content.bodyModel.paragraphs.each do |paragraph|
-        case paragraph.type
-        when 4
-          next unless @options.includes?(Medup::Options::ASSETS_IMAGE)
-          metadata = paragraph.metadata
-          if !metadata.nil? && !metadata.id.nil?
-            download_image(metadata.id)
-          end
-        when 11
-          iframe = paragraph.iframe
-          if !iframe.nil?
-            download_iframe(iframe.mediaResourceId)
-          end
-        else
-          # TODO: Record unknown assets
-        end
+      if format == "json"
+        File.write(filepath, post.to_pretty_json)
+        return
+      end
+
+      content, assets = post.to_md
+      File.write(filepath, content)
+
+      assets.each do |filename, content|
+        filepath = File.join(@assets_dist, filename)
+        puts "Create asset #{filepath}"
+        File.write(filepath, content)
       end
     end
 
@@ -125,26 +117,6 @@ module Medup
       unless File.directory?(path)
         puts "Create directory #{path}"
         Dir.mkdir_p(path)
-      end
-    end
-
-    def download_image(name : String)
-      download_to_assets("https://miro.medium.com/#{name}", name)
-    end
-
-    def download_iframe(name : String)
-      filename = Zaru.sanitize!(name)
-      download_to_assets("https://medium.com/media/#{name}", filename + ".html")
-    end
-
-    def download_to_assets(src, filename)
-      filepath = File.join(@assets_dist, filename)
-      return if File.exists?(filepath)
-
-      puts "Download file #{src} to #{filepath}"
-
-      HTTP::Client.get(src) do |response|
-        File.write(filepath, response.body_io)
       end
     end
   end

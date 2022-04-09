@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Custom domain posts returns excpetions, fixed the problem (@miry)
+- Detect downloaded assets' type and add missing extension (#37, @miry)
 
 ### Added
 - Add integration tests to test command line output (@miry)

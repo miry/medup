@@ -23,9 +23,10 @@ module Medium
         strict: true
       )
 
-      def to_md(options : Array(Medup::Options) = Array(Medup::Options).new) : Tuple(String, String)
+      def to_md(options : Array(Medup::Options) = Array(Medup::Options).new) : Tuple(String, String, String)
         content : String = ""
         assets = ""
+        asset_name = ""
         content = case @type
                   when 1
                     markup
@@ -36,18 +37,19 @@ module Medium
                   when 4
                     m = metadata
                     if !m.nil? && !m.id.nil?
+                      asset_body, asset_type, asset_name = download_image(m.id || "")
                       asset_id = Base64.strict_encode(m.id)
                       if options.includes?(Medup::Options::ASSETS_IMAGE)
+                        assets = asset_body
                         if @href
-                          "[![#{@text}](./assets/#{m.id})](#{@href})"
+                          "[![#{@text}](./assets/#{asset_name})](#{@href})"
                         else
-                          "![#{@text}](./assets/#{m.id})"
+                          "![#{@text}](./assets/#{asset_name})"
                         end
                       else
-                        assets = "[image_ref_#{asset_id}]: data:image/png;base64,"
+                        assets = "[image_ref_#{asset_id}]: data:#{asset_type};base64,"
                         img = "![#{@text}][image_ref_#{asset_id}]"
-                        encoded = download_image(m.id || "")
-                        assets += encoded
+                        assets += Base64.strict_encode(asset_body)
                         if @href
                           img = "[#{img}](#{@href})"
                         end
@@ -72,6 +74,9 @@ module Medium
                     else
                       frame = @iframe.not_nil!
                       asset_id = Zaru.sanitize!(frame.mediaResourceId)
+                      asset_name = "#{asset_id}.html"
+                      asset_body, _content_type = download_iframe(frame.mediaResourceId)
+                      assets = asset_body
                       "<iframe src=\"./assets/#{asset_id}.html\"></iframe>"
                       # Support Frame mode with inline content. Github does not support it.
                       # "<frame>#{frame.get}</frame>"
@@ -85,16 +90,30 @@ module Medium
                   else
                     raise "Unknown paragraph type #{@type} with text #{@text}"
                   end
-        return content, assets
+        return content, asset_name, assets
+      end
+
+      def download_iframe(name : String)
+        src = "https://medium.com/media/#{name}"
+        response = HTTP::Client.get(src)
+        puts "GET #{src} => #{response.status_code} #{response.status_message}"
+        return response.body, response.content_type
       end
 
       def download_image(name : String)
-        download_url("https://miro.medium.com/#{name}")
-      end
-
-      def download_url(src)
+        src = "https://miro.medium.com/#{name}"
         response = HTTP::Client.get(src)
-        Base64.strict_encode(response.body)
+        puts "GET #{src} => #{response.status_code} #{response.status_message}"
+        filename = name
+        ext = File.extname(filename)
+        if ext == ""
+          mt = response.mime_type
+          if !mt.nil? && !mt.sub_type.nil?
+            filename += "." if filename[-1] != '.'
+            filename += mt.sub_type.not_nil!
+          end
+        end
+        return response.body, response.content_type, filename
       end
 
       def markup

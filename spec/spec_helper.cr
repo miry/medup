@@ -4,10 +4,23 @@ require "webmock"
 require "../src/medup"
 
 Spec.before_suite do
+  io = IO::Memory.new
+  Base64.decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", io)
   WebMock.stub(:get, "https://miro.medium.com/0*FbFs8aNmqNLKw4BM")
-    .to_return(body: "some binary content")
+    .to_return(
+      body: io.to_s,
+      headers: HTTP::Headers{
+        "Content-Type"   => "image/png",
+        "Content-length" => "1",
+      }
+    )
   WebMock.stub(:get, "https://miro.medium.com/1*NVLl4oVmMQtumKL-DVV1rA.png")
-    .to_return(body: "some binary content")
+    .to_return(body: "some binary content", headers: HTTP::Headers{"Content-Type" => "image/png"})
+
+  WebMock.stub(:get, "https://medium.com/media/e7722acf2*886364130e03d2c7ad29de7")
+    .to_return(body: "<div>Iframe example</div>", headers: HTTP::Headers{"Content-Type" => "text/html"})
+  WebMock.stub(:get, "https://medium.com/media/ab24f0b378f797307fddc32f10a99685")
+    .to_return(body: "<div>Iframe example</div>", headers: HTTP::Headers{"Content-Type" => "text/html"})
 end
 
 def fixtures(name)
