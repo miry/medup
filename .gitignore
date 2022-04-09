@@ -1,8 +1,8 @@
+_output/
 .env
 bin/
-posts/
 build/
-_output/
-tmp/
+demo/
 lib/
-_output/
+posts/
+tmp/

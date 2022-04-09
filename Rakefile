@@ -128,6 +128,54 @@ namespace :dev do
   end
 end
 
+namespace :demo do
+  DEMO_PATH = "demo"
+
+  namespace :jekyll do
+    desc "Install jeykyll"
+    task :install do
+      sh "gem install bundler jekyll"
+    end
+
+    file "#{DEMO_PATH}/Gemfile.lock" do
+      sh "jekyll new #{DEMO_PATH}"
+      File.open("#{DEMO_PATH}/_config.yml", "a") do |f|
+        f.puts <<~YAML
+        defaults:
+        - scope:
+            path: ""
+          values:
+            layout: default
+        YAML
+      end
+      sh "cd #{DEMO_PATH}; bundle add webrick; bundle"
+    end
+
+    desc "Create a demo site"
+    task create: "#{DEMO_PATH}/Gemfile.lock"
+
+    desc "Start jekyll"
+    task serve: [] do
+      sh "cd #{DEMO_PATH}; bundle exec jekyll serve"
+    end
+  end
+
+  namespace :medup do
+    desc "Sync demo posts"
+    task sync: [:build] do
+      sh "#{BIN_PATH} @miry -d #{DEMO_PATH}/_posts/"
+      mv "#{DEMO_PATH}/_posts/assets", "#{DEMO_PATH}/"
+    end
+
+    desc "Tune posts to Jekyll compatible"
+    task :jekyll_format do
+      sh "sed -i bak 's/\.\\/assets/\\/assets/g' #{DEMO_PATH}/_posts/*.md"
+    end
+  end
+
+  task serve: %i[demo:jekyll:install demo:jekyll:create demo:medup:sync demo:medup:jekyll_format demo:jekyll:serve]
+end
+
 desc "Run overcommit checks"
 task :overcommit do
   sh "bundle check --gemfile=.overcommit_gems.rb || bundle install " \
