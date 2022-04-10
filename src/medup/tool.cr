@@ -20,7 +20,6 @@ module Medup
       dist : String? = DIST_PATH,
       format : String? = MARKDOWN_FORMAT,
       source : String? = SOURCE_AUTHOR_POSTS,
-      update : Bool? = false,
       @user : String? = nil,
       @publication : String? = nil,
       @articles : Array(String) = Array(String).new,
@@ -32,7 +31,7 @@ module Medup
       @assets_dist = File.join(@dist, ASSETS_DIR_NAME)
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
       @format = (format || MARKDOWN_FORMAT).as(String)
-      @update = update.nil? ? false : update.not_nil!
+      @update = @options.includes?(Medup::Options::UPDATE_CONTENT)
     end
 
     def backup
