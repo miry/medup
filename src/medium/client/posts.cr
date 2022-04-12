@@ -164,6 +164,7 @@ module Medium
 
         result = Medium::Post.from_json(response["payload"]["value"].to_json)
         result.url = url
+        result.logger = @logger
 
         creator_id = response["payload"]["value"]["creatorId"].as_s
         result.user = User.from_json(response["payload"]["references"]["User"][creator_id].to_json)

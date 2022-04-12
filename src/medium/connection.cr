@@ -38,14 +38,14 @@ module Medium
       end
 
       response = http(uri.host).exec(method: method.upcase, path: uri.request_target, headers: headers, body: body)
-      puts "#{method} #{uri} => #{response.status_code} #{response.status_message}"
+      @logger.debug "#{method} #{uri} => #{response.status_code} #{response.status_message}"
 
       limit = 10
       while limit > 0 && response.status_code >= 300 && response.status_code < 400
         endpoint = response.headers["location"]
         uri = URI.parse endpoint
         response = http(uri.host).exec(method: method.upcase, path: uri.request_target, headers: headers, body: body)
-        puts "#{method} #{uri} => #{response.status_code} #{response.status_message}"
+        @logger.debug "#{method} #{uri} => #{response.status_code} #{response.status_message}"
         limit -= 1
       end
 
@@ -57,7 +57,7 @@ module Medium
 
     def download(endpoint : String)
       response = http.exec("GET", endpoint)
-      puts "GET #{endpoint} => #{response.status_code} #{response.status_message}"
+      @logger.debug "GET #{endpoint} => #{response.status_code} #{response.status_message}"
       error = Medium::Error.from_response(response)
       raise error if error
       response.body

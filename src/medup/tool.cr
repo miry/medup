@@ -1,3 +1,4 @@
+require "logger"
 require "http/client"
 
 module Medup
@@ -14,6 +15,7 @@ module Medup
     publication : String?
     articles : Array(String)
     options : Array(Options)
+    logger : Logger
 
     def initialize(
       @token : String = "",
@@ -23,9 +25,10 @@ module Medup
       @user : String? = nil,
       @publication : String? = nil,
       @articles : Array(String) = Array(String).new,
-      @options : Array(Medup::Options) = Array(Medup::Options).new
+      @options : Array(Medup::Options) = Array(Medup::Options).new,
+      @logger : Logger = Logger.new(STDOUT)
     )
-      @client = Medium::Client.new(@token, @user, @publication)
+      @client = Medium::Client.new(@token, @user, @publication, @logger)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
       @assets_dist = File.join(@dist, ASSETS_DIR_NAME)
@@ -52,7 +55,7 @@ module Medup
     end
 
     def process_posts_async(posts)
-      puts "Posts count: #{posts.size}"
+      @logger.info "Posts count: #{posts.size}"
 
       channel_start = Channel(String).new(2)
       channel_finished = Channel(String).new(2)
@@ -79,14 +82,14 @@ module Medup
     end
 
     def process_post(post_url : String)
-      client = Medium::Client.new(@token, @user, @publication)
+      client = Medium::Client.new(@token, @user, @publication, @logger)
       post = client.post_by_url(post_url)
       save(post, @format)
     rescue ex : ::Medium::Error | ::Medium::InvalidContentError
-      STDERR.puts "error: could not process #{post_url}: #{ex.message}"
+      @logger.error "error: could not process #{post_url}: #{ex.message}"
     rescue ex : Exception
-      STDERR.puts "error: #{ex.inspect}"
-      STDERR.puts ex.inspect_with_backtrace
+      @logger.error "error: #{ex.inspect}"
+      @logger.error ex.inspect_with_backtrace
     ensure
       client.close unless client.nil?
     end
@@ -103,7 +106,7 @@ module Medup
         File.delete(filepath + ".old") if File.exists?(filepath + ".old")
         File.rename(filepath, filepath + ".old")
       end
-      puts "Create file #{filepath}"
+      @logger.info "Create file #{filepath}"
 
       post.options = @options
 
@@ -117,14 +120,14 @@ module Medup
 
       assets.each do |filename, content|
         filepath = File.join(@assets_dist, filename)
-        puts "Create asset #{filepath}"
+        @logger.debug "Create asset #{filepath}"
         File.write(filepath, content)
       end
     end
 
     def create_directory(path)
       unless File.directory?(path)
-        puts "Create directory #{path}"
+        @logger.debug "Create directory #{path}"
         Dir.mkdir_p(path)
       end
     end

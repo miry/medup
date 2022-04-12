@@ -48,3 +48,7 @@ def user_fixture
   creator_id = data["payload"]["value"]["creatorId"].as_s
   data["payload"]["references"]["User"][creator_id].to_json
 end
+
+def logger
+  Logger.new(STDOUT, level: Logger::FATAL)
+end

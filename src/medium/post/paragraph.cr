@@ -1,10 +1,12 @@
 require "json_mapping"
+require "logger"
 require "zaru_crystal/zaru"
-require "json_mapping"
 
 module Medium
   class Post
     class Paragraph
+      @logger : Logger = Logger.new(STDOUT)
+
       JSON.mapping(
         {
           name:            String?,
@@ -23,7 +25,11 @@ module Medium
         strict: true
       )
 
-      def to_md(options : Array(Medup::Options) = Array(Medup::Options).new) : Tuple(String, String, String)
+      def to_md(
+        options : Array(Medup::Options) = Array(Medup::Options).new,
+        logger : Logger = Logger.new(STDOUT)
+      ) : Tuple(String, String, String)
+        @logger = logger
         content : String = ""
         assets = ""
         asset_name = ""
@@ -96,14 +102,14 @@ module Medium
       def download_iframe(name : String)
         src = "https://medium.com/media/#{name}"
         response = HTTP::Client.get(src)
-        puts "GET #{src} => #{response.status_code} #{response.status_message}"
+        @logger.debug "GET #{src} => #{response.status_code} #{response.status_message}"
         return response.body, response.content_type
       end
 
       def download_image(name : String)
         src = "https://miro.medium.com/#{name}"
         response = HTTP::Client.get(src)
-        puts "GET #{src} => #{response.status_code} #{response.status_message}"
+        @logger.debug "GET #{src} => #{response.status_code} #{response.status_message}"
         filename = name
         ext = File.extname(filename)
         if ext == ""

@@ -4,6 +4,10 @@ shards:
     git: https://github.com/crystal-lang/json_mapping.cr.git
     version: 0.1.1
 
+  logger:
+    git: https://github.com/crystal-lang/logger.cr.git
+    version: 0.1.0
+
   webmock:
     git: https://github.com/manastech/webmock.cr.git
     version: 0.14.0+git.commit.42b347cdd64e13193e46167a03593944ae2b3d20

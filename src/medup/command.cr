@@ -1,4 +1,5 @@
 require "option_parser"
+require "logger"
 
 module Medup
   class Command
@@ -10,6 +11,7 @@ module Medup
       format = ::Medup::Tool::MARKDOWN_FORMAT
       source = ::Medup::Tool::SOURCE_AUTHOR_POSTS
       options = Array(::Medup::Options).new
+      log_level = 1
 
       should_exit = false
 
@@ -30,7 +32,8 @@ module Medup
         parser.on("-r", "--recommended", "Export all posts to wich user clapped / has recommended") { source = ::Medup::Tool::SOURCE_RECOMMENDED_POSTS }
         parser.on("--update", "Overwrite existing articles files, if the same article exists") { options << ::Medup::Options::UPDATE_CONTENT }
         parser.on("-h", "--help", "Show this help") { puts parser; should_exit = true }
-        parser.on("-v", "--version", "Print current version") { puts ::Medup::VERSION; should_exit = true }
+        parser.on("--version", "Print current version") { puts ::Medup::VERSION; should_exit = true }
+        parser.on("-v LEVEL", "--v=LEVEL", "number for the log level verbosity") { |l| log_level = l.to_i }
 
         parser.missing_option do |option_flag|
           STDERR.puts "error: flag needs an argument: #{option_flag}"
@@ -48,61 +51,19 @@ module Medup
       articles = ARGV
 
       if !should_exit && user.nil? && publication.nil? && articles.empty?
-        STDERR.puts "error: Missing of the required arguments"
+        STDERR.puts "error: missing of the required arguments"
         STDERR.puts "See 'medup --help' for usage."
         exit(1)
       end
 
       return if should_exit
 
-      targets = extract_targets(articles)
+      log = setup_logger(log_level)
+      backup(user, publication, articles, token, dist, format, source, options, log)
+    end
 
-      # Backup single posts
-      if targets[:articles].size > 0
-        tool = ::Medup::Tool.new(
-          token: token,
-          articles: targets[:articles],
-          dist: dist,
-          format: format,
-          source: source,
-          options: options
-        )
-        tool.backup
-        tool.close
-      end
-
-      # Backup articles per user
-      (targets[:users] + [user]).compact.each do |u|
-        tool = ::Medup::Tool.new(
-          token: token,
-          user: u,
-          dist: dist,
-          format: format,
-          source: source,
-          options: options
-        )
-        tool.backup
-        tool.close
-      end
-
-      # Backup articles per publication
-      (targets[:publications] + [publication]).compact.each do |p|
-        tool = ::Medup::Tool.new(
-          token: token,
-          publication: p,
-          dist: dist,
-          format: format,
-          source: source,
-          options: options
-        )
-        tool.backup
-        tool.close
-      end
-    rescue ex : Exception
-      STDERR.puts "error: #{ex.inspect}"
-      STDERR.puts ex.inspect_with_backtrace
-      STDERR.puts "See 'medup --help' for usage."
-      exit(1)
+    def self.setup_logger(level = 0)
+      Logger.new(STDOUT, level: Logger::Severity.new(level))
     end
 
     def self.extract_targets(input)
@@ -122,6 +83,60 @@ module Medup
       end
 
       return {users: users, publications: publications, articles: articles}
+    end
+
+    def self.backup(user, publication, articles, token, dist, format, source, options, log)
+      targets = extract_targets(articles)
+
+      # Backup single posts
+      if targets[:articles].size > 0
+        tool = ::Medup::Tool.new(
+          token: token,
+          articles: targets[:articles],
+          dist: dist,
+          format: format,
+          source: source,
+          options: options,
+          logger: log,
+        )
+        tool.backup
+        tool.close
+      end
+
+      # Backup articles per user
+      (targets[:users] + [user]).compact.each do |u|
+        tool = ::Medup::Tool.new(
+          token: token,
+          user: u,
+          dist: dist,
+          format: format,
+          source: source,
+          options: options,
+          logger: log,
+        )
+        tool.backup
+        tool.close
+      end
+
+      # Backup articles per publication
+      (targets[:publications] + [publication]).compact.each do |p|
+        tool = ::Medup::Tool.new(
+          token: token,
+          publication: p,
+          dist: dist,
+          format: format,
+          source: source,
+          options: options,
+          logger: log,
+        )
+        tool.backup
+        tool.close
+      end
+    rescue ex : Exception
+      STDERR.puts "error: #{ex.inspect}"
+      log.error ex.inspect_with_backtrace
+      STDERR.puts "See 'medup --help' for usage."
+      exit(1)
     end
   end
 end

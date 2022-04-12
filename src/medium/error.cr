@@ -22,7 +22,7 @@ module Medium
       message = case @response.content_type
                 when "text/html"
                   @response.status_message
-                when "text/correct"
+                when "application/json"
                   build_error_message
                 else
                   raise "unknown #{@response.content_type}"
