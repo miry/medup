@@ -1,5 +1,6 @@
 require "http/client"
 require "json"
+
 require "logger"
 
 require "./connection"

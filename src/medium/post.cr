@@ -1,4 +1,5 @@
 require "json_mapping"
+
 require "logger"
 
 require "./post/*"

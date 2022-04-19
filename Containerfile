@@ -22,6 +22,8 @@ WORKDIR /app
 COPY ./shard.* /app/
 RUN shards install --production -v
 
+COPY ./lib/*.cr /app/lib/
+
 # Build the app
 COPY . /app/
 RUN rake build:static \

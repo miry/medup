@@ -47,6 +47,7 @@ end
 desc "Prepare development environment"
 task :setup do
   sh "shards install"
+  sh "shards prune"
 end
 
 desc "Release conatiner image"
@@ -62,12 +63,12 @@ desc "Build app in #{OUTPUT_PATH}"
 task build: BIN_PATH
 
 task BIN_PATH => [OUTPUT_PATH] do |t|
-  sh "crystal build --release --no-debug -o #{t.name} src/cli.cr"
+  sh "crystal build --release --no-debug --error-trace -o #{t.name} src/cli.cr"
 end
 
 namespace :build do
   task static: [OUTPUT_PATH] do
-    sh "crystal build --release --no-debug --static -o #{BIN_PATH} src/cli.cr"
+    sh "crystal build --release --no-debug --static --error-trace -o #{BIN_PATH} src/cli.cr"
   end
 end
 

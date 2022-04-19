@@ -1,4 +1,5 @@
 require "option_parser"
+
 require "logger"
 
 module Medup
@@ -11,7 +12,7 @@ module Medup
       format = ::Medup::Tool::MARKDOWN_FORMAT
       source = ::Medup::Tool::SOURCE_AUTHOR_POSTS
       options = Array(::Medup::Options).new
-      log_level = 1
+      log_level : Int8 = 1_i8
 
       should_exit = false
 
@@ -33,7 +34,7 @@ module Medup
         parser.on("--update", "Overwrite existing articles files, if the same article exists") { options << ::Medup::Options::UPDATE_CONTENT }
         parser.on("-h", "--help", "Show this help") { puts parser; should_exit = true }
         parser.on("--version", "Print current version") { puts ::Medup::VERSION; should_exit = true }
-        parser.on("-v LEVEL", "--v=LEVEL", "number for the log level verbosity") { |l| log_level = l.to_i }
+        parser.on("-v LEVEL", "--v=LEVEL", "number for the log level verbosity") { |l| log_level = l.to_i8 }
 
         parser.missing_option do |option_flag|
           STDERR.puts "error: flag needs an argument: #{option_flag}"
@@ -58,12 +59,8 @@ module Medup
 
       return if should_exit
 
-      log = setup_logger(log_level)
+      log = Logger.new(STDERR, level: log_level)
       backup(user, publication, articles, token, dist, format, source, options, log)
-    end
-
-    def self.setup_logger(level = 0)
-      Logger.new(STDOUT, level: Logger::Severity.new(level))
     end
 
     def self.extract_targets(input)
@@ -134,7 +131,7 @@ module Medup
       end
     rescue ex : Exception
       STDERR.puts "error: #{ex.inspect}"
-      log.error ex.inspect_with_backtrace
+      log.debug 6_i8, ex.inspect_with_backtrace
       STDERR.puts "See 'medup --help' for usage."
       exit(1)
     end

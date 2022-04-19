@@ -1,5 +1,6 @@
-require "logger"
 require "http/client"
+
+require "logger"
 
 module Medup
   class Tool

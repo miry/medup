@@ -38,14 +38,14 @@ module Medium
       end
 
       response = http(uri.host).exec(method: method.upcase, path: uri.request_target, headers: headers, body: body)
-      @logger.debug "#{method} #{uri} => #{response.status_code} #{response.status_message}"
+      @logger.info "#{method} #{uri} => #{response.status_code} #{response.status_message}"
 
       limit = 10
       while limit > 0 && response.status_code >= 300 && response.status_code < 400
         endpoint = response.headers["location"]
         uri = URI.parse endpoint
         response = http(uri.host).exec(method: method.upcase, path: uri.request_target, headers: headers, body: body)
-        @logger.debug "#{method} #{uri} => #{response.status_code} #{response.status_message}"
+        @logger.info "#{method} #{uri} => #{response.status_code} #{response.status_message}"
         limit -= 1
       end
 

@@ -50,5 +50,5 @@ def user_fixture
 end
 
 def logger
-  Logger.new(STDOUT, level: Logger::FATAL)
+  Logger.new(STDOUT, level: 6)
 end

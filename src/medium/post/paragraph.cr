@@ -1,6 +1,7 @@
 require "json_mapping"
-require "logger"
 require "zaru_crystal/zaru"
+
+require "logger"
 
 module Medium
   class Post
