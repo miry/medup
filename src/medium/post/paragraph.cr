@@ -86,7 +86,7 @@ module Medium
                         if !gists.nil?
                           result = gists.map do |gist|
                             "```\n#{gist["content"]}\n```\n" +
-                              "[#{gist["filename"]} view raw](#{gist["raw_url"]})"
+                              "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
                           end.join("\n")
                         end
                       end
@@ -248,7 +248,9 @@ module Medium
         GIST_PATTERN = "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists"
 
         def gist?
-          !thumbnailUrl.nil? && thumbnailUrl.not_nil![..94] == GIST_PATTERN
+          return false if thumbnailUrl.nil?
+          t = thumbnailUrl.not_nil!
+          t[..94] == GIST_PATTERN || t.match(/githubusercontent\.com/)
         end
       end
 
