@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.2.0">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="medup">
 
@@ -108,6 +108,11 @@
   
   <li class=" " data-id="medup/Medium/Error" data-name="medium::error">
       <a href="Medium/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="medup/Medium/InvalidContentError" data-name="medium::invalidcontenterror">
+      <a href="Medium/InvalidContentError.html">InvalidContentError</a>
       
     </li>
   
@@ -223,6 +228,7 @@
 
 
 <div class="main-content">
+<p><a href="https://stand-with-ukraine.pp.ua/"><img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg" alt="Stand With Ukraine" /></a></p>
 <p><img src="./img/logo.svg" alt="Logo" /></p>
 <h1><a id="medup" class="anchor" href="#medup">
   <svg class="octicon-link" aria-hidden="true">
@@ -230,7 +236,9 @@
   </svg>
 </a>Medup</h1>
 <p><a href="https://github.com/miry/medup/releases"><img src="https://img.shields.io/github/release/miry/medup.svg?style=flat" alt="" /></a>
-<a href="https://raw.githubusercontent.com/miry/medup/master/LICENSE"><img src="https://img.shields.io/github/license/miry/medup" alt="" /></a></p>
+<a href="https://raw.githubusercontent.com/miry/medup/master/LICENSE"><img src="https://img.shields.io/github/license/miry/medup" alt="" /></a>
+<a href="https://stand-with-ukraine.pp.ua"><img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg" alt="Stand With Ukraine" /></a>
+<a href="https://stand-with-ukraine.pp.ua"><img src="https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7" alt="Made in Ukraine" /></a></p>
 <blockquote>
 <p>Sync all content from Medium with local folder via API</p>
 </blockquote>
@@ -265,21 +273,41 @@
   </svg>
 </a>Author's posts</h2>
 <p>Export all articles written by single author to special folder <code>posts/miry</code></p>
-<pre><code class="language-shell">medium -u miry -d posts/miry</code></pre>
-<h2><a id="publications-posts" class="anchor" href="#publications-posts">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Publication's posts</h2>
-<p>Export all articles written by single author to special folder <code>posts/miry</code></p>
-<pre><code class="language-shell">medium -p jetthoughts -d posts/jetthoughts</code></pre>
+<pre><code class="language-shell">medup -u miry -d posts/miry</code></pre>
+<p>Alternative:</p>
+<pre><code class="language-shell">medup @miry -d posts/miry</code></pre>
 <h2><a id="users-recommendations" class="anchor" href="#users-recommendations">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>User's recommendations</h2>
 <p>Export all articles recommended by <code>miry</code>:</p>
-<pre><code class="language-shell">medium -u miry -d posts/recommendations -r</code></pre>
+<pre><code class="language-shell">medup -u miry -d posts/recommendations -r</code></pre>
+<p>Alternative:</p>
+<pre><code class="language-shell">medup @miry -d posts/recommendations -r</code></pre>
+<h2><a id="publications-posts" class="anchor" href="#publications-posts">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Publication's posts</h2>
+<p>Export all articles written by single author to special folder <code>posts/miry</code></p>
+<pre><code class="language-shell">medup -p jetthoughts -d posts/jetthoughts</code></pre>
+<p>Alternative:</p>
+<pre><code class="language-shell">medup jetthoughts -d posts/jetthoughts</code></pre>
+<h2><a id="mix" class="anchor" href="#mix">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Mix</h2>
+<pre><code class="language-shell">medup -u miry @pftg -p jetthoughts notes-and-tips-in-full-stack-development https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094</code></pre>
+<p>It would download all articles for:</p>
+<ol>
+<li>user <code>@miry</code></li>
+<li>user <code>@pftg</code></li>
+<li>publication <code>jetthoughts</code></li>
+<li>publication <code>notes-and-tips-in-full-stack-development</code></li>
+<li>single post &quot;Medup backups articles&quot;</li>
+</ol>
 <h1><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -288,6 +316,7 @@
 <ul>
 <li>Discover all articles from user account available in public</li>
 <li>Allow to download all recommended articles by user</li>
+<li>Discover all articles from publisher, that available in public</li>
 <li>Download images used inside article</li>
 <li>Save posts in markdown format</li>
 <li>Convert a single article in markdown format</li>
@@ -376,6 +405,7 @@ $ _output/medup -u &lt;medium user&gt; -d &lt;destination folder&gt;</code></pre
 <ul>
 <li><a href="https://github.com/miry">@miry</a> Michael Nikitochkin - creator, maintainer</li>
 <li><a href="https://github.com/alexanderadam">@alexanderadam</a> Alexander - supporter</li>
+<li><a href="https://github.com/clawfire">@clawfire</a> Thibault Milan - supporter</li>
 </ul>
 <h1><a id="license" class="anchor" href="#license">
   <svg class="octicon-link" aria-hidden="true">

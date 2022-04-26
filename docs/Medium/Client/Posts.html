@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.2.0">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="medup">
 
@@ -108,6 +108,11 @@
   
   <li class=" " data-id="medup/Medium/Error" data-name="medium::error">
       <a href="../../Medium/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="medup/Medium/InvalidContentError" data-name="medium::invalidcontenterror">
+      <a href="../../Medium/InvalidContentError.html">InvalidContentError</a>
       
     </li>
   
@@ -270,7 +275,7 @@
   </h2>
   
     
-      <a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/client/posts.cr#L3" target="_blank">
+      <a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L3" target="_blank">
         medium/client/posts.cr
       </a>
     
@@ -310,12 +315,22 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#normalize_urls%28urls%3AArray%28String%29%29%3AArray%28String%29-instance-method" class="signature"><strong>#normalize_urls</strong>(urls : Array(String)) : Array(String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#post_by_id%28post_id%3AString%29-instance-method" class="signature"><strong>#post_by_id</strong>(post_id : String)</a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#post_by_url%28url%3AString%29-instance-method" class="signature"><strong>#post_by_url</strong>(url : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#post_id_from_url%28url%3AString%29-instance-method" class="signature"><strong>#post_id_from_url</strong>(url : String)</a>
         
       </li>
     
@@ -369,7 +384,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/client/posts.cr#L89" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L104" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -390,7 +405,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/client/posts.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="normalize_urls(urls:Array(String)):Array(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>normalize_urls</strong>(urls : Array(String)) : Array(String)
+
+        <a class="method-permalink" href="#normalize_urls%28urls%3AArray%28String%29%29%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -406,7 +437,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/client/posts.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L158" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -422,7 +453,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/client/posts.cr#L147" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L162" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="post_id_from_url(url:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>post_id_from_url</strong>(url : String)
+
+        <a class="method-permalink" href="#post_id_from_url%28url%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L179" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -438,7 +485,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/client/posts.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -454,7 +501,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/client/posts.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/client/posts.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>

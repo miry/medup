@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.2.0">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="medup">
 
@@ -108,6 +108,11 @@
   
   <li class=" " data-id="medup/Medium/Error" data-name="medium::error">
       <a href="../Medium/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="medup/Medium/InvalidContentError" data-name="medium::invalidcontenterror">
+      <a href="../Medium/InvalidContentError.html">InvalidContentError</a>
       
     </li>
   
@@ -258,21 +263,21 @@
   </h2>
   
     
-      <a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L5" target="_blank">
+      <a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L8" target="_blank">
         medium/post.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post/paragraph.cr#L6" target="_blank">
+      <a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L7" target="_blank">
         medium/post/paragraph.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post/tag.cr#L4" target="_blank">
+      <a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/tag.cr#L4" target="_blank">
         medium/post/tag.cr
       </a>
     
@@ -341,6 +346,16 @@
     
       <li class="entry-summary">
         <a href="#format%28ext%29-instance-method" class="signature"><strong>#format</strong>(ext)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logger%3ALogger-instance-method" class="signature"><strong>#logger</strong> : Logger</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logger%3D%28logger%3ALogger%29-instance-method" class="signature"><strong>#logger=</strong>(logger : Logger)</a>
         
       </li>
     
@@ -553,7 +568,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L89" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -597,7 +612,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logger:Logger-instance-method">
+      <div class="signature">
+        
+        def <strong>logger</strong> : Logger
+
+        <a class="method-permalink" href="#logger%3ALogger-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logger=(logger:Logger)-instance-method">
+      <div class="signature">
+        
+        def <strong>logger=</strong>(logger : Logger)
+
+        <a class="method-permalink" href="#logger%3D%28logger%3ALogger%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -613,7 +660,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -629,7 +676,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -645,7 +692,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L76" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -689,7 +736,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -710,7 +757,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -768,7 +815,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -784,7 +831,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -828,7 +875,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -844,7 +891,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -860,7 +907,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -876,7 +923,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/575638520da9d3d196e701b46dca5f9b860d94c5/src/medium/post.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
