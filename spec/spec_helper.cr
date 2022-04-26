@@ -4,6 +4,8 @@ require "webmock"
 require "../src/medup"
 
 Spec.before_suite do
+  WebMock.reset
+
   io = IO::Memory.new
   Base64.decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", io)
   WebMock.stub(:get, "https://miro.medium.com/0*FbFs8aNmqNLKw4BM")
@@ -19,6 +21,7 @@ Spec.before_suite do
 
   WebMock.stub(:get, "https://medium.com/media/e7722acf2*886364130e03d2c7ad29de7")
     .to_return(body: "<div>Iframe example</div>", headers: HTTP::Headers{"Content-Type" => "text/html"})
+
   WebMock.stub(:get, "https://medium.com/media/ab24f0b378f797307fddc32f10a99685")
     .to_return(body: "<div>Iframe example</div>", headers: HTTP::Headers{"Content-Type" => "text/html"})
 end

@@ -110,6 +110,57 @@ describe Medium::Post::Paragraph do
       subject.to_md[0].should eq(%{<iframe src="./assets/e7722acf2886364130e03d2c7ad29de7.html"></iframe>})
     end
 
+    it "render media gist inline" do
+      WebMock.stub(:get, "https://medium.com/media/d0aa4300e50ebcf6d244dd91e836bc5f")
+        .to_return(
+          body: %{<html><script src="https://gist.github.com/miry/d7e8a19eb66734fb69cf8ee4c32095bc.js" charset="utf-8"></script></html>},
+          headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+      WebMock.stub(:get, "https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc")
+        .to_return(
+          body: %{
+            {"files": {
+              "usage.sh": {
+                "filename": "usage.sh",
+                "type": "application/x-sh",
+                "raw_url": "https://gist.githubusercontent.com/",
+                "content": "#!/usr/bin/env bash\\n\\nmedup -u miry -d ./posts/miry"
+              }
+            }}
+          },
+          headers: HTTP::Headers{"Content-Type" => "application/json; charset=utf-8"})
+
+      subject = Medium::Post::Paragraph.from_json(%{
+        {
+          "name": "d2a9", "type": 11, "text": "", "markups": [],
+          "iframe":{
+            "mediaResourceId": "d0aa4300e50ebcf6d244dd91e836bc5f",
+            "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists%2Fgist-og-image.png&key=a19fcc184b9711e1b4764040d3dc5c07"
+          }
+        }
+      })
+      subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
+      subject.to_md[0].should contain(%{[usage.sh view raw](https:})
+    end
+
+    it "render iframe in case missing gist url" do
+      WebMock.stub(:get, "https://medium.com/media/brokengist")
+        .to_return(
+          body: %{<html>Not found</html>},
+          headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+      subject = Medium::Post::Paragraph.from_json(%{
+        {
+          "name": "d2a9", "type": 11, "text": "", "markups": [],
+          "iframe":{
+            "mediaResourceId": "brokengist",
+            "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists%2Fgist-og-image.png&key=a19fcc184b9711e1b4764040d3dc5c07"
+          }
+        }
+      })
+      subject.to_md[0].should eq(%{<iframe src="./assets/brokengist.html"></iframe>})
+    end
+
     it "renders inline code block" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 6, "text": "TL;DR xxd ./bin/app | vim — and :%!xxd -r > ./bin/new_app", "markups": [{"type": 10,"start": 6,"end": 27},{"type": 10,"start": 32,"end": 57}]}})
       subject.to_md[0].should eq("> TL;DR `xxd ./bin/app | vim —` and `:%!xxd -r > ./bin/new_app`")

@@ -80,13 +80,26 @@ module Medium
                       "<!-- Missing iframe -->"
                     else
                       frame = @iframe.not_nil!
-                      asset_id = Zaru.sanitize!(frame.mediaResourceId)
-                      asset_name = "#{asset_id}.html"
-                      asset_body, _content_type = download_iframe(frame.mediaResourceId)
-                      assets = asset_body
-                      "<iframe src=\"./assets/#{asset_id}.html\"></iframe>"
-                      # Support Frame mode with inline content. Github does not support it.
-                      # "<frame>#{frame.get}</frame>"
+                      result = ""
+                      if frame.gist?
+                        gists = download_gists(frame.mediaResourceId)
+                        if !gists.nil?
+                          result = gists.map do |gist|
+                            "```\n#{gist["content"]}\n```\n" +
+                              "[#{gist["filename"]} view raw](#{gist["raw_url"]})"
+                          end.join("\n")
+                        end
+                      end
+
+                      if result.empty?
+                        asset_id = Zaru.sanitize!(frame.mediaResourceId)
+                        asset_name = "#{asset_id}.html"
+                        asset_body, _content_type = download(frame.mediaResourceId)
+                        assets = asset_body
+                        result = "<iframe src=\"./assets/#{asset_id}.html\"></iframe>"
+                      end
+
+                      result
                     end
                   when 13
                     "### #{markup}"
@@ -100,7 +113,7 @@ module Medium
         return content, asset_name, assets
       end
 
-      def download_iframe(name : String)
+      def download(name : String)
         src = "https://medium.com/media/#{name}"
         response = HTTP::Client.get(src)
         @logger.debug "GET #{src} => #{response.status_code} #{response.status_message}"
@@ -121,6 +134,19 @@ module Medium
           end
         end
         return response.body, response.content_type, filename
+      end
+
+      def download_gists(name : String)
+        html_media = download(name)[0]
+        m = html_media.match(/\<script src=\"https:\/\/gist\.github\.com\/[^\/]*\/(?<id>[^"]*).js/)
+        return nil if m.nil?
+        src = "https://api.github.com/gists/#{m["id"]}"
+        response = HTTP::Client.get(src)
+        @logger.info "GET #{src} => #{response.status_code} #{response.status_message}"
+        @logger.info 12, response.body
+        result = JSON.parse(response.body).try(&.["files"]).try(&.as_h)
+        return nil if result.nil?
+        return result.map { |_, spec| spec.as_h }
       end
 
       def markup
@@ -211,11 +237,18 @@ module Medium
         getter content : String?
 
         JSON.mapping(
-          mediaResourceId: String
+          mediaResourceId: String,
+          thumbnailUrl: String?
         )
 
         def get
           @content ||= Medium::Client.default.media(mediaResourceId)
+        end
+
+        GIST_PATTERN = "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists"
+
+        def gist?
+          !thumbnailUrl.nil? && thumbnailUrl.not_nil![..94] == GIST_PATTERN
         end
       end
 
