@@ -141,11 +141,24 @@ module Medium
         m = html_media.match(/\<script src=\"https:\/\/gist\.github\.com\/[^\/]*\/(?<id>[^"]*).js/)
         return nil if m.nil?
         src = "https://api.github.com/gists/#{m["id"]}"
-        response = HTTP::Client.get(src)
-        @logger.info "GET #{src} => #{response.status_code} #{response.status_message}"
-        @logger.info 12, response.body
+
+        response : HTTP::Client::Response? = nil
+
+        3.times do
+          response = HTTP::Client.get(src)
+          @logger.info "GET #{src} => #{response.status_code} #{response.status_message}"
+          @logger.info 12, response.headers.to_s
+          @logger.info 12, response.body
+          break if response.status_code != 403
+          response = nil
+          sleep 3 # 3 seconds
+        end
+
+        return nil if response.nil?
+
         result = JSON.parse(response.body).try(&.["files"]).try(&.as_h)
         return nil if result.nil?
+
         return result.map { |_, spec| spec.as_h }
       end
 
