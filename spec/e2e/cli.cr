@@ -71,11 +71,14 @@ describe "CommandLine", tags: "e2e" do
       actual[1].should contain(%{error: could not process http://example.com: unsupported content type text/html})
     end
 
-    it "download medium from medium and gist domain" do
+    it "downloads iframe from medium, youtube in assets and gist embeded" do
       actual = run_with ["-v4", "https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"]
       actual[1].should contain(%{Posts count: 1})
       actual[1].should contain(%{GET https://medium.com/@/8bf90179b094?format=json => 200 OK})
+      # Download Gist media element
       actual[1].should contain(%{GET https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc => 200 OK})
+      # Download Youtube media element
+      actual[1].should contain(%{GET https://medium.com/media/8fd52e6662e183023fe4dce238d9729b => 200 O})
       actual[1].should contain(%{GET https://miro.medium.com/1*CSF4xue7yFfg-9-wxAkDWw.jpeg => 200 OK})
 
       actual = Dir.new("posts").entries
@@ -83,7 +86,8 @@ describe "CommandLine", tags: "e2e" do
       actual.should contain("2020-09-16-medup-backups-articles.md")
 
       actual = Dir.new("posts/assets").entries
-      actual.sort.should eq([".", ".."])
+      actual.sort.should_not contain("d7e8a19eb66734fb69cf8ee4c32095bc.html") # gist content
+      actual.sort.should contain("8fd52e6662e183023fe4dce238d9729b.html")     # youtube content
     end
 
     it "download medium from custom domain" do
