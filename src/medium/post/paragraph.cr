@@ -81,12 +81,12 @@ module Medium
                     else
                       frame = @iframe.not_nil!
                       result = ""
-                      gists = download_gists(frame.mediaResourceId)
-                      if !gists.nil?
-                        result = gists.map do |gist|
-                          "```\n#{gist["content"]}\n```\n" +
-                            "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
-                        end.join("\n")
+
+                      media_content, media_type = download(frame.mediaResourceId)
+                      if media_content.includes?(%{<script src="https://gist.github.com/})
+                        result = process_gist_content(media_content)
+                      elsif media_content.includes?("schema=youtube")
+                        result = process_youtube_content(media_content)
                       end
 
                       if result.empty?
@@ -114,7 +114,9 @@ module Medium
       def download(name : String)
         src = "https://medium.com/media/#{name}"
         response = HTTP::Client.get(src)
-        @logger.debug "GET #{src} => #{response.status_code} #{response.status_message}"
+        @logger.info "GET #{src} => #{response.status_code} #{response.status_message}"
+        @logger.info 12, response.headers.to_s
+        @logger.info 12, response.body
         return response.body, response.content_type
       end
 
@@ -122,6 +124,7 @@ module Medium
         src = "https://miro.medium.com/#{name}"
         response = HTTP::Client.get(src)
         @logger.debug "GET #{src} => #{response.status_code} #{response.status_message}"
+        @logger.info 12, response.headers.to_s
         filename = name
         ext = File.extname(filename)
         if ext == ""
@@ -134,13 +137,22 @@ module Medium
         return response.body, response.content_type, filename
       end
 
-      def download_gists(name : String)
-        html_media = download(name)[0]
-        m = html_media.match(/\<script src=\"https:\/\/gist\.github\.com\/[^\/]*\/(?<id>[^"]*).js/)
-        return nil if m.nil?
+      def process_youtube_content(content : String) : String
+        @logger.debug 7, "Processing youtube element"
+        m = content.match(/\<iframe[^\>]*widgets\/media\.html\?.*(&amp;)?url=(?<url>[^&;]*)&amp;/)
+        return "" if m.nil?
+        m = m.not_nil!
+        url = URI.decode(m["url"]).sub("http://", "https://")
+        id = url[/v=[^&]+/][2..]
+        thumbnail_url = "https://img.youtube.com/vi/#{id}/hqdefault.jpg"
+        # TODO: Download thumbnails in same way as images with `download_image`
+        "[![Youtube](#{thumbnail_url})](#{url})"
+      end
 
-        src = "https://api.github.com/gists/#{m["id"]}"
+      def fetch_gist(id : String?)
+        return nil if id.nil?
 
+        src = "https://api.github.com/gists/#{id}"
         response : HTTP::Client::Response? = nil
 
         3.times do
@@ -159,6 +171,21 @@ module Medium
         return nil if result.nil?
 
         return result.map { |_, spec| spec.as_h }
+      end
+
+      def process_gist_content(content : String) : String
+        @logger.debug 7, "Processing gist element"
+        m = content.match(/\<script src=\"https:\/\/gist\.github\.com\/[^\/]*\/(?<id>[^"]*).js/)
+        return "" if m.nil?
+
+        gists = fetch_gist(m["id"])
+
+        return "" if gists.nil?
+
+        return gists.map do |gist|
+          "```\n#{gist["content"]}\n```\n" +
+            "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
+        end.join("\n")
       end
 
       def markup
@@ -250,7 +277,9 @@ module Medium
 
         JSON.mapping(
           mediaResourceId: String,
-          thumbnailUrl: String?
+          thumbnailUrl: String?,
+          iframeWidth: Int64?,
+          iframeHeight: Int64?
         )
 
         def get

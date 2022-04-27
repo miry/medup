@@ -162,7 +162,7 @@ In the directory, you can find 2 format of files: `.json` and `.md`.
 - *Markdown* format is simple implementation of block formated text.
 
 Images encoded in the result document.
-`IFRAME` content are located in `posts/assets`.
+Rich elements content are located in `posts/assets` and integrated with `<IFRAME>`.
 
 ## Markdown
 

@@ -110,87 +110,118 @@ describe Medium::Post::Paragraph do
       subject.to_md[0].should eq(%{<iframe src="./assets/e7722acf2886364130e03d2c7ad29de7.html"></iframe>})
     end
 
-    it "render media gist inline" do
-      WebMock.stub(:get, "https://medium.com/media/d0aa4300e50ebcf6d244dd91e836bc5f")
-        .to_return(
-          body: %{<html><script src="https://gist.github.com/miry/d7e8a19eb66734fb69cf8ee4c32095bc.js" charset="utf-8"></script></html>},
-          headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+    describe "gist" do
+      it "render media gist inline" do
+        WebMock.stub(:get, "https://medium.com/media/d0aa4300e50ebcf6d244dd91e836bc5f")
+          .to_return(
+            body: %{<html><script src="https://gist.github.com/miry/d7e8a19eb66734fb69cf8ee4c32095bc.js" charset="utf-8"></script></html>},
+            headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
 
-      WebMock.stub(:get, "https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc")
-        .to_return(
-          body: %{
-            {"files": {
-              "usage.sh": {
-                "filename": "usage.sh",
-                "type": "application/x-sh",
-                "raw_url": "https://gist.githubusercontent.com/",
-                "content": "#!/usr/bin/env bash\\n\\nmedup -u miry -d ./posts/miry"
-              }
-            }}
-          },
-          headers: HTTP::Headers{"Content-Type" => "application/json; charset=utf-8"})
+        WebMock.stub(:get, "https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc")
+          .to_return(
+            body: %{
+              {"files": {
+                "usage.sh": {
+                  "filename": "usage.sh",
+                  "type": "application/x-sh",
+                  "raw_url": "https://gist.githubusercontent.com/",
+                  "content": "#!/usr/bin/env bash\\n\\nmedup -u miry -d ./posts/miry"
+                }
+              }}
+            },
+            headers: HTTP::Headers{"Content-Type" => "application/json; charset=utf-8"})
 
-      subject = Medium::Post::Paragraph.from_json(%{
-        {
-          "name": "d2a9", "type": 11, "text": "", "markups": [],
-          "iframe":{
-            "mediaResourceId": "d0aa4300e50ebcf6d244dd91e836bc5f",
-            "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists%2Fgist-og-image.png&key=a19fcc184b9711e1b4764040d3dc5c07"
+        subject = Medium::Post::Paragraph.from_json(%{
+          {
+            "name": "d2a9", "type": 11, "text": "", "markups": [],
+            "iframe":{
+              "mediaResourceId": "d0aa4300e50ebcf6d244dd91e836bc5f",
+              "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists%2Fgist-og-image.png&key=a19fcc184b9711e1b4764040d3dc5c07"
+            }
           }
-        }
-      })
-      subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
-      subject.to_md[0].should contain(%{[usage.sh view raw](https:})
+        })
+        subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
+        subject.to_md[0].should contain(%{[usage.sh view raw](https:})
+      end
+
+      it "render media gist inline without thumbnailUrl" do
+        WebMock.stub(:get, "https://medium.com/media/07153002bfc51e373161166a7c24cb57")
+          .to_return(
+            body: %{<html><script src="https://gist.github.com/miry/d7e8a19eb66734fb69cf8ee4c32095bc.js" charset="utf-8"></script></html>},
+            headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+        WebMock.stub(:get, "https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc")
+          .to_return(
+            body: %{
+              {"files": {
+                "usage.sh": {
+                  "filename": "usage.sh",
+                  "type": "application/x-sh",
+                  "raw_url": "https://gist.githubusercontent.com/",
+                  "content": "#!/usr/bin/env bash\\n\\nmedup -u miry -d ./posts/miry"
+                }
+              }}
+            },
+            headers: HTTP::Headers{"Content-Type" => "application/json; charset=utf-8"})
+
+        subject = Medium::Post::Paragraph.from_json(%{
+          {
+            "name": "d2a9", "type": 11, "text": "", "markups": [],
+            "iframe":{
+              "mediaResourceId": "07153002bfc51e373161166a7c24cb57"
+            }
+          }
+        })
+        subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
+        subject.to_md[0].should contain(%{[usage.sh view raw](https:})
+      end
+
+      it "render iframe in case missing gist url" do
+        WebMock.stub(:get, "https://medium.com/media/brokengist")
+          .to_return(
+            body: %{<html>Not found</html>},
+            headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+        subject = Medium::Post::Paragraph.from_json(%{
+          {
+            "name": "d2a9", "type": 11, "text": "", "markups": [],
+            "iframe":{
+              "mediaResourceId": "brokengist",
+              "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists%2Fgist-og-image.png&key=a19fcc184b9711e1b4764040d3dc5c07"
+            }
+          }
+        })
+        subject.to_md[0].should eq(%{<iframe src="./assets/brokengist.html"></iframe>})
+      end
     end
 
-    it "render media gist inline without thumbnailUrl" do
-      WebMock.stub(:get, "https://medium.com/media/07153002bfc51e373161166a7c24cb57")
-        .to_return(
-          body: %{<html><script src="https://gist.github.com/miry/d7e8a19eb66734fb69cf8ee4c32095bc.js" charset="utf-8"></script></html>},
-          headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+    describe "youtube" do
+      it "render media gist inline" do
+        WebMock.stub(:get, "https://medium.com/media/youtuberesourceid")
+          .to_return(
+            body: %{
+              <html><title>Some title of video – Medium</title>
+              <body>
+              <iframe
+    src="https://cdn.embedly.com/widgets/media.html?url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D30xiI21RraQ&amp;src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F30xiI21RraQ&amp;type=text%2Fhtml&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;schema=youtube"
+    allowfullscreen frameborder="0" scrolling="no"></iframe>
+              </body>
+              </html>
+            },
+            headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
 
-      WebMock.stub(:get, "https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc")
-        .to_return(
-          body: %{
-            {"files": {
-              "usage.sh": {
-                "filename": "usage.sh",
-                "type": "application/x-sh",
-                "raw_url": "https://gist.githubusercontent.com/",
-                "content": "#!/usr/bin/env bash\\n\\nmedup -u miry -d ./posts/miry"
-              }
-            }}
-          },
-          headers: HTTP::Headers{"Content-Type" => "application/json; charset=utf-8"})
-
-      subject = Medium::Post::Paragraph.from_json(%{
-        {
-          "name": "d2a9", "type": 11, "text": "", "markups": [],
-          "iframe":{
-            "mediaResourceId": "07153002bfc51e373161166a7c24cb57"
+        subject = Medium::Post::Paragraph.from_json(%{
+          {
+            "name": "d2a9", "type": 11, "text": "", "markups": [], "layout": 1,
+            "iframe":{
+              "mediaResourceId": "youtuberesourceid",
+              "iframeWidth": 854,
+              "iframeHeight": 480
+            }
           }
-        }
-      })
-      subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
-      subject.to_md[0].should contain(%{[usage.sh view raw](https:})
-    end
-
-    it "render iframe in case missing gist url" do
-      WebMock.stub(:get, "https://medium.com/media/brokengist")
-        .to_return(
-          body: %{<html>Not found</html>},
-          headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
-
-      subject = Medium::Post::Paragraph.from_json(%{
-        {
-          "name": "d2a9", "type": 11, "text": "", "markups": [],
-          "iframe":{
-            "mediaResourceId": "brokengist",
-            "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists%2Fgist-og-image.png&key=a19fcc184b9711e1b4764040d3dc5c07"
-          }
-        }
-      })
-      subject.to_md[0].should eq(%{<iframe src="./assets/brokengist.html"></iframe>})
+        })
+        subject.to_md[0].should contain(%{[![Youtube](https://img.youtube.com/vi/30xiI21RraQ/hqdefault.jpg)](https://www.youtube.com/watch?v=30xiI21RraQ)})
+      end
     end
 
     it "renders inline code block" do
@@ -206,6 +237,30 @@ describe Medium::Post::Paragraph do
     it "skip render background image" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 15, "text": "picture by me", "markups": [{"type": 3, "start": 11,"end": 15, "href": "http://example.com", "title": "", "rel": "", "anchorType": 0}]}})
       subject.to_md[0].should eq("")
+    end
+  end
+
+  describe "#process_youtube_content" do
+    it "could not render youtube link for empty content" do
+      subject = Medium::Post::Paragraph.from_json(%{{"type": 3, "text": "foo"}})
+      subject.process_youtube_content("").should eq("")
+    end
+
+    it "could not render youtube link for some text" do
+      subject = Medium::Post::Paragraph.from_json(%{{"type": 3, "text": "foo"}})
+      subject.process_youtube_content("oops").should eq("")
+    end
+
+    it "render youtube link for some text" do
+      subject = Medium::Post::Paragraph.from_json(%{{"type": 3, "text": "foo"}})
+      content = %{
+        <iframe
+    src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F30xiI21RraQ%3Ffeature%3Doembed&amp;display_name=YouTube&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D30xiI21RraQ&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F30xiI21RraQ%2Fhqdefault.jpg&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=youtube"
+    allowfullscreen frameborder="0" scrolling="no"></iframe>
+      }
+      actual = subject.process_youtube_content(content)
+      expected = %{[![Youtube](https://img.youtube.com/vi/30xiI21RraQ/hqdefault.jpg)](https://www.youtube.com/watch?v=30xiI21RraQ)}
+      actual.should eq(expected)
     end
   end
 end
