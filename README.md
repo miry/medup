@@ -190,6 +190,21 @@ This project is under the LGPL-3.0 license.
 
 # Play ownself
 
+### FAQ
+
+* Clean unused assets:
+```shell
+$ for i in $(ls -1 assets/*); do grep -q "$i" *.md || echo $i; done | xargs rm
+```
+* Detect potential articles with **IFRAME** content for gists:
+```shell
+$ for i in $(ls -1 assets/*.html); do grep "github" -q $i && grep -n "$i" *.md; done
+```
+* Detect potential articles' url with **IFRAME** content for gists:
+```shell
+$ for i in $(ls -1 assets/*.html); do grep "github" -q $i && (grep -l "$i" *.md | xargs head | grep url); done
+```
+
 ### Medium API
 
 1. [Medium API documentation](https://github.com/Medium/medium-api-docs)
