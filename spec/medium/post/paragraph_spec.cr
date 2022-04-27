@@ -143,6 +143,38 @@ describe Medium::Post::Paragraph do
       subject.to_md[0].should contain(%{[usage.sh view raw](https:})
     end
 
+    it "render media gist inline without thumbnailUrl" do
+      WebMock.stub(:get, "https://medium.com/media/07153002bfc51e373161166a7c24cb57")
+        .to_return(
+          body: %{<html><script src="https://gist.github.com/miry/d7e8a19eb66734fb69cf8ee4c32095bc.js" charset="utf-8"></script></html>},
+          headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+      WebMock.stub(:get, "https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc")
+        .to_return(
+          body: %{
+            {"files": {
+              "usage.sh": {
+                "filename": "usage.sh",
+                "type": "application/x-sh",
+                "raw_url": "https://gist.githubusercontent.com/",
+                "content": "#!/usr/bin/env bash\\n\\nmedup -u miry -d ./posts/miry"
+              }
+            }}
+          },
+          headers: HTTP::Headers{"Content-Type" => "application/json; charset=utf-8"})
+
+      subject = Medium::Post::Paragraph.from_json(%{
+        {
+          "name": "d2a9", "type": 11, "text": "", "markups": [],
+          "iframe":{
+            "mediaResourceId": "07153002bfc51e373161166a7c24cb57"
+          }
+        }
+      })
+      subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
+      subject.to_md[0].should contain(%{[usage.sh view raw](https:})
+    end
+
     it "render iframe in case missing gist url" do
       WebMock.stub(:get, "https://medium.com/media/brokengist")
         .to_return(

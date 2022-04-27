@@ -81,14 +81,12 @@ module Medium
                     else
                       frame = @iframe.not_nil!
                       result = ""
-                      if frame.gist?
-                        gists = download_gists(frame.mediaResourceId)
-                        if !gists.nil?
-                          result = gists.map do |gist|
-                            "```\n#{gist["content"]}\n```\n" +
-                              "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
-                          end.join("\n")
-                        end
+                      gists = download_gists(frame.mediaResourceId)
+                      if !gists.nil?
+                        result = gists.map do |gist|
+                          "```\n#{gist["content"]}\n```\n" +
+                            "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
+                        end.join("\n")
                       end
 
                       if result.empty?
@@ -140,6 +138,7 @@ module Medium
         html_media = download(name)[0]
         m = html_media.match(/\<script src=\"https:\/\/gist\.github\.com\/[^\/]*\/(?<id>[^"]*).js/)
         return nil if m.nil?
+
         src = "https://api.github.com/gists/#{m["id"]}"
 
         response : HTTP::Client::Response? = nil
@@ -256,14 +255,6 @@ module Medium
 
         def get
           @content ||= Medium::Client.default.media(mediaResourceId)
-        end
-
-        GIST_PATTERN = "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists"
-
-        def gist?
-          return false if thumbnailUrl.nil?
-          t = thumbnailUrl.not_nil!
-          t[..94] == GIST_PATTERN || t.match(/githubusercontent\.com/)
         end
       end
 
