@@ -95,6 +95,10 @@ module Medium
                         asset_body, _content_type = download(frame.mediaResourceId)
                         assets = asset_body
                         result = "<iframe src=\"./assets/#{asset_id}.html\"></iframe>"
+                        markup_body = markup.strip
+                        if !markup_body.empty?
+                          result += "\n#{markup_body}"
+                        end
                       end
 
                       result

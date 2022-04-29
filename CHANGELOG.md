@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move most of debug output to logger. Allow to specify the verbosity of output
   with parameter `-v[NUM]`. Previous messages debug messages are appeared
   in `stderr`. (@miry)
+- For rich elements with anotations or markups render next to iframe. (@miry)
 
 ## [0.3.0] - 2022-04-09
 ### Changed
