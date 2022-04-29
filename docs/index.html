@@ -377,7 +377,7 @@ $ _output/medup -u &lt;medium user&gt; -d &lt;destination folder&gt;</code></pre
 <li><em>Markdown</em> format is simple implementation of block formated text.</li>
 </ul>
 <p>Images encoded in the result document.
-<code>IFRAME</code> content are located in <code>posts/assets</code>.</p>
+Rich elements content are located in <code>posts/assets</code> and integrated with <code>&lt;IFRAME&gt;</code>.</p>
 <h2><a id="markdown" class="anchor" href="#markdown">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -418,6 +418,23 @@ $ _output/medup -u &lt;medium user&gt; -d &lt;destination folder&gt;</code></pre
     <use href="#octicon-link"/>
   </svg>
 </a>Play ownself</h1>
+<h3><a id="faq" class="anchor" href="#faq">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>FAQ</h3>
+<ul>
+<li>Clean unused assets:</li>
+</ul>
+<pre><code class="language-shell">$ for i in $(ls -1 assets/*); do grep -q &quot;$i&quot; *.md || echo $i; done | xargs rm</code></pre>
+<ul>
+<li>Detect potential articles with <strong>IFRAME</strong> content for gists:</li>
+</ul>
+<pre><code class="language-shell">$ for i in $(ls -1 assets/*.html); do grep &quot;github&quot; -q $i &amp;&amp; grep -n &quot;$i&quot; *.md; done</code></pre>
+<ul>
+<li>Detect potential articles' url with <strong>IFRAME</strong> content for gists:</li>
+</ul>
+<pre><code class="language-shell">$ for i in $(ls -1 assets/*.html); do grep &quot;github&quot; -q $i &amp;&amp; (grep -l &quot;$i&quot; *.md | xargs head | grep url); done</code></pre>
 <h3><a id="medium-api" class="anchor" href="#medium-api">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>

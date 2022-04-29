@@ -263,7 +263,7 @@
   </h2>
   
     
-      <a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L8" target="_blank">
+      <a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L8" target="_blank">
         medium/post/paragraph.cr
       </a>
     
@@ -316,7 +316,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#download_iframe%28name%3AString%29-instance-method" class="signature"><strong>#download_iframe</strong>(name : String)</a>
+        <a href="#download%28name%3AString%29-instance-method" class="signature"><strong>#download</strong>(name : String)</a>
         
       </li>
     
@@ -332,6 +332,11 @@
     
       <li class="entry-summary">
         <a href="#dropCapImage%3D%28_dropCapImage%3AUnion%28DropCapImage%2CNil%29%29-instance-method" class="signature"><strong>#dropCapImage=</strong>(_dropCapImage : Union(DropCapImage, Nil))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch_gist%28id%3AString%3F%29-instance-method" class="signature"><strong>#fetch_gist</strong>(id : String?)</a>
         
       </li>
     
@@ -421,6 +426,16 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#process_gist_content%28content%3AString%29%3AString-instance-method" class="signature"><strong>#process_gist_content</strong>(content : String) : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#process_youtube_content%28content%3AString%29%3AString-instance-method" class="signature"><strong>#process_youtube_content</strong>(content : String) : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#text%3AString-instance-method" class="signature"><strong>#text</strong> : String</a>
         
       </li>
@@ -501,7 +516,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -531,7 +546,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -547,23 +562,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="download_iframe(name:String)-instance-method">
+    <div class="entry-detail" id="download(name:String)-instance-method">
       <div class="signature">
         
-        def <strong>download_iframe</strong>(name : String)
+        def <strong>download</strong>(name : String)
 
-        <a class="method-permalink" href="#download_iframe%28name%3AString%29-instance-method">#</a>
+        <a class="method-permalink" href="#download%28name%3AString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L114" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -579,7 +594,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L110" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L123" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -595,7 +610,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -611,7 +626,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch_gist(id:String?)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch_gist</strong>(id : String?)
+
+        <a class="method-permalink" href="#fetch_gist%28id%3AString%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L152" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -627,7 +658,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -643,7 +674,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -659,7 +690,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -675,7 +706,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -691,7 +722,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -707,7 +738,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -723,7 +754,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -739,7 +770,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -755,7 +786,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L126" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L191" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -771,7 +802,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -787,7 +818,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -803,7 +834,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -819,7 +850,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -835,7 +866,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -851,7 +882,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -867,7 +898,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -883,7 +914,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="process_gist_content(content:String):String-instance-method">
+      <div class="signature">
+        
+        def <strong>process_gist_content</strong>(content : String) : String
+
+        <a class="method-permalink" href="#process_gist_content%28content%3AString%29%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L176" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="process_youtube_content(content:String):String-instance-method">
+      <div class="signature">
+        
+        def <strong>process_youtube_content</strong>(content : String) : String
+
+        <a class="method-permalink" href="#process_youtube_content%28content%3AString%29%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L140" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -899,7 +962,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -915,7 +978,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -931,7 +994,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -947,7 +1010,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -963,7 +1026,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -979,7 +1042,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/miry/medup/blob/32a8e13f3b91dbdeb4dfdf14019c27f705df0d0d/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/miry/medup/blob/89c25d8c14dee63c024e8ecbd135efadeddc6d9e/src/medium/post/paragraph.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
