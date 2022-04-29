@@ -198,11 +198,15 @@ $ for i in $(ls -1 assets/*); do grep -q "$i" *.md || echo $i; done | xargs rm
 ```
 * Detect potential articles with **IFRAME** content for gists:
 ```shell
-$ for i in $(ls -1 assets/*.html); do grep "github" -q $i && grep -n "$i" *.md; done
+$ for i in $(ls -1 assets/*.html); do grep "gist.github.com" -q $i && grep -n "$i" *.md; done
 ```
 * Detect potential articles' url with **IFRAME** content for gists:
 ```shell
-$ for i in $(ls -1 assets/*.html); do grep "github" -q $i && (grep -l "$i" *.md | xargs head | grep url); done
+$ for i in $(ls -1 assets/*.html); do grep "gist.github.com" -q $i && (grep -l "$i" *.md | xargs head | grep url); done
+```
+* Detect potential articles' url with **IFRAME** content for youtube:
+```shell
+$ for i in $(ls -1 assets/*.html); do grep "schema=youtube" -q $i && (grep -l "$i" *.md | xargs head | grep url); done
 ```
 
 ### Medium API
