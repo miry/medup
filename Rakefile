@@ -164,13 +164,15 @@ namespace :demo do
   namespace :medup do
     desc "Sync demo posts"
     task sync: [:build] do
-      sh "#{BIN_PATH} @miry -d #{DEMO_PATH}/_posts/"
+      sh "#{BIN_PATH} @miry -v7 -d #{DEMO_PATH}/_posts/"
+      sh "#{BIN_PATH} jetthoughts -v7 -d #{DEMO_PATH}/_posts/"
       mv "#{DEMO_PATH}/_posts/assets", "#{DEMO_PATH}/"
     end
 
     desc "Tune posts to Jekyll compatible"
     task :jekyll_format do
-      sh "sed -i bak 's/\.\\/assets/\\/assets/g' #{DEMO_PATH}/_posts/*.md"
+      sh "sed -i .bak 's/\.\\/assets/\\/assets/g' #{DEMO_PATH}/_posts/*.md"
+      sh "rm #{DEMO_PATH}/_posts/*.bak"
     end
   end
 
