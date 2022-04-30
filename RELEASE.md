@@ -17,22 +17,12 @@ $ git pull origin master
 $ git push origin master
 ```
 
-### Bump release
-
-* Update [CHANGELOG.md](CHANGELOG.md):
-  - Add a new version header at the top of the document,
-    just after `# [Unreleased]`
-  - Update links at bottom of changelog
-* Bump version in [shard.yml](shard.yml).
-* Bump version in [src/medup/version.cr](src/medup/version.cr).
-
 ### Test
 
 Make sure all test pass and docs are updated
 
 ```shell
 $ rake fmt test build test:e2e
-$ crystal docs
 ```
 
 There are some extra steps to check that everything else is working as expected
@@ -47,6 +37,15 @@ There are some extra steps to check that everything else is working as expected
   $ rake demo:serve
   $ open localhost:4000
   ```
+
+### Bump release
+
+* Update [CHANGELOG.md](CHANGELOG.md):
+  - Add a new version header at the top of the document,
+    just after `# [Unreleased]`
+  - Update links at bottom of changelog
+* Bump version in [shard.yml](shard.yml).
+* Bump version in [src/medup/version.cr](src/medup/version.cr).
 
 ### Commit and tag
 

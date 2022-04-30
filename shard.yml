@@ -1,6 +1,6 @@
 name: medup
 repository: https://github.com/miry/medup.git
-version: 0.3.0
+version: 0.4.0
 
 authors:
   - Michael Nikitochkin <michael.nikitochkin@gmx.net>
