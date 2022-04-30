@@ -70,6 +70,14 @@ Create a new release in Github:
 - Title should equal to tag name. Example: `v0.1.3`
 - Description should have a text from Changelog
 
+## Container
+
+Create and push container image to DockerHub:
+
+```shell
+$ rake container:push
+```
+
 ## Update Homebrew versions
 
 - Update [homebrew-medup](https://github.com/miry/homebrew-medup/blob/master/Formula/medup.rb)

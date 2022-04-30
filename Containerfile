@@ -1,10 +1,10 @@
 # docker.io/miry/medup
 
 # Build layer
-ARG CRYSTAL_VERSION=1.4.0
+ARG CRYSTAL_VERSION=1.4.1
 ARG USER=1001
 
-FROM crystallang/crystal:${CRYSTAL_VERSION}-alpine as build
+FROM docker.io/crystallang/crystal:${CRYSTAL_VERSION}-alpine as build
 
 # Install development tools required for building
 RUN apk --no-cache add \

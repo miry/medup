@@ -25,7 +25,7 @@ jobs:
         name: Build
         run: |
           mkdir -p _output
-          crystal build --release --no-debug -o _output/medup src/cli.cr
+          crystal build --release --no-debug --static --error-trace -o _output/medup src/cli.cr
       -
         name: E2E
         run: crystal spec spec/e2e/cli.cr
