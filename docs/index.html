@@ -430,11 +430,15 @@ Rich elements content are located in <code>posts/assets</code> and integrated wi
 <ul>
 <li>Detect potential articles with <strong>IFRAME</strong> content for gists:</li>
 </ul>
-<pre><code class="language-shell">$ for i in $(ls -1 assets/*.html); do grep &quot;github&quot; -q $i &amp;&amp; grep -n &quot;$i&quot; *.md; done</code></pre>
+<pre><code class="language-shell">$ for i in $(ls -1 assets/*.html); do grep &quot;gist.github.com&quot; -q $i &amp;&amp; grep -n &quot;$i&quot; *.md; done</code></pre>
 <ul>
 <li>Detect potential articles' url with <strong>IFRAME</strong> content for gists:</li>
 </ul>
-<pre><code class="language-shell">$ for i in $(ls -1 assets/*.html); do grep &quot;github&quot; -q $i &amp;&amp; (grep -l &quot;$i&quot; *.md | xargs head | grep url); done</code></pre>
+<pre><code class="language-shell">$ for i in $(ls -1 assets/*.html); do grep &quot;gist.github.com&quot; -q $i &amp;&amp; (grep -l &quot;$i&quot; *.md | xargs head | grep url); done</code></pre>
+<ul>
+<li>Detect potential articles' url with <strong>IFRAME</strong> content for youtube:</li>
+</ul>
+<pre><code class="language-shell">$ for i in $(ls -1 assets/*.html); do grep &quot;schema=youtube&quot; -q $i &amp;&amp; (grep -l &quot;$i&quot; *.md | xargs head | grep url); done</code></pre>
 <h3><a id="medium-api" class="anchor" href="#medium-api">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
