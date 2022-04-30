@@ -89,6 +89,8 @@ module Medium
                         result = process_youtube_content(media_content)
                       elsif media_content.includes?("https://twitter.com")
                         result = process_twitter_content(media_content)
+                      elsif media_content.includes?("cdn.embedly.com")
+                        result = process_embedly_content(media_content)
                       end
 
                       if result.empty?
@@ -97,10 +99,12 @@ module Medium
                         asset_body, _content_type = download(frame.mediaResourceId)
                         assets = asset_body
                         result = "<iframe src=\"./assets/#{asset_id}.html\"></iframe>"
-                        markup_body = markup.strip
-                        if !markup_body.empty?
-                          result += "\n#{markup_body}"
-                        end
+                      end
+
+                      markup_body = markup.strip
+                      if !markup_body.empty?
+                        result += "\n" if !result.empty?
+                        result += markup_body
                       end
 
                       result
@@ -153,6 +157,33 @@ module Medium
         thumbnail_url = "https://img.youtube.com/vi/#{id}/hqdefault.jpg"
         # TODO: Download thumbnails in same way as images with `download_image`
         "[![Youtube](#{thumbnail_url})](#{url})"
+      end
+
+      def process_embedly_content(content : String) : String
+        @logger.debug 7, "Processing embedly element"
+        m = content.match(/\<iframe[^\>]*src="(?<src>[^"]*)"/)
+        return "" if m.nil? || m["src"].empty?
+        embedly_url = URI.parse(m["src"])
+        params = embedly_url.query_params
+
+        schema = params["schema"]
+        alt_text = params["display_name"]? || schema
+        thumbnail_url = params["image"]? || ""
+        src = params["src"]
+
+        result = "__#{schema}__:\n"
+        image = schema
+        if !thumbnail_url.empty?
+          image = "![#{alt_text}](#{thumbnail_url})"
+        end
+
+        if src.empty?
+          result += image
+        else
+          result += "[#{image}](#{src})"
+        end
+
+        result
       end
 
       def fetch_gist(id : String?)

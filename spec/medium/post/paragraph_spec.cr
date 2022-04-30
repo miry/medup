@@ -150,7 +150,7 @@ describe Medium::Post::Paragraph do
             }
           }
         })
-        subject.to_md[0].should eq(%{<iframe src="./assets/codepensample.html"></iframe>\n[https://codepen.io/andriyparashchuk/pen/WqrrWK?editors=1100](https://codepen.io/andriyparashchuk/pen/WqrrWK?editors=1100)})
+        subject.to_md[0].should eq(%{__codepen__:\n[![codepen](https://screenshot.codepen.io/3285523.WqrrWK.small.c25731c6-e071-4f90-bef2-998307289afa.png)](https://codepen.io/andriyparashchuk/embed/preview/WqrrWK?height=600&slug-hash=WqrrWK&default-tabs=html,result&host=https://codepen.io)\n[https://codepen.io/andriyparashchuk/pen/WqrrWK?editors=1100](https://codepen.io/andriyparashchuk/pen/WqrrWK?editors=1100)})
       end
 
       describe "gist" do
@@ -267,7 +267,68 @@ describe Medium::Post::Paragraph do
         end
       end
 
-      describe "twitter", focus: true do
+      describe "soundcloud" do
+        it "renders media inline" do
+          WebMock.stub(:get, "https://medium.com/media/soundcloudsourceid")
+            .to_return(
+              body: %{
+                <html><body>
+                <iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fw.soundcloud.com%2Fplayer%2F%3Furl%3Dhttps%253A%252F%252Fapi.soundcloud.com%252Ftracks%252F834983812%26show_artwork%3Dtrue&amp;display_name=SoundCloud&amp;url=https%3A%2F%2Fsoundcloud.com%2Flil-jodeci%2Fcrying-is-dead&amp;image=https%3A%2F%2Fi1.sndcdn.com%2Fartworks-WxvfCeEA7YqcN30t-DlA82Q-t500x500.jpg&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=soundcloud" allowfullscreen frameborder="0" scrolling="no"></iframe>
+                </body></html>
+              },
+              headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+          subject = Medium::Post::Paragraph.from_json(%{
+            {
+              "name": "d2a9", "type": 11, "text": "", "markups": [], "layout": 1,
+              "iframe":{"mediaResourceId": "soundcloudsourceid"}
+            }
+          })
+          subject.to_md[0].should contain(%{[![SoundCloud](https://i1.sndcdn.com/artworks-WxvfCeEA7YqcN30t-DlA82Q-t500x500.jpg)](https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F834983812&show_artwork=true)})
+        end
+      end
+
+      describe "codepen" do
+        it "renders media inline" do
+          WebMock.stub(:get, "https://medium.com/media/codepensourceid")
+            .to_return(
+              body: %{
+                <html><body>
+                <iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fw.soundcloud.com%2Fplayer%2F%3Furl%3Dhttps%253A%252F%252Fapi.soundcloud.com%252Ftracks%252F834983812%26show_artwork%3Dtrue&amp;display_name=SoundCloud&amp;url=https%3A%2F%2Fsoundcloud.com%2Flil-jodeci%2Fcrying-is-dead&amp;image=https%3A%2F%2Fi1.sndcdn.com%2Fartworks-WxvfCeEA7YqcN30t-DlA82Q-t500x500.jpg&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=soundcloud" allowfullscreen frameborder="0" scrolling="no"></iframe>
+                </body></html>
+              },
+              headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+          subject = Medium::Post::Paragraph.from_json(%{
+            {
+              "name": "d2a9", "type": 11, "text": "", "markups": [], "layout": 1,
+              "iframe":{"mediaResourceId": "codepensourceid"}
+            }
+          })
+          subject.to_md[0].should contain(%{[![SoundCloud](https://i1.sndcdn.com/artworks-WxvfCeEA7YqcN30t-DlA82Q-t500x500.jpg)](https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F834983812&show_artwork=true)})
+        end
+
+        it "renders without display name" do
+          WebMock.stub(:get, "https://medium.com/media/codepensourceid_without_name")
+            .to_return(
+              body: %{
+                <html><body>
+                <iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fcodepen.io%2Fandriyparashchuk%2Fembed%2Fpreview%2FWqrrWK%3Fheight%3D600%26slug-hash%3DWqrrWK%26default-tabs%3Dhtml%2Cresult%26host%3Dhttps%3A%2F%2Fcodepen.io&amp;url=https%3A%2F%2Fcodepen.io%2Fandriyparashchuk%2Fpen%2FWqrrWK%3Feditors%3D1100&amp;image=https%3A%2F%2Fscreenshot.codepen.io%2F3285523.WqrrWK.small.c25731c6-e071-4f90-bef2-998307289afa.png&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=codepen" allowfullscreen frameborder="0" scrolling="no"></iframe>
+                </body></html>
+              },
+              headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+          subject = Medium::Post::Paragraph.from_json(%{
+            {
+              "name": "d2a9", "type": 11, "text": "", "markups": [], "layout": 1,
+              "iframe":{"mediaResourceId": "codepensourceid_without_name"}
+            }
+          })
+          subject.to_md[0].should contain(%{__codepen__:\n[![codepen](https://screenshot.codepen.io/3285523.WqrrWK.small.c25731c6-e071-4f90-bef2-998307289afa.png)](https://codepen.io/andriyparashchuk/embed/preview/WqrrWK?height=600&slug-hash=WqrrWK&default-tabs=html,result&host=https://codepen.io)})
+        end
+      end
+
+      describe "twitter" do
         it "renders media inline" do
           WebMock.stub(:get, "https://medium.com/media/twittersourceid")
             .to_return(

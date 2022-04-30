@@ -144,7 +144,7 @@ describe "CommandLine", tags: "e2e" do
       actual = run_with ["-v6", "https://jtway.co/rscss-styling-css-without-losing-your-sanity-9e622d9f9252"]
       actual[1].should contain(%{Create file ./posts/2019-06-07-rscss-styling-css-without-losing-your-sanity.md})
       actual = Dir.new("posts/assets").entries
-      actual.sort.should eq([".", "..", "6c0e5f85caff38fa1e790100a2159cd7.html"])
+      actual.sort.should eq([".", ".."])
     end
   end
 
