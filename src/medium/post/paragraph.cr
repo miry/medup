@@ -87,6 +87,8 @@ module Medium
                         result = process_gist_content(media_content)
                       elsif media_content.includes?("schema=youtube")
                         result = process_youtube_content(media_content)
+                      elsif media_content.includes?("https://twitter.com")
+                        result = process_twitter_content(media_content)
                       end
 
                       if result.empty?
@@ -190,6 +192,21 @@ module Medium
           "```\n#{gist["content"]}\n```\n" +
             "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
         end.join("\n")
+      end
+
+      def process_twitter_content(content : String) : String
+        @logger.debug 7, "Processing twitter element"
+        m = content.match(/<meta[^>]*name="description"[^>]*>/m)
+        return "" if m.nil?
+
+        m = m[0].match(/content="(?<tweet>[^"]*)"/m)
+        return "" if m.nil? || m["tweet"].empty?
+
+        result = "> #{m["tweet"]}"
+
+        m = content.match(/<blockquote[^>]*class="twitter-tweet"[^>]*>(?<quote>.*)<\/blockquote>/m)
+        return result if m.nil? || m["quote"].empty?
+        result + "\n> " + m["quote"]
       end
 
       def markup

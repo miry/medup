@@ -239,7 +239,7 @@ describe Medium::Post::Paragraph do
       end
 
       describe "youtube" do
-        it "render media gist inline" do
+        it "renders media inline" do
           WebMock.stub(:get, "https://medium.com/media/youtuberesourceid")
             .to_return(
               body: %{
@@ -264,6 +264,43 @@ describe Medium::Post::Paragraph do
             }
           })
           subject.to_md[0].should contain(%{[![Youtube](https://img.youtube.com/vi/30xiI21RraQ/hqdefault.jpg)](https://www.youtube.com/watch?v=30xiI21RraQ)})
+        end
+      end
+
+      describe "twitter", focus: true do
+        it "renders media inline" do
+          WebMock.stub(:get, "https://medium.com/media/twittersourceid")
+            .to_return(
+              body: %{
+                <html>
+                <head>
+                <title>Tweet</title>
+                <meta name="description" content="Message *everything*. https://t.co/Z9tzeOkIvQ">
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                </head>
+                <body>
+                <blockquote class="twitter-tweet" data-conversation="none" data-align="center" data-dnt="true">
+                <p>&#x200a;&mdash;&#x200a;
+                <a href="https://twitter.com/copyconstruct/status/941461955386122240">@copyconstruct</a></p>
+                </blockquote>
+                <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </body>
+                </html>
+              },
+              headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+          subject = Medium::Post::Paragraph.from_json(%{
+            {
+              "name": "9169","type": 11,"text": "","markups": [],"layout": 1,
+              "iframe": {
+                "mediaResourceId": "twittersourceid",
+                "iframeWidth": 500, "iframeHeight": 185,
+                "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F825614963729272832%2FxbeK0wJV_400x400.jpg&key=a19fcc184b9711e1b4764040d3dc5c07"
+              }
+            }
+          })
+          subject.to_md[0].should contain(%{> Message *everything*. https://t.co/Z9tzeOkIvQ})
+          subject.to_md[0].should contain(%{&#x200a;&mdash;&#x200a;})
+          subject.to_md[0].should contain(%{<a href="https://twitter.com/copyconstruct/status/941461955386122240">@copyconstruct</a>})
         end
       end
     end

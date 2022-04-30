@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Inline gist media as code block inside a result markdown file. (#39, @miry)
 - Inline youtube media as link instead of iframe. (#42, @miry)
+- Inline twitter media as blockquote instead of iframe. (#44, @miry)
 
 ### Added
 - Move most of debug output to logger. Allow to specify the verbosity of output
