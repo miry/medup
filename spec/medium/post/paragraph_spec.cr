@@ -385,6 +385,38 @@ describe Medium::Post::Paragraph do
           subject.to_md[0].should contain(%{&#x200a;&mdash;&#x200a;})
           subject.to_md[0].should contain(%{<a href="https://twitter.com/copyconstruct/status/941461955386122240">@copyconstruct</a>})
         end
+
+        it "renders twitter without meta tag" do
+          # TODO: Update twitter rich element to get status via extra request
+          WebMock.stub(:get, "https://medium.com/media/twittersourceid_without_meta")
+            .to_return(
+              body: %{
+                <html>
+                <head>
+                <title>Tweet</title>
+                </head>
+                <body>
+                <blockquote class="twitter-tweet" data-conversation="none" data-align="center" data-dnt="true">
+                <p>&#x200a;&mdash;&#x200a;
+                <a href="https://twitter.com/copyconstruct/status/941461955386122240">@copyconstruct</a></p>
+                </blockquote>
+                <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </body>
+                </html>
+              },
+              headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+          subject = Medium::Post::Paragraph.from_json(%{
+            {
+              "name": "9169","type": 11,"text": "","markups": [],"layout": 1,
+              "iframe": {
+                "mediaResourceId": "twittersourceid_without_meta",
+                "iframeWidth": 500, "iframeHeight": 185,
+                "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F825614963729272832%2FxbeK0wJV_400x400.jpg&key=a19fcc184b9711e1b4764040d3dc5c07"
+              }
+            }
+          })
+          subject.to_md[0].should contain(%{<iframe src="./assets/twittersourceid_without_meta.html"></iframe>})
+        end
       end
     end
 
