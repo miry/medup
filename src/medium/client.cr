@@ -8,8 +8,9 @@ require "./client/*"
 
 module Medium
   class Client
+    @token : String? = nil
     @http = Hash(String, HTTP::Client).new
-    @@default = Medium::Client.new("", "", "", Logger.new(STDOUT))
+    @@default = Medium::Client.new("", "", Logger.new(STDOUT))
 
     include Medium::Client::Media
     include Medium::Client::Posts
@@ -17,7 +18,7 @@ module Medium
     include Medium::Client::Users
     include Medium::Connection
 
-    def initialize(@token : String, @user : String?, @publication : String?, @logger : Logger)
+    def initialize(@user : String?, @publication : String?, @logger : Logger)
     end
 
     def self.default=(client : Medium::Client)

@@ -5,13 +5,15 @@ require "logger"
 module Medup
   class Command
     def self.run
-      token = ENV.fetch("MEDIUM_TOKEN", "")
+      settings = ::Medup::Settings.new
+      settings.medium_token = ENV.fetch("MEDIUM_TOKEN", nil)
+      settings.github_api_token = ENV.fetch("MEDUP_GITHUB_API_TOKEN", nil)
+
       user = nil
       publication = nil
       dist = ::Medup::Tool::DIST_PATH
       format = ::Medup::Tool::MARKDOWN_FORMAT
       source = ::Medup::Tool::SOURCE_AUTHOR_POSTS
-      options = Array(::Medup::Options).new
       log_level : Int8 = 1_i8
 
       should_exit = false
@@ -29,9 +31,9 @@ module Medup
             should_exit = true
           end
         end
-        parser.on("--assets-images", "Download images in assets folder. By default all images encoded in the same markdown document.") { options << ::Medup::Options::ASSETS_IMAGE }
+        parser.on("--assets-images", "Download images in assets folder. By default all images encoded in the same markdown document.") { settings.set_assets_image! }
         parser.on("-r", "--recommended", "Export all posts to wich user clapped / has recommended") { source = ::Medup::Tool::SOURCE_RECOMMENDED_POSTS }
-        parser.on("--update", "Overwrite existing articles files, if the same article exists") { options << ::Medup::Options::UPDATE_CONTENT }
+        parser.on("--update", "Overwrite existing articles files, if the same article exists") { settings.set_update_content! }
         parser.on("-h", "--help", "Show this help") { puts parser; should_exit = true }
         parser.on("--version", "Print current version") { puts ::Medup::VERSION; should_exit = true }
         parser.on("-v LEVEL", "--v=LEVEL", "number for the log level verbosity") { |l| log_level = l.to_i8 }
@@ -59,8 +61,9 @@ module Medup
 
       return if should_exit
 
-      log = Logger.new(STDERR, level: log_level)
-      backup(user, publication, articles, token, dist, format, source, options, log)
+      logger = Logger.new(STDERR, level: log_level)
+      ctx = ::Medup::Context.new(settings, logger)
+      backup(ctx, user, publication, articles, dist, format, source)
     end
 
     def self.extract_targets(input)
@@ -82,19 +85,25 @@ module Medup
       return {users: users, publications: publications, articles: articles}
     end
 
-    def self.backup(user, publication, articles, token, dist, format, source, options, log)
+    def self.backup(
+      ctx : ::Medup::Context,
+      user,
+      publication,
+      articles,
+      dist,
+      format,
+      source
+    )
       targets = extract_targets(articles)
 
       # Backup single posts
       if targets[:articles].size > 0
         tool = ::Medup::Tool.new(
-          token: token,
+          ctx,
           articles: targets[:articles],
           dist: dist,
           format: format,
           source: source,
-          options: options,
-          logger: log,
         )
         tool.backup
         tool.close
@@ -103,13 +112,11 @@ module Medup
       # Backup articles per user
       (targets[:users] + [user]).compact.each do |u|
         tool = ::Medup::Tool.new(
-          token: token,
+          ctx,
           user: u,
           dist: dist,
           format: format,
           source: source,
-          options: options,
-          logger: log,
         )
         tool.backup
         tool.close
@@ -118,20 +125,18 @@ module Medup
       # Backup articles per publication
       (targets[:publications] + [publication]).compact.each do |p|
         tool = ::Medup::Tool.new(
-          token: token,
+          ctx,
           publication: p,
           dist: dist,
           format: format,
           source: source,
-          options: options,
-          logger: log,
         )
         tool.backup
         tool.close
       end
     rescue ex : Exception
       STDERR.puts "error: #{ex.inspect}"
-      log.debug 6_i8, ex.inspect_with_backtrace
+      ctx.logger.debug 6_i8, ex.inspect_with_backtrace
       STDERR.puts "See 'medup --help' for usage."
       exit(1)
     end

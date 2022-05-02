@@ -16,13 +16,13 @@ describe "CommandLine", tags: "e2e" do
     end
 
     it "handles unknown options" do
-      actual = run_with ["--oops"], false
+      actual = run_with ["--oops"], expect_success: false
       actual[0].should eq ""
       actual[1].should contain("error: unknown flag: --oops")
     end
 
     it "handles missing options" do
-      actual = run_with ["--user"], false
+      actual = run_with ["--user"], expect_success: false
       actual[0].should eq ""
       actual[1].should contain("error: flag needs an argument: --user")
     end
@@ -51,9 +51,18 @@ describe "CommandLine", tags: "e2e" do
       FileUtils.rm_rf "tmp/posts"
     end
 
+    it "test wrong github api token to access gist" do
+      FileUtils.rm_rf "posts"
+
+      actual = run_with ["-v12", "https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"], {"MEDUP_GITHUB_API_TOKEN" => "githubapitoken"}
+      actual[1].should contain(%{GET https://api.github.com/gists/d7e8a19eb66734fb69cf8ee4c32095bc => 401 Unauthorized})
+      actual[1].should contain(%{"Authorization" => "token githubapitoken"})
+      actual[0].should contain(%{Warning: Error fetch gist from GitHub})
+    end
+
     describe "verbosity" do
       it "handles unknown options" do
-        actual = run_with ["-v6", "--oops"], false
+        actual = run_with ["-v6", "--oops"], expect_success: false
         actual[0].should eq ""
         actual[1].should contain("error: unknown flag: --oops")
         actual[1].should contain("See 'medup --help' for usage.")
@@ -165,7 +174,7 @@ describe "CommandLine", tags: "e2e" do
     end
 
     it "unknown publication" do
-      actual = run_with ["-v4", "--publication", "version"], false
+      actual = run_with ["-v4", "--publication", "version"], expect_success: false
       actual[1].should contain(%{GET /version/archive?format=json => 404 Not Found})
       actual[1].should contain("error: ")
     end
@@ -212,9 +221,9 @@ describe "CommandLine", tags: "e2e" do
   end
 end
 
-def run_with(args, expect_success : Bool = true)
+def run_with(args, env : Process::Env = nil, expect_success : Bool = true)
   medup = "_output/medup"
-  process = Process.new(medup, args, output: Process::Redirect::Pipe, error: Process::Redirect::Pipe)
+  process = Process.new(medup, args, env, output: Process::Redirect::Pipe, error: Process::Redirect::Pipe)
   stdout = process.output.gets_to_end
   stderr = process.error.gets_to_end
   process.wait.success?.should eq(expect_success)

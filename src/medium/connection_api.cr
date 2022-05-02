@@ -25,7 +25,7 @@ module Medium
 
       _http.before_request do |request|
         request.headers["Content-Type"] = "application/json"
-        request.headers["Authorization"] = "Bearer #{@token}"
+        request.headers["Authorization"] = "Bearer #{@token}" if !@token.empty?
       end
 
       @http = _http

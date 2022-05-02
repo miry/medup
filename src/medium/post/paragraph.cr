@@ -6,7 +6,8 @@ require "logger"
 module Medium
   class Post
     class Paragraph
-      @logger : Logger = Logger.new(STDOUT)
+      @ctx : ::Medup::Context = ::Medup::Context.new
+      @logger : Logger = Logger.new(STDERR)
 
       JSON.mapping(
         {
@@ -27,10 +28,11 @@ module Medium
       )
 
       def to_md(
-        options : Array(Medup::Options) = Array(Medup::Options).new,
-        logger : Logger = Logger.new(STDOUT)
+        ctx : ::Medup::Context = ::Medup::Context.new
       ) : Tuple(String, String, String)
-        @logger = logger
+        @ctx = ctx
+        settings = ctx.settings
+        @logger = ctx.logger
         content : String = ""
         assets = ""
         asset_name = ""
@@ -46,7 +48,7 @@ module Medium
                     if !m.nil? && !m.id.nil?
                       asset_body, asset_type, asset_name = download_image(m.id || "")
                       asset_id = Base64.strict_encode(m.id)
-                      if options.includes?(Medup::Options::ASSETS_IMAGE)
+                      if settings.assets_image?
                         assets = asset_body
                         if @href
                           "[![#{@text}](./assets/#{asset_name})](#{@href})"
@@ -192,19 +194,46 @@ module Medium
         src = "https://api.github.com/gists/#{id}"
         response : HTTP::Client::Response? = nil
 
+        headers = HTTP::Headers{
+          "User-Agent"   => "medup/#{Medup::VERSION}",
+          "Content-Type" => "application/json",
+        }
+
+        token = @ctx.settings.github_api_token
+        if token && !token.empty?
+          headers.add("Authorization", "token #{token}")
+        end
+
         3.times do
-          response = HTTP::Client.get(src)
+          response = HTTP::Client.get(src, headers: headers)
           @logger.info "GET #{src} => #{response.status_code} #{response.status_message}"
-          @logger.info 12, response.headers.to_s
+          @logger.info 10, "Request Headers:\n" + headers.to_s
+          @logger.info 10, "Response Headers:\n" + response.headers.to_s
           @logger.info 12, response.body
           break if response.status_code != 403
-          response = nil
           sleep 3 # 3 seconds
         end
 
         return nil if response.nil?
 
-        result = JSON.parse(response.body).try(&.["files"]).try(&.as_h)
+        if response.status_code == 403
+          puts "Warning: Reached github api rate limit."
+          puts "Create a GitHub personal access token:"
+          puts "  https://github.com/settings/tokens/new?description=#{Time.local.to_s("%Y-%m-%d")}_medup&scopes="
+          puts "echo 'export MEDUP_GITHUB_API_TOKEN=your_token_here' >> .profile"
+          return nil
+        end
+
+        if response.status_code == 401
+          message = JSON.parse(response.body)
+          puts "Warning: Error fetch gist from GitHub: GitHub API Error: #{message}"
+          puts "MEDUP_GITHUB_API_TOKEN may be invalid or expired; check:"
+          puts "  https://github.com/settings/tokens"
+
+          return nil
+        end
+
+        result = JSON.parse(response.body).try(&.["files"]?).try(&.as_h)
         return nil if result.nil?
 
         return result.map { |_, spec| spec.as_h }

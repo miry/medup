@@ -1,14 +1,11 @@
 require "json_mapping"
 
-require "logger"
-
 require "./post/*"
 
 module Medium
   class Post
+    property ctx : ::Medup::Context = ::Medup::Context.new
     property user : Medium::User?
-    property options : Array(Medup::Options) = Array(Medup::Options).new
-    property logger : Logger = Logger.new(STDOUT)
 
     JSON.mapping(
       title: String,
@@ -51,12 +48,11 @@ module Medium
       footer = "\n"
 
       @content.bodyModel.paragraphs.map do |paragraph|
-        content, asset_name, asset_content = paragraph.to_md(@options, @logger)
+        content, asset_name, asset_content = paragraph.to_md(@ctx)
         result += content + "\n\n"
         if !asset_content.empty?
           if paragraph.type == 11 ||
-             (paragraph.type == 4 &&
-             options.includes?(Medup::Options::ASSETS_IMAGE))
+             (paragraph.type == 4 && @ctx.settings.assets_image?)
             assets[asset_name] = asset_content
           else
             footer += asset_content + "\n"

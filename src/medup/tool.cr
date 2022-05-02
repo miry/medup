@@ -11,31 +11,30 @@ module Medup
     MARKDOWN_FORMAT          = "md"
     JSON_FORMAT              = "json"
 
-    token : String
+    ctx : ::Medup::Context
+    update : Bool
     user : String?
     publication : String?
     articles : Array(String)
-    options : Array(Options)
     logger : Logger
 
     def initialize(
-      @token : String = "",
+      @ctx : ::Medup::Context = ::Medup::Context.new,
       dist : String? = DIST_PATH,
       format : String? = MARKDOWN_FORMAT,
       source : String? = SOURCE_AUTHOR_POSTS,
       @user : String? = nil,
       @publication : String? = nil,
-      @articles : Array(String) = Array(String).new,
-      @options : Array(Medup::Options) = Array(Medup::Options).new,
-      @logger : Logger = Logger.new(STDOUT)
+      @articles : Array(String) = Array(String).new
     )
-      @client = Medium::Client.new(@token, @user, @publication, @logger)
+      @logger = @ctx.logger
+      @client = Medium::Client.new(@user, @publication, @logger)
       Medium::Client.default = @client
       @dist = (dist || DIST_PATH).as(String)
       @assets_dist = File.join(@dist, ASSETS_DIR_NAME)
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
       @format = (format || MARKDOWN_FORMAT).as(String)
-      @update = @options.includes?(Medup::Options::UPDATE_CONTENT)
+      @update = @ctx.settings.update_content?
     end
 
     def backup
@@ -83,8 +82,10 @@ module Medup
     end
 
     def process_post(post_url : String)
-      client = Medium::Client.new(@token, @user, @publication, @logger)
+      client = Medium::Client.new(@user, @publication, @logger)
       post = client.post_by_url(post_url)
+      post.ctx = @ctx
+
       save(post, @format)
     rescue ex : ::Medium::Error | ::Medium::InvalidContentError
       @logger.error "error: could not process #{post_url}: #{ex.message}"
@@ -108,8 +109,6 @@ module Medup
         File.rename(filepath, filepath + ".old")
       end
       @logger.info "Create file #{filepath}"
-
-      post.options = @options
 
       if format == "json"
         File.write(filepath, post.to_pretty_json)

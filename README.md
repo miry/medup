@@ -72,6 +72,11 @@ Alternative:
 medup jetthoughts -d posts/jetthoughts
 ```
 
+## ENVIRONMENT
+
+* **MEDUP_GITHUB_API_TOKEN**
+  Use this GitHub personal access token when accessing the GitHub Gist.
+
 ## Mix
 
 ```shell
@@ -90,9 +95,10 @@ It would download all articles for:
 * Discover all articles from user account available in public
 * Allow to download all recommended articles by user
 * Discover all articles from publisher, that available in public
-* Download images used inside article
+* Download images used inside article or in `assets` folder
 * Save posts in markdown format
 * Convert a single article in markdown format
+* Extract gists and convert to code blocks
 
 # Getting Started
 

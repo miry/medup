@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update article' url tag to get value from response, instead of from commandline
   arguments (@miry)
+- Update the code to use **Context** pattern. Combine in it options, logger and
+  settings. (#47, @miry)
+
+### Added
+- Allow to specify `MEDUP_GITHUB_API_TOKEN` environment variable to increase
+  number of requests to gist. (#47, @miry)
 
 ## [0.4.0] - 2022-04-30
 ### Changed

@@ -46,7 +46,10 @@ describe Medium::Post do
 
     it "render full page without images" do
       subject = Medium::Post.from_json(post_fixture)
-      subject.options = [Medup::Options::ASSETS_IMAGE]
+      settings = ::Medup::Settings.new
+      settings.set_assets_image!
+      subject.ctx = ::Medup::Context.new(settings)
+
       content, assets = subject.to_md
       content.size.should eq(2932)
       assets.keys.should eq([
@@ -79,8 +82,12 @@ describe Medium::Post do
 
     it "renders image in assets" do
       subject = Medium::Post.from_json(post_fixture)
+      settings = ::Medup::Settings.new
+      settings.set_assets_image!
+      ctx = ::Medup::Context.new(settings)
+
       paragraph = subject.content.bodyModel.paragraphs[2]
-      actual = paragraph.to_md([Medup::Options::ASSETS_IMAGE])
+      actual = paragraph.to_md(ctx)
       actual[0].should eq("![Photo by Markus Spiske on Unsplash](./assets/0*FbFs8aNmqNLKw4BM.png)")
       actual[1].should eq("0*FbFs8aNmqNLKw4BM.png")
       actual[2].size.should eq(66)

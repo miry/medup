@@ -34,7 +34,11 @@ describe Medium::Post::Paragraph do
 
     it "renders images with assets" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "78ee", "type": 4, "text": "Photo", "layout": 3, "metadata":{"id":"0*FbFs8aNmqNLKw4BM"}, "markups": []}})
-      content, asset_name, assets = subject.to_md([::Medup::Options::ASSETS_IMAGE])
+      settings = ::Medup::Settings.new
+      settings.set_assets_image!
+      ctx = ::Medup::Context.new(settings)
+
+      content, asset_name, assets = subject.to_md(ctx)
       content.should eq("![Photo](./assets/0*FbFs8aNmqNLKw4BM.png)")
       assets.size.should eq(66)
       asset_name.should eq("0*FbFs8aNmqNLKw4BM.png")
@@ -217,6 +221,24 @@ describe Medium::Post::Paragraph do
           })
           subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
           subject.to_md[0].should contain(%{[usage.sh view raw](https:})
+        end
+
+        it "render iframe in case missing gist url" do
+          WebMock.stub(:get, "https://medium.com/media/brokengist")
+            .to_return(
+              body: %{<html>Not found</html>},
+              headers: HTTP::Headers{"Content-Type" => "text/html; charset=utf-8"})
+
+          subject = Medium::Post::Paragraph.from_json(%{
+            {
+              "name": "d2a9", "type": 11, "text": "", "markups": [],
+              "iframe":{
+                "mediaResourceId": "brokengist",
+                "thumbnailUrl": "https://i.embed.ly/1/image?url=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Fgists%2Fgist-og-image.png&key=a19fcc184b9711e1b4764040d3dc5c07"
+              }
+            }
+          })
+          subject.to_md[0].should eq(%{<iframe src="./assets/brokengist.html"></iframe>})
         end
 
         it "render iframe in case missing gist url" do
