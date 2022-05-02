@@ -33,19 +33,11 @@ describe Medium::Post do
     end
   end
 
-  describe "#url" do
-    it "set url" do
-      subject = Medium::Post.from_json(post_fixture)
-      subject.url = "example.com"
-      subject.url.should eq("example.com")
-    end
-  end
-
   describe "#to_md" do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
       content, assets = subject.to_md
-      content.size.should eq(3106)
+      content.size.should eq(3206)
       assets.size.should eq(1)
       assets.keys.should eq([
         "ab24f0b378f797307fddc32f10a99685.html",
@@ -56,7 +48,7 @@ describe Medium::Post do
       subject = Medium::Post.from_json(post_fixture)
       subject.options = [Medup::Options::ASSETS_IMAGE]
       content, assets = subject.to_md
-      content.size.should eq(2832)
+      content.size.should eq(2932)
       assets.keys.should eq([
         "0*FbFs8aNmqNLKw4BM.png",
         "ab24f0b378f797307fddc32f10a99685.html",

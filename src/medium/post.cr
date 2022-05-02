@@ -6,7 +6,6 @@ require "./post/*"
 
 module Medium
   class Post
-    property url : String = ""
     property user : Medium::User?
     property options : Array(Medup::Options) = Array(Medup::Options).new
     property logger : Logger = Logger.new(STDOUT)
@@ -14,6 +13,7 @@ module Medium
     JSON.mapping(
       title: String,
       slug: String,
+      canonicalUrl: String,
       createdAt: Int64,
       updatedAt: Int64,
       content: PostContent,
@@ -33,7 +33,7 @@ module Medium
 
     def to_md
       result = "---\n\
-        url: #{@url}\n\
+        url: #{canonicalUrl}\n\
         title: #{@title}\n\
         subtitle: #{subtitle}\n\
         slug: #{@slug}\n\

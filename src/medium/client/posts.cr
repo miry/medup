@@ -163,7 +163,6 @@ module Medium
         response = get(url)
 
         result = Medium::Post.from_json(response["payload"]["value"].to_json)
-        result.url = url
         result.logger = @logger
 
         creator_id = response["payload"]["value"]["creatorId"].as_s
