@@ -44,6 +44,19 @@ describe Medium::Post::Paragraph do
       asset_name.should eq("0*FbFs8aNmqNLKw4BM.png")
     end
 
+    it "renders images with assets custom base path" do
+      subject = Medium::Post::Paragraph.from_json(%{{"name": "78ee", "type": 4, "text": "Photo", "layout": 3, "metadata":{"id":"0*FbFs8aNmqNLKw4BM"}, "markups": []}})
+      settings = ::Medup::Settings.new
+      settings.set_assets_image!
+      settings.assets_base_path = "/custom_assets"
+      ctx = ::Medup::Context.new(settings)
+
+      content, asset_name, assets = subject.to_md(ctx)
+      content.should eq("![Photo](/custom_assets/0*FbFs8aNmqNLKw4BM.png)")
+      assets.size.should eq(66)
+      asset_name.should eq("0*FbFs8aNmqNLKw4BM.png")
+    end
+
     it "render number list" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 10, "text": "it should be cross distributive solution", "markups": []}})
       subject.to_md[0].should eq("1. it should be cross distributive solution")
