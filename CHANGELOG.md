@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Allow to change the download distination for assets with flag `--assets-dir=<DIR>`. (#40, @miry)
 - Allow to change the uri path for assets inside document with `--assets-base-path=<BASE_PATH>`.
   It help to access assets in case the global assets path or custom directory. (#40, @miry)
+- Support Demo with Bridgetown via command `rake demo:bridgetown:serve`. (@miry)
 
 ## [0.4.1] - 2022-05-02
 ### Changed

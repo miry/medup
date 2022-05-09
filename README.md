@@ -176,6 +176,34 @@ Example of exported document (Original Medium post vs Exported Markdown):
 
 ![](./img/compare.png)
 
+## Demo
+
+There are possible solution to test export markdown files.
+Run a test Jekyll server with posts. Example:
+
+```shell
+$ rake demo:serve
+```
+
+And after it finishes you can test http://localhost:4000.
+Update posts for demo:
+
+```shell
+$ medup -v7 -d demo/_posts/ --assets-dir=demo/assets --assets-base-path=/assets <url>|<@user>|<publisher>
+```
+
+Test Bridgetown use next command:
+
+```shell
+$ rake demo:bridgetown:serve
+```
+
+Bridgetown has a bit different structure for posts. Use to update posts:
+
+```shell
+$ medup -v7 -d demo/src/_posts/ --assets-dir=demo/src/assets --assets-base-path=/assets <url>|<@user>|<publisher>
+```
+
 # Contributing
 
 1. Fork it ( https://github.com/miry/medup/fork )

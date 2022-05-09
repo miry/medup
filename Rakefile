@@ -132,6 +132,39 @@ end
 namespace :demo do
   DEMO_PATH = "demo"
 
+  namespace :bridgetown do
+    desc "Install bridgetown"
+    task :install do
+      sh "gem install bundler bridgetown"
+    end
+
+    file "#{DEMO_PATH}/bridgetown.config.yml" do
+      sh "bridgetown new #{DEMO_PATH}"
+      File.open("#{DEMO_PATH}/src/_posts/_defaults.yml") do |f|
+        f.puts <<~YAML
+        layout: post
+        YAML
+      end
+    end
+
+    desc "Create a demo site"
+    task create: "#{DEMO_PATH}/bridgetown.config.yml"
+
+    desc "Start bridgetown"
+    task serve: %i[demo:bridgetown:install demo:bridgetown:create demo:bridgetown:medup:sync] do
+      sh "cd #{DEMO_PATH}; bin/bridgetown start"
+    end
+
+    namespace :medup do
+      desc "Sync demo posts"
+      task sync: [:build] do
+        medup_options = "-d #{DEMO_PATH}/src/_posts/ --assets-dir=#{DEMO_PATH}/src/assets --assets-base-path=/assets"
+        sh "#{BIN_PATH} @miry -v7 #{medup_options}"
+        sh "#{BIN_PATH} jetthoughts -v7 #{medup_options}"
+      end
+    end
+  end
+
   namespace :jekyll do
     desc "Install jeykyll"
     task :install do
