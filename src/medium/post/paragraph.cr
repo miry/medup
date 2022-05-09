@@ -36,6 +36,7 @@ module Medium
         content : String = ""
         assets = ""
         asset_name = ""
+        assets_base_path = settings.assets_base_path
         content = case @type
                   when 1
                     markup
@@ -51,9 +52,9 @@ module Medium
                       if settings.assets_image?
                         assets = asset_body
                         if @href
-                          "[![#{@text}](./assets/#{asset_name})](#{@href})"
+                          "[![#{@text}](#{assets_base_path}/#{asset_name})](#{@href})"
                         else
-                          "![#{@text}](./assets/#{asset_name})"
+                          "![#{@text}](#{assets_base_path}/#{asset_name})"
                         end
                       else
                         assets = "[image_ref_#{asset_id}]: data:#{asset_type};base64,"

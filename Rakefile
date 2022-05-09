@@ -164,19 +164,13 @@ namespace :demo do
   namespace :medup do
     desc "Sync demo posts"
     task sync: [:build] do
-      sh "#{BIN_PATH} @miry -v7 -d #{DEMO_PATH}/_posts/"
-      sh "#{BIN_PATH} jetthoughts -v7 -d #{DEMO_PATH}/_posts/"
-      mv "#{DEMO_PATH}/_posts/assets", "#{DEMO_PATH}/"
-    end
-
-    desc "Tune posts to Jekyll compatible"
-    task :jekyll_format do
-      sh "sed -i .bak 's/\.\\/assets/\\/assets/g' #{DEMO_PATH}/_posts/*.md"
-      sh "rm #{DEMO_PATH}/_posts/*.bak"
+      medup_options = "-d #{DEMO_PATH}/_posts/ --assets-dir=#{DEMO_PATH}/assets --assets-base-path=/assets"
+      sh "#{BIN_PATH} @miry -v7 #{medup_options}"
+      sh "#{BIN_PATH} jetthoughts -v7 #{medup_options}"
     end
   end
 
-  task serve: %i[demo:jekyll:install demo:jekyll:create demo:medup:sync demo:medup:jekyll_format demo:jekyll:serve]
+  task serve: %i[demo:jekyll:install demo:jekyll:create demo:medup:sync demo:jekyll:serve]
 end
 
 desc "Run overcommit checks"

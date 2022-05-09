@@ -4,7 +4,6 @@ require "logger"
 
 module Medup
   class Tool
-    DIST_PATH                = "./posts"
     ASSETS_DIR_NAME          = "assets"
     SOURCE_AUTHOR_POSTS      = "overview"
     SOURCE_RECOMMENDED_POSTS = "has-recommended"
@@ -20,7 +19,6 @@ module Medup
 
     def initialize(
       @ctx : ::Medup::Context = ::Medup::Context.new,
-      dist : String? = DIST_PATH,
       format : String? = MARKDOWN_FORMAT,
       source : String? = SOURCE_AUTHOR_POSTS,
       @user : String? = nil,
@@ -30,8 +28,10 @@ module Medup
       @logger = @ctx.logger
       @client = Medium::Client.new(@user, @publication, @logger)
       Medium::Client.default = @client
-      @dist = (dist || DIST_PATH).as(String)
-      @assets_dist = File.join(@dist, ASSETS_DIR_NAME)
+
+      @dist = @ctx.settings.posts_dist
+      @assets_dist = @ctx.settings.assets_dist
+
       @source = (source || SOURCE_AUTHOR_POSTS).as(String)
       @format = (format || MARKDOWN_FORMAT).as(String)
       @update = @ctx.settings.update_content?
