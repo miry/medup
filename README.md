@@ -72,6 +72,57 @@ Alternative:
 medup jetthoughts -d posts/jetthoughts
 ```
 
+## Assets
+
+By default all images are embedded in the article.
+It is possible to save images in separate folder with arguments - `--assets-images`
+
+```shell
+$ medup @miry --assets-images -d posts/miry
+$  $ tree posts/miry
+posts/miry
+├── 2017-03-20-war-with-ads-and-trackers.md
+├── 2017-03-26-setup-k8s-v1-6-0-rc-1-cluster.md
+├── 2017-03-28-docker-network-performance.md
+...
+└── assets
+    ├── 0*BmauN6EER-PdvCee.jpeg
+    ├── 0*FbFs8aNmqNLKw4BM.jpeg
+    ├── 0*LZaURw4xtfA74nu9.jpeg
+...
+```
+
+### Specify assets directory
+
+To make it is even more agile and work with Jekyl, put assets in different directory - `--assets-dir=DIR`
+
+```shell
+$ medup @miry --assets-images -d site/posts --assets-dir=site/assets
+$ tree site
+site
+├── assets
+│   ├── 0*BmauN6EER-PdvCee.jpeg
+│   ├── 0*FbFs8aNmqNLKw4BM.jpeg
+│   ├── 0*LZaURw4xtfA74nu9.jpeg
+...
+└── posts
+    ├── 2017-03-20-war-with-ads-and-trackers.md
+    ├── 2017-03-26-setup-k8s-v1-6-0-rc-1-cluster.md
+    ├── 2017-03-28-docker-network-performance.md
+...
+```
+
+### Specify assets base path
+
+Also change the path in the document to find assets with `--assets-base-path=URI`.
+Default base path is `./assets/ASSET_NAME.XXX`. Example image: `![](./assets/1*hBBZVQZHFYJ0WWaj08bHuA.jpeg)`.
+With `--assets-base-path=/static` the src would be `/static/ASSET_NAME.XXX`.
+Example image: `![](/static/1*hBBZVQZHFYJ0WWaj08bHuA.jpeg)`.
+
+```shell
+$ medup @miry --assets-images -d tmp/posts --assets-dir=tmp/static --assets-base-path=/static
+```
+
 ## ENVIRONMENT
 
 * **MEDUP_GITHUB_API_TOKEN**
