@@ -1,5 +1,3 @@
-require "http/client"
-
 require "logger"
 
 module Medup
@@ -26,8 +24,7 @@ module Medup
       @articles : Array(String) = Array(String).new
     )
       @logger = @ctx.logger
-      @client = Medium::Client.new(@user, @publication, @logger)
-      Medium::Client.default = @client
+      @client = ::Medup::Client.new(@ctx, @user, @publication)
 
       @dist = @ctx.settings.posts_dist
       @assets_dist = @ctx.settings.assets_dist
@@ -39,12 +36,27 @@ module Medup
 
     def backup
       posts = Array(String).new
-      posts = if !@articles.empty?
-                @client.normalize_urls(@articles)
-              elsif !@user.nil?
-                @client.streams(@source)
-              elsif !@publication.nil?
-                @client.collection_archive
+      user = @user
+      publication = @publication
+
+      posts = if @ctx.platform_medium?
+                client = @client.adapter.as(Medium::Client)
+                Medium::Client.default = client
+                if !@articles.empty?
+                  client.normalize_urls(@articles)
+                elsif !@user.nil?
+                  client.streams(@source)
+                elsif !@publication.nil?
+                  client.collection_archive
+                end
+              else
+                if !@articles.empty?
+                  @articles
+                elsif !user.nil?
+                  @client.post_urls_by_author(user)
+                elsif !publication.nil?
+                  @client.post_urls_by_author(publication)
+                end
               end
 
       raise "No articles to backup" if posts.nil? || posts.empty?
@@ -82,9 +94,8 @@ module Medup
     end
 
     def process_post(post_url : String)
-      client = Medium::Client.new(@user, @publication, @logger)
+      client = ::Medup::Client.new(@ctx, @user, @publication)
       post = client.post_by_url(post_url)
-      post.ctx = @ctx
 
       save(post, @format)
     rescue ex : ::Medium::Error | ::Medium::InvalidContentError
@@ -92,8 +103,6 @@ module Medup
     rescue ex : Exception
       @logger.error "error: #{ex.inspect}"
       @logger.error ex.inspect_with_backtrace
-    ensure
-      client.close unless client.nil?
     end
 
     def save(post, format = "json")

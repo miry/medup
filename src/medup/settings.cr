@@ -6,6 +6,12 @@ module Medup
     DEFAULT_POSTS_PATH       = "./posts"
     DEFAULT_ASSETS_BASE_PATH = "./assets"
 
+    PLATFORM_DEVTO   = "devto"
+    PLATFORM_MEDIUM  = "medium"
+    DEFAULT_PLATFORM = PLATFORM_MEDIUM
+    PLATFORMS        = [PLATFORM_MEDIUM, PLATFORM_DEVTO]
+
+    property platform : String = DEFAULT_PLATFORM
     property medium_token : String?
     property github_api_token : String?
     property posts_dist : String = DEFAULT_POSTS_PATH
@@ -14,6 +20,10 @@ module Medup
     property options : Array(::Medup::Options) = Array(Medup::Options).new
 
     def initialize
+    end
+
+    def valid?
+      PLATFORMS.includes?(@platform)
     end
 
     def set_update_content!

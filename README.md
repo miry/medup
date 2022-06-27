@@ -9,7 +9,7 @@
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 [![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
 
-> Sync all content from Medium with local folder via API
+> Sync all content from Medium or Dev.to with local folder via API
 
 # Table of Contents
 
@@ -30,6 +30,12 @@ Export a single medium post to local
 medup https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094
 ```
 
+Export a single dev.to post to local
+
+```shell
+medup https://dev.to/jetthoughts/the-trial-period-for-staff-augmentation-in-jetthoughts-1h5c
+```
+
 ## Author's posts
 
 Export all articles written by single author to special folder `posts/miry`
@@ -42,6 +48,14 @@ Alternative:
 
 ```shell
 medup @miry -d posts/miry
+```
+
+Similar for Dev.to
+
+```shell
+medup --platform=devto @miry
+medup --platform=devto -u miry
+medup https://dev.to/miry
 ```
 
 ## User's recommendations
@@ -70,6 +84,14 @@ Alternative:
 
 ```shell
 medup jetthoughts -d posts/jetthoughts
+```
+
+Similar for Dev.to
+
+```shell
+medup --platform=devto jetthoughts
+medup --platform=devto -p jetthoughts
+medup https://dev.to/jetthoughts
 ```
 
 ## Assets
@@ -130,8 +152,13 @@ $ medup @miry --assets-images -d tmp/posts --assets-dir=tmp/static --assets-base
 
 ## Mix
 
+The neat feature to mix mutliple rules in single command
+
 ```shell
-medup -u miry @pftg -p jetthoughts notes-and-tips-in-full-stack-development https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094
+medup -u miry @pftg -p jetthoughts notes-and-tips-in-full-stack-development \
+      https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094 \
+      https://dev.to/jetthoughts \
+      https://dev.to/jetthoughts/the-trial-period-for-staff-augmentation-in-jetthoughts-1h5c
 ```
 
 It would download all articles for:
@@ -140,6 +167,8 @@ It would download all articles for:
 1. publication `jetthoughts`
 1. publication `notes-and-tips-in-full-stack-development`
 1. single post "Medup backups articles"
+1. publication `jetthoughts` from dev.to
+1. single post "The Trial Period for Staff Augmentation in JetThoughts" from dev.to
 
 # Features
 

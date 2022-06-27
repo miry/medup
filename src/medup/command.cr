@@ -19,8 +19,17 @@ module Medup
 
       parser = OptionParser.parse do |parser|
         parser.banner = "Usage:\n  medup [arguments] [@user or publication name or url]\n"
-        parser.on("-u USER", "--user=USER", "Medium author username. Download alrticles for this author. E.g: miry") { |u| user = u }
+        parser.on("-u USER", "--user=USER", "Medium or Devto author's username. Download alrticles for this author. E.g: miry") { |u| user = u }
         parser.on("-p PUBLICATION", "--publication=PUBLICATION", "Medium publication slug. Download articles for the publication. E.g: jetthoughts") { |pub| publication = pub }
+        parser.on("--platform=PLATFORM", "Specify which platform to use. Available options: medium or devto. Default: medium") do |platform|
+          if ::Medup::Settings::PLATFORMS.includes?(platform)
+            settings.platform = platform
+          else
+            STDERR.puts "error: unknown platform option: #{platform}"
+            puts parser
+            should_exit = true
+          end
+        end
         parser.on("-d DIRECTORY", "--directory=DIRECTORY", "Path to local directory where articles should be dumped. Default: ./posts") { |d| settings.posts_dist = d }
         parser.on("-f FORMAT", "--format=FORMAT", "Specify the document format. Available options: md or json. Default: md") do |f|
           format = f
@@ -68,18 +77,22 @@ module Medup
     end
 
     def self.extract_targets(input)
-      users = Array(String).new
-      publications = Array(String).new
+      users = Array(NamedTuple(user: String, platform: String)).new
+      publications = Array(NamedTuple(publication: String, platform: String)).new
       articles = Array(String).new
 
       input.each do |word|
         case word
         when /^\@.*/
-          users << word[1..]
+          users << {user: word[1..], platform: ""}
+        when /^https\:\/\/dev.to\/[^\/]*\/?$/
+          u = word[15..]
+          u = u[..-2] if u[-1] == '/'
+          users << {user: u, platform: "devto"}
         when /^https?:\/\/.*/
           articles << word
         else
-          publications << word
+          publications << {publication: word, platform: ""}
         end
       end
 
@@ -109,10 +122,21 @@ module Medup
       end
 
       # Backup articles per user
-      (targets[:users] + [user]).compact.each do |u|
+      users = targets[:users]
+      if user
+        users << {user: user, platform: ""}
+      end
+      users.each do |u|
+        c = ctx.dup
+        if u["platform"] != "" && u["platform"] != ctx.settings.platform
+          s = ctx.settings.dup
+          s.platform = u["platform"]
+          c = ctx.dup
+          c.settings = s
+        end
         tool = ::Medup::Tool.new(
-          ctx,
-          user: u,
+          c,
+          user: u["user"],
           format: format,
           source: source,
         )
@@ -121,10 +145,21 @@ module Medup
       end
 
       # Backup articles per publication
-      (targets[:publications] + [publication]).compact.each do |p|
+      publications = targets[:publications]
+      if publication
+        publications << {publication: publication, platform: ""}
+      end
+      publications.each do |p|
+        c = ctx.dup
+        if p["platform"] != "" && p["platform"] != ctx.settings.platform
+          s = ctx.settings.dup
+          s.platform = p["platform"]
+          c = ctx.dup
+          c.settings = s
+        end
         tool = ::Medup::Tool.new(
-          ctx,
-          publication: p,
+          c,
+          publication: p["publication"],
           format: format,
           source: source,
         )
@@ -132,8 +167,8 @@ module Medup
         tool.close
       end
     rescue ex : Exception
-      STDERR.puts "error: #{ex.inspect}"
       ctx.logger.debug 6_i8, ex.inspect_with_backtrace
+      STDERR.puts "error: #{ex.message}"
       STDERR.puts "See 'medup --help' for usage."
       exit(1)
     end

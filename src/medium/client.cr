@@ -34,5 +34,9 @@ module Medium
         client.close
       end
     end
+
+    def post_urls_by_author(author : String)
+      streams
+    end
   end
 end
