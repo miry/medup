@@ -1,4 +1,4 @@
-## How to contribute to Ruby on Rails
+## How to contribute to Medup
 
 #### **Did you find a bug?**
 
