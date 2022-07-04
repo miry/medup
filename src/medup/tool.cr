@@ -118,10 +118,12 @@ module Medup
       content, assets = post.to_md
       File.write(filepath, content)
 
-      assets.each do |filename, content|
-        filepath = File.join(@assets_dist, filename)
-        @logger.debug "Create asset #{filepath}"
-        File.write(filepath, content)
+      if @ctx.settings.assets_image?
+        assets.each do |filename, content|
+          filepath = File.join(@assets_dist, filename)
+          @logger.debug "Create asset #{filepath}"
+          File.write(filepath, content)
+        end
       end
     end
 
