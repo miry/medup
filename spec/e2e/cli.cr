@@ -53,22 +53,26 @@ describe "CommandLine", tags: "e2e" do
 
     it "specifies assets folder" do
       FileUtils.rm_rf "posts"
-      FileUtils.rm_rf "tmp"
+      FileUtils.rm_rf "tmp/assets"
 
       actual = run_with ["--assets-dir", "./tmp/assets", "-v4", "https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"]
       actual[1].should contain(%{Create directory ./posts})
       actual[1].should contain(%{Create directory ./tmp/assets})
+
+      FileUtils.rm_rf "posts"
+      FileUtils.rm_rf "tmp/assets"
     end
 
     it "specifies assets path in the result markdown" do
       FileUtils.rm_rf "posts"
-      FileUtils.rm_rf "tmp"
 
       actual = run_with ["--assets-images", "--assets-base-path", "/custom_assets", "-v4", "https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"]
       actual[1].should contain(%{Create asset ./posts/assets/0*LZaURw4xtfA74nu9.jpeg})
-      File.open("posts/2020-09-16-medup-backups-articles.md") do |f|
-        f.gets_to_end.should contain(%{/custom_assets/0*LZaURw4xtfA74nu9.jpeg})
-      end
+
+      content = File.read("posts/2020-09-16-medup-backups-articles.md")
+      content.should contain(%{/custom_assets/0*LZaURw4xtfA74nu9.jpeg})
+
+      FileUtils.rm_rf "posts"
     end
 
     it "test wrong github api token to access gist" do
