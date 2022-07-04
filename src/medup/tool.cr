@@ -100,7 +100,7 @@ module Medup
       slug = post.slug
       created_at = post.created_at
 
-      filename = created_at.to_s("%F") + "-" + slug + "." + format
+      filename = [created_at.to_s("%F"), slug].reject(&.empty?).join("-") + "." + format
       filepath = File.join(@dist, filename)
 
       if File.exists?(filepath)
