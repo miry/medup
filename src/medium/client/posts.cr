@@ -159,7 +159,7 @@ module Medium
         self.post_by_url(post_id_to_url(post_id))
       end
 
-      def post_by_url(url : String)
+      def post_by_url(url : String) : Medium::Post
         response = get(url)
 
         result = Medium::Post.from_json(response["payload"]["value"].to_json)

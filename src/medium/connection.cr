@@ -1,5 +1,6 @@
-require "./error"
 require "uri"
+
+require "./error"
 
 module Medium
   module Connection

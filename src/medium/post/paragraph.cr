@@ -51,20 +51,14 @@ module Medium
                       asset_id = Base64.strict_encode(m.id)
                       if settings.assets_image?
                         assets = asset_body
-                        if @href
-                          "[![#{@text}](#{assets_base_path}/#{asset_name})](#{@href})"
-                        else
-                          "![#{@text}](#{assets_base_path}/#{asset_name})"
-                        end
+                        img = "![#{@text}](#{assets_base_path}/#{asset_name})"
                       else
                         assets = "[image_ref_#{asset_id}]: data:#{asset_type};base64,"
                         img = "![#{@text}][image_ref_#{asset_id}]"
                         assets += Base64.strict_encode(asset_body)
-                        if @href
-                          img = "[#{img}](#{@href})"
-                        end
-                        img
                       end
+                      img = "[#{img}](#{@href})" if @href
+                      img
                     else
                       ""
                     end
@@ -101,7 +95,7 @@ module Medium
                         asset_name = "#{asset_id}.html"
                         asset_body, _content_type = download(frame.mediaResourceId)
                         assets = asset_body
-                        result = "<iframe src=\"./assets/#{asset_id}.html\"></iframe>"
+                        result = "<iframe src=\"./assets/#{asset_name}\"></iframe>"
                       end
 
                       markup_body = markup.strip

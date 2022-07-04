@@ -25,7 +25,7 @@ module Medup
         parser.on("-f FORMAT", "--format=FORMAT", "Specify the document format. Available options: md or json. Default: md") do |f|
           format = f
           unless [::Medup::Tool::MARKDOWN_FORMAT, ::Medup::Tool::JSON_FORMAT].includes?(format)
-            puts "Unknown format option: #{format}"
+            STDERR.puts "error: unknown format option: #{format}"
             puts parser
             should_exit = true
           end
