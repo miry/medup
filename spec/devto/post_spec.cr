@@ -32,7 +32,7 @@ describe Devto::Post do
       content = File.read(File.join("spec", "fixtures", "devto_article_trial_period.json"))
       subject = Devto::Post.from_json content
       content, assets = subject.to_md
-      content.size.should eq 2635
+      content.size.should eq 2638
       assets.size.should eq 1
     end
 
@@ -75,6 +75,23 @@ describe Devto::Post do
 
       assets.has_key?("img_ref_cover_image").should be_true
     end
+
+    it "renders the cover image in assets folder" do
+      content = File.read(File.join("spec", "fixtures", "devto_article_trial_period.json"))
+      subject = Devto::Post.from_json content
+      settings = ::Medup::Settings.new
+      settings.set_assets_image!
+      subject.ctx = ::Medup::Context.new(settings)
+
+      content, assets = subject.to_md
+      content.should contain <<-IMAGE
+      ![Cover image](./assets/cover_image.jpeg)
+      IMAGE
+
+      content.should_not contain "[cover_image.jpeg]: "
+
+      assets.has_key?("cover_image.jpeg").should be_true
+    end
   end
 
   describe "#md_content" do
@@ -102,6 +119,36 @@ describe Devto::Post do
       actual.should eq "# Title\n![Image][img_ref_image_url1_png] ![Image][img_ref_image_url2_png] ![Image][img_ref_image_url3_png]"
       assets.size.should eq 3
       assets.keys.sort.join(" ").should eq "img_ref_image_url1_png img_ref_image_url2_png img_ref_image_url3_png"
+    end
+
+    it "parses image tags with assets images" do
+      WebMock.stub(:get, "https://example.com/image_url1.png")
+        .to_return(
+          body: %{image content},
+          headers: HTTP::Headers{"Content-Type" => "image/jpeg"})
+      WebMock.stub(:get, "https://example.com/image_url2.png")
+        .to_return(
+          body: %{image content},
+          headers: HTTP::Headers{"Content-Type" => "image/jpeg"})
+      WebMock.stub(:get, "https://example.com/image_url3.png")
+        .to_return(
+          body: %{image content},
+          headers: HTTP::Headers{"Content-Type" => "image/jpeg"})
+
+      subject = Devto::Post.from_json <<-'CONTENT'
+      {
+        "body_markdown": "# Title\n![Image](https://example.com/image_url1.png) ![Image](https://example.com/image_url2.png) ![Image](https://example.com/image_url3.png)"
+      }
+      CONTENT
+      settings = ::Medup::Settings.new
+      settings.set_assets_image!
+      subject.ctx = ::Medup::Context.new(settings)
+
+      assets = Hash(String, String).new
+      actual = subject.md_content(assets)
+      actual.should eq "# Title\n![Image](./assets/image_url1.png) ![Image](./assets/image_url2.png) ![Image](./assets/image_url3.png)"
+      assets.size.should eq 3
+      assets.keys.sort.join(" ").should eq "image_url1.png image_url2.png image_url3.png"
     end
   end
 end

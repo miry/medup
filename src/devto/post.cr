@@ -25,9 +25,11 @@ module Devto
       content = md_content(assets)
       result += content + "\n\n"
 
-      footer += assets.map do |asset_name, asset_content|
-        "[#{asset_name}]: #{asset_content}"
-      end.join("\n")
+      if !@ctx.settings.assets_image?
+        footer += assets.map do |asset_name, asset_content|
+          "[#{asset_name}]: #{asset_content}"
+        end.join("\n")
+      end
 
       result += footer
 
@@ -49,24 +51,44 @@ module Devto
     def md_cover_image(assets)
       return "" if @cover_image == ""
 
-      asset_id = "img_ref_cover_image"
+      assets_base_path = @ctx.settings.assets_base_path
       asset_body, asset_type, asset_name = download_image("cover_image", @cover_image)
-      assets[asset_id] = "data:#{asset_type};base64," + \
-        Base64.strict_encode(asset_body)
+      result = "![Cover image]"
 
-      "![Cover image][#{asset_id}]\n\n"
+      if @ctx.settings.assets_image?
+        assets[asset_name] = asset_body
+        result += "(#{assets_base_path}/#{asset_name})"
+      else
+        asset_id = "img_ref_cover_image"
+        assets[asset_id] = "data:#{asset_type};base64," + \
+          Base64.strict_encode(asset_body)
+
+        result += "[#{asset_id}]"
+      end
+
+      result + "\n\n"
     end
 
     def md_content(assets) : String
+      assets_base_path = @ctx.settings.assets_base_path
       @body_markdown.gsub(/(?<image_start>!\[[^\]]*\])\((?<src>[^\)]*)\)/) do |md_img_tag, match|
         src = match["src"]
         uri = URI.parse src
         asset_name = File.basename(uri.path)
-        asset_id = "img_ref_" + asset_name.gsub(".", "_")
         asset_body, asset_type, asset_name = download_image(asset_name, src)
-        assets[asset_id] = "data:#{asset_type};base64," + \
-          Base64.strict_encode(asset_body)
-        match["image_start"] + "[" + asset_id + "]"
+
+        result = match["image_start"]
+        if @ctx.settings.assets_image?
+          assets[asset_name] = asset_body
+          result += "(#{assets_base_path}/#{asset_name})"
+        else
+          asset_id = "img_ref_" + asset_name.gsub(".", "_")
+          assets[asset_id] = "data:#{asset_type};base64," + \
+            Base64.strict_encode(asset_body)
+          result += "[" + asset_id + "]"
+        end
+
+        result
       end
     end
 

@@ -291,15 +291,15 @@ describe "CommandLine", tags: "e2e" do
   end
 
   describe "for devto platform" do
+    before_each do
+      FileUtils.rm_rf "posts"
+    end
+
+    after_each do
+      FileUtils.rm_rf "posts"
+    end
+
     describe "single post" do
-      before_each do
-        FileUtils.rm_rf "posts"
-      end
-
-      after_each do
-        FileUtils.rm_rf "posts"
-      end
-
       it "downloads" do
         actual = run_with ["-v4", "https://dev.to/jetthoughts/the-trial-period-for-staff-augmentation-in-jetthoughts-1h5c"]
         actual[1].should contain(%{Posts count: 1})
@@ -380,6 +380,16 @@ describe "CommandLine", tags: "e2e" do
       it "missing articles" do
         actual = run_with ["-v4", "--platform=devto", "--user=unknown"], expect_success: false
         actual[1].should contain %{error: No articles to backup\nSee 'medup --help' for usage.\n}
+      end
+    end
+
+    describe "with assets images argument" do
+      it "creates image file" do
+        actual = run_with ["-v4", "--assets-images", "https://dev.to/jetthoughts/how-to-use-a-transaction-script-aka-service-objects-in-ruby-on-rails-simple-example-3ll8"]
+        actual[1].should contain(%{Create directory ./posts/assets})
+        actual[1].should contain(%{Posts count: 1})
+        actual[1].should contain %{GET https://dev-to-uploads.s3.amazonaws.com/i/z8doa4yviijb8cje161m.png => 200 OK}
+        actual[1].should contain(%{Create asset ./posts/assets/z8doa4yviijb8cje161m.png})
       end
     end
   end
