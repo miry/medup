@@ -1,7 +1,7 @@
 # docker.io/miry/medup
 
 # Build layer
-ARG CRYSTAL_VERSION=1.4.1
+ARG CRYSTAL_VERSION=1.5.0
 ARG USER=1001
 
 FROM docker.io/crystallang/crystal:${CRYSTAL_VERSION}-alpine as build

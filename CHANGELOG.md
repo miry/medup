@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Introduce Dev.to integration. (#18, @miry)
 
+### Changed
+- Use crystal lang 1.5.0 (#56, @miry)
+
 ## [0.5.0] - 2022-05-09
 ### Added
 - Allow to change the download distination for assets with flag `--assets-dir=<DIR>`. (#40, @miry)
