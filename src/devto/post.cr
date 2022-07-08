@@ -20,10 +20,10 @@ module Devto
 
       result += md_cover_image(assets)
 
-      result += "# " + @title + "\n"
+      result += "# " + @title + "\n\n"
 
       content = md_content(assets)
-      result += content
+      result += content + "\n\n"
 
       footer += assets.map do |asset_name, asset_content|
         "[#{asset_name}]: #{asset_content}"
