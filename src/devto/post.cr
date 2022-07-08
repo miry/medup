@@ -20,6 +20,8 @@ module Devto
 
       result += md_cover_image(assets)
 
+      result += "# " + @title + "\n"
+
       content = md_content(assets)
       result += content
 

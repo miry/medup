@@ -32,7 +32,7 @@ describe Devto::Post do
       content = File.read(File.join("spec", "fixtures", "devto_article_trial_period.json"))
       subject = Devto::Post.from_json content
       content, assets = subject.to_md
-      content.size.should eq 2578
+      content.size.should eq 2635
       assets.size.should eq 1
     end
 
@@ -49,6 +49,15 @@ describe Devto::Post do
       description: We offer a 2-week trial with no obligation. So you can test everything and see how it goes with no fi...
       tags: startup, engagement, team, development
       ---
+      HEADER
+    end
+
+    it "renders title" do
+      content = File.read(File.join("spec", "fixtures", "devto_article_trial_period.json"))
+      subject = Devto::Post.from_json content
+      content, assets = subject.to_md
+      content.should contain <<-HEADER
+      # The Trial Period for Staff Augmentation in JetThoughts
       HEADER
     end
 
