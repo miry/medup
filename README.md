@@ -252,9 +252,11 @@ Rich elements content are located in `posts/assets` and integrated with `<IFRAME
 
 ## Markdown
 
-Example of exported document (Original Medium post vs Exported Markdown):
-
+Example of exported document.
+1. Original Medium post vs Exported Markdown:
 ![](./img/compare.png)
+1. Exported Markdown in Github pages vs original Dev.to
+![](./img/compare_devto.png)
 
 ## Demo
 
