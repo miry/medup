@@ -37,7 +37,7 @@ describe Medium::Post do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
       content, assets = subject.to_md
-      content.size.should eq(3206)
+      content.size.should eq(3322)
       assets.size.should eq(1)
       assets.keys.should eq([
         "ab24f0b378f797307fddc32f10a99685.html",
@@ -51,7 +51,7 @@ describe Medium::Post do
       subject.ctx = ::Medup::Context.new(settings)
 
       content, assets = subject.to_md
-      content.size.should eq(2932)
+      content.size.should eq(3048)
       assets.keys.should eq([
         "0*FbFs8aNmqNLKw4BM.png",
         "ab24f0b378f797307fddc32f10a99685.html",

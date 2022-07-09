@@ -10,6 +10,7 @@ module Medium
     JSON.mapping(
       title: String,
       slug: String,
+      mediumUrl: String,
       canonicalUrl: String,
       createdAt: Int64,
       updatedAt: Int64,
@@ -30,7 +31,8 @@ module Medium
 
     def to_md
       result = "---\n\
-        url: #{canonicalUrl}\n\
+        url: #{mediumUrl}\n\
+        canonical_url: #{canonicalUrl}\n\
         title: #{@title}\n\
         subtitle: #{subtitle}\n\
         slug: #{@slug}\n\
