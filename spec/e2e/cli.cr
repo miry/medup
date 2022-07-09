@@ -345,13 +345,13 @@ describe "CommandLine", tags: "e2e" do
         actual[1].should contain(%{Posts count: })
       end
 
-      pending "with organization name" do
+      it "with organization name" do
         actual = run_with ["-v4", "--platform=devto", "jetthoughts"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
       end
 
-      pending "with organization attribute" do
+      it "with organization attribute" do
         actual = run_with ["-v4", "--platform=devto", "--publication=jetthoughts"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
