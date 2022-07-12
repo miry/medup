@@ -114,24 +114,32 @@ module Medup
 
       if File.exists?(filepath)
         return unless @update
-        File.delete(filepath + ".old") if File.exists?(filepath + ".old")
-        File.rename(filepath, filepath + ".old")
+        if !@ctx.settings.dry_run?
+          File.delete(filepath + ".old") if File.exists?(filepath + ".old")
+          File.rename(filepath, filepath + ".old")
+        end
       end
       @logger.info "Create file #{filepath}"
 
       if format == "json"
-        File.write(filepath, post.to_pretty_json)
+        if !@ctx.settings.dry_run?
+          File.write(filepath, post.to_pretty_json)
+        end
         return
       end
 
       content, assets = post.to_md
-      File.write(filepath, content)
+      if !@ctx.settings.dry_run?
+        File.write(filepath, content)
+      end
 
       if @ctx.settings.assets_image?
         assets.each do |filename, content|
           filepath = File.join(@assets_dist, filename)
           @logger.debug "Create asset #{filepath}"
-          File.write(filepath, content)
+          if !@ctx.settings.dry_run?
+            File.write(filepath, content)
+          end
         end
       end
     end
@@ -139,7 +147,7 @@ module Medup
     def create_directory(path)
       unless File.directory?(path)
         @logger.debug "Create directory #{path}"
-        Dir.mkdir_p(path)
+        Dir.mkdir_p(path) if !@ctx.settings.dry_run?
       end
     end
   end

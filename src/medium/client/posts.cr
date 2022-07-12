@@ -45,7 +45,7 @@ module Medium
             end
           end
 
-          next_page = response["payload"]["paging"]["next"]?
+          next_page = response.dig? "payload", "paging", "next"
           break if next_page.nil?
 
           params["page"] = next_page["page"].raw.to_s

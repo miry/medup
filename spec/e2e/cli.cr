@@ -99,6 +99,23 @@ describe "CommandLine", tags: "e2e" do
       actual[0].should contain(%{Warning: Error fetch gist from GitHub})
     end
 
+    it "has option --dry-run=" do
+      output = run_with ["--help"]
+      output[0].should contain %{--dry-run}
+    end
+
+    it "does not create posts folder with dry-run" do
+      FileUtils.rm_rf "posts"
+
+      actual = run_with ["--dry-run", "-v7", "--assets-images", "https://medium.com/notes-and-tips-in-full-stack-development/medup-backups-articles-8bf90179b094"]
+      actual[1].should contain(%{Create directory ./posts})
+      actual[1].should contain(%{Create directory ./posts/assets})
+      actual[1].should contain(%{Posts count: 1})
+      actual[1].should contain(%{Create file ./posts/2020-09-16-medup-backups-articles.md})
+      actual[1].should contain(%{Create asset ./posts/assets/0*LZaURw4xtfA74nu9.jpeg})
+      File.exists?("posts").should be_false
+    end
+
     describe "verbosity" do
       it "handles unknown options" do
         actual = run_with ["-v6", "--oops"], expect_success: false

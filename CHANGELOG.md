@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Introduce a article attribute `canonical_url` (@miry)
+- Introduce a article attribute `canonical_url`. (@miry)
+
+### Added
+- Introduce `--dry-run` argument to test without filesystem modifications. (#53, @miry)
 
 ## [0.6.0] - 2022-07-09
 ### Added

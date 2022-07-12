@@ -18,6 +18,7 @@ module Medup
     setter assets_dist : String?
     property assets_base_path : String = DEFAULT_ASSETS_BASE_PATH
     property options : Array(::Medup::Options) = Array(Medup::Options).new
+    @dry_run : Bool = false
 
     def initialize
     end
@@ -44,6 +45,14 @@ module Medup
 
     def assets_dist : String
       @assets_dist ||= File.join(@posts_dist, DEFAULT_ASSETS_DIR_NAME)
+    end
+
+    def dry_run! : Bool
+      @dry_run = true
+    end
+
+    def dry_run? : Bool
+      @dry_run
     end
   end
 end
