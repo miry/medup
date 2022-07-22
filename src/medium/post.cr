@@ -1,4 +1,5 @@
 require "json_mapping"
+require "yaml"
 
 require "./post/*"
 
@@ -30,23 +31,24 @@ module Medium
     end
 
     def to_md
-      result = "---\n\
-        url: #{mediumUrl}\n\
-        canonical_url: #{canonicalUrl}\n\
-        title: #{@title}\n\
-        subtitle: #{subtitle}\n\
-        slug: #{@slug}\n\
-        description: #{seo_description}\n\
-        tags: #{tags}\n"
-      assets = Hash(String, String).new
-
-      unless @user.nil?
-        user = @user.not_nil!
-        result += "author: #{user.name}\n\
-          username: #{user.username}\n"
+      header = {
+        "url"           => mediumUrl,
+        "canonical_url" => canonicalUrl,
+        "title"         => @title,
+        "subtitle"      => subtitle,
+        "slug"          => @slug,
+        "description"   => seo_description,
+        "tags"          => tags,
+      }
+      user = @user
+      if !user.nil?
+        header["author"] = user.name
+        header["username"] = user.username
       end
 
-      result += "---\n\n"
+      result = header.to_yaml + "---\n\n"
+
+      assets = Hash(String, String).new
       footer = "\n"
 
       @content.bodyModel.paragraphs.map do |paragraph|
