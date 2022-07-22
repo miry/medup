@@ -60,8 +60,7 @@ $ git tag -s "v${RELEASE_VERSION}"
 ### Push
 
 ```shell
-$ git push origin master
-$ git push origin master --tags
+$ git push origin master --follow-tags
 ```
 
 ## Github Release
