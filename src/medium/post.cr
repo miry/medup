@@ -81,9 +81,8 @@ module Medium
       @content.subtitle || ""
     end
 
-    # Comma seprated list of tags
-    def tags
-      @virtuals.tags.join ",", &.slug
+    def tags : Array(String)
+      @virtuals.tags.map &.slug
     end
 
     def created_at

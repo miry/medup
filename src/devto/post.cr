@@ -1,3 +1,5 @@
+require "yaml"
+
 require "../medup/post"
 
 module Devto
@@ -12,6 +14,7 @@ module Devto
     property cover_image : String = ""
     property body_markdown : String = ""
     property tag_list : String = ""
+    property tags : Array(String) = [] of String
 
     def to_md
       result = md_header
@@ -37,15 +40,16 @@ module Devto
     end
 
     def md_header
-      result = "---\n\
-        url: #{@url}\n\
-        canonical_url: #{@canonical_url}\n\
-        title: #{@title}\n\
-        slug: #{@slug}\n\
-        description: #{@description}\n\
-        tags: #{@tag_list}\n\
-        ---\n\n"
-      result
+      header = {
+        "url"           => @url,
+        "canonical_url" => @canonical_url,
+        "title"         => @title,
+        "slug"          => @slug,
+        "description"   => @description,
+        "tags"          => @tags,
+      }
+
+      header.to_yaml + "---\n\n"
     end
 
     def md_cover_image(assets)

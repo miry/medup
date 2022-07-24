@@ -37,7 +37,7 @@ describe Medium::Post do
     it "render full page" do
       subject = Medium::Post.from_json(post_fixture)
       content, assets = subject.to_md
-      content.size.should eq(3324)
+      content.size.should eq(3334)
       assets.size.should eq(1)
       assets.keys.should eq([
         "ab24f0b378f797307fddc32f10a99685.html",
@@ -51,7 +51,7 @@ describe Medium::Post do
       subject.ctx = ::Medup::Context.new(settings)
 
       content, assets = subject.to_md
-      content.size.should eq(3050)
+      content.size.should eq(3060)
       assets.keys.should eq([
         "0*FbFs8aNmqNLKw4BM.png",
         "ab24f0b378f797307fddc32f10a99685.html",
@@ -169,7 +169,14 @@ describe Medium::Post do
 
       it "stores tags information in metadata" do
         subject = Medium::Post.from_json(post_fixture)
-        subject.to_md[0].should contain(%{tags: vim,debug,linux,cracking,hacking})
+        subject.to_md[0].should contain <<-HEADER
+        tags:
+        - vim
+        - debug
+        - linux
+        - cracking
+        - hacking
+        HEADER
       end
 
       it "stores author name information in metadata" do

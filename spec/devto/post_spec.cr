@@ -32,7 +32,7 @@ describe Devto::Post do
       content = File.read(File.join("spec", "fixtures", "devto_article_trial_period.json"))
       subject = Devto::Post.from_json content
       content, assets = subject.to_md
-      content.size.should eq 2638
+      content.size.should eq 2645
       assets.size.should eq 1
     end
 
@@ -46,8 +46,13 @@ describe Devto::Post do
       canonical_url: https://jtway.co/the-trial-period-in-jetthoughts-968e7f01481f?source=friends_link&sk=56dbdb8567ab7500796037d42c80e46a
       title: The Trial Period for Staff Augmentation in JetThoughts
       slug: the-trial-period-for-staff-augmentation-in-jetthoughts-1h5c
-      description: We offer a 2-week trial with no obligation. So you can test everything and see how it goes with no fi...
-      tags: startup, engagement, team, development
+      description: We offer a 2-week trial with no obligation. So you can test everything
+        and see how it goes with no fi...
+      tags:
+      - startup
+      - engagement
+      - team
+      - development
       ---
       HEADER
     end
