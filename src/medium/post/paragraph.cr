@@ -244,9 +244,9 @@ module Medium
         return "" if gists.nil?
 
         return gists.map do |gist|
-          "```\n#{gist["content"]}\n```\n" +
-            "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
-        end.join("\n")
+          "```\n#{gist["content"]}\n```\n" \
+          "> *[#{gist["filename"]} view raw](#{gist["raw_url"]})*"
+        end.join("\n\n")
       end
 
       def process_twitter_content(content : String) : String

@@ -403,6 +403,12 @@ describe Medium::Post::Paragraph do
                     "type": "application/x-sh",
                     "raw_url": "https://gist.githubusercontent.com/",
                     "content": "#!/usr/bin/env bash\\n\\nmedup -u miry -d ./posts/miry"
+                  },
+                  "quux.sh": {
+                    "filename": "quux.sh",
+                    "type": "application/x-sh",
+                    "raw_url": "https://gist.githubusercontent.com/",
+                    "content": "#!/usr/bin/env bash\\n\\nmedup jetthoughts -d ./posts/jetthoughts"
                   }
                 }}
               },
@@ -417,8 +423,21 @@ describe Medium::Post::Paragraph do
               }
             }
           })
-          subject.to_md[0].should contain(%{medup -u miry -d ./posts/miry})
-          subject.to_md[0].should contain(%{[usage.sh view raw](https:})
+          subject.to_md[0].should contain <<-CONTENT
+          ```
+          #!/usr/bin/env bash
+
+          medup -u miry -d ./posts/miry
+          ```
+          > *[usage.sh view raw](https://gist.githubusercontent.com/)*
+
+          ```
+          #!/usr/bin/env bash
+
+          medup jetthoughts -d ./posts/jetthoughts
+          ```
+          > *[quux.sh view raw](https://gist.githubusercontent.com/)*
+          CONTENT
         end
 
         it "render media gist inline without thumbnailUrl" do
