@@ -101,6 +101,223 @@ describe Medium::Post::Paragraph do
       subject.to_md[0].should eq("### [🇺🇦 JetThoughts](https://jtway.co/resize-amazon-ebs-volumes-without-a-reboot-ca118b010b44): REsize Amazon EBS volumes without a reboot")
     end
 
+    it "ignore links with empty title" do
+      entity_raw = <<-JSON
+        {
+          "name": "5801",
+          "type": 1,
+          "text": "Paul Keen is a Chief Technology Officer at JetThoughts. Follow him on LinkedIn or GitHub.",
+          "markups": [
+            {
+              "type": 3,
+              "start": 69,
+              "end": 70,
+              "href": "https://twitter.com/someone",
+              "title": "",
+              "rel": "nofollow noopener noopener noopener noopener noopener",
+              "anchorType": 0
+            }
+          ]
+        }
+      JSON
+      subject = Medium::Post::Paragraph.from_json(entity_raw)
+      subject.to_md[0].should eq("Paul Keen is a Chief Technology Officer at JetThoughts. Follow him on LinkedIn or GitHub.")
+    end
+
+    it "swap space with close tag" do
+      entity_raw = <<-JSON
+        {
+          "name": "5801",
+          "type": 1,
+          "text": "Paul Keen is a ...",
+          "markups": [
+            {
+              "type": 1,
+              "start": 0,
+              "end": 10
+            }
+          ]
+        }
+      JSON
+      subject = Medium::Post::Paragraph.from_json(entity_raw)
+      subject.to_md[0].should eq("**Paul Keen** is a ...")
+    end
+
+    describe "renders complex sentence with mix italic, bold and links" do
+      it "apply first link not overlapped" do
+        entity_raw = <<-JSON
+          {
+            "name": "5801",
+            "type": 1,
+            "text": "Paul Keen is a Chief Technology Officer at JetThoughts. Follow him on LinkedIn or GitHub.",
+            "markups": [
+              {
+                "type": 3,
+                "start": 43,
+                "end": 54,
+                "href": "https://www.jetthoughts.com",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 69,
+                "end": 70,
+                "href": "https://twitter.com/ChrisKeathley",
+                "title": "",
+                "rel": "nofollow noopener noopener noopener noopener noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 70,
+                "end": 78,
+                "href": "https://www.linkedin.com/in/paul-keen/",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 82,
+                "end": 88,
+                "href": "https://github.com/pftg",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              }
+            ]
+          }
+        JSON
+
+        subject = Medium::Post::Paragraph.from_json(entity_raw)
+        subject.to_md[0].should eq("Paul Keen is a Chief Technology Officer at [JetThoughts](https://www.jetthoughts.com). Follow him on [LinkedIn](https://www.linkedin.com/in/paul-keen/) or [GitHub](https://github.com/pftg).")
+      end
+
+      it "apply links with bold not overlapped" do
+        entity_raw = <<-JSON
+          {
+            "name": "5801",
+            "type": 1,
+            "text": "Paul Keen is a Chief Technology Officer at JetThoughts. Follow him on LinkedIn or GitHub.",
+            "markups": [
+              {
+                "type": 3,
+                "start": 43,
+                "end": 54,
+                "href": "https://www.jetthoughts.com",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 69,
+                "end": 70,
+                "href": "https://twitter.com/ChrisKeathley",
+                "title": "",
+                "rel": "nofollow noopener noopener noopener noopener noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 70,
+                "end": 78,
+                "href": "https://www.linkedin.com/in/paul-keen/",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 82,
+                "end": 88,
+                "href": "https://github.com/pftg",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 1,
+                "start": 0,
+                "end": 10
+              }
+            ]
+          }
+        JSON
+
+        subject = Medium::Post::Paragraph.from_json(entity_raw)
+        subject.to_md[0].should eq("**Paul Keen** is a Chief Technology Officer at [JetThoughts](https://www.jetthoughts.com). Follow him on [LinkedIn](https://www.linkedin.com/in/paul-keen/) or [GitHub](https://github.com/pftg).")
+      end
+
+      it "apply links and styles overlapped" do
+        entity_raw = <<-JSON
+          {
+            "name": "5801",
+            "type": 1,
+            "text": "Paul Keen is a Chief Technology Officer at JetThoughts. Follow him on LinkedIn or GitHub.",
+            "markups": [
+              {
+                "type": 3,
+                "start": 43,
+                "end": 54,
+                "href": "https://www.jetthoughts.com",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 69,
+                "end": 70,
+                "href": "https://twitter.com/ChrisKeathley",
+                "title": "",
+                "rel": "nofollow noopener noopener noopener noopener noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 70,
+                "end": 78,
+                "href": "https://www.linkedin.com/in/paul-keen/",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 3,
+                "start": 82,
+                "end": 88,
+                "href": "https://github.com/pftg",
+                "title": "",
+                "rel": "noopener",
+                "anchorType": 0
+              },
+              {
+                "type": 1,
+                "start": 0,
+                "end": 10
+              },
+              {
+                "type": 2,
+                "start": 0,
+                "end": 70
+              },
+              {
+                "type": 2,
+                "start": 79,
+                "end": 89
+              }
+            ]
+          }
+        JSON
+
+        subject = Medium::Post::Paragraph.from_json(entity_raw)
+        subject.to_md[0].should eq("***Paul Keen** is a Chief Technology Officer at [JetThoughts](https://www.jetthoughts.com). Follow him on* [LinkedIn](https://www.linkedin.com/in/paul-keen/) *or [GitHub](https://github.com/pftg).*")
+      end
+    end
+
     it "render code block" do
       subject = Medium::Post::Paragraph.from_json(%{{"name": "d2a9", "type": 8, "text": "puts hello", "markups": []}})
       subject.to_md[0].should eq("```\nputs hello\n```")

@@ -289,26 +289,43 @@ module Medium
 
         @text += " "
         char_index = 0
+        remember_last_space = false
         # Grapheme is an experimental feature from Crystal to return symbols as
         # rendered, instead of static width bytes. It helpes to easy identify
         # emoji symbols chain.
         @text.each_grapheme do |symbol|
           if close_elements.has_key?(char_index)
-            close_elements[char_index].each do |m|
+            remember_last_space = false
+
+            if result.ends_with?(" ")
+              @logger.warn 4, "Space is before closing element. Swapping order."
+              remember_last_space = true
+              result = result.rchop
+            end
+
+            closing = close_elements[char_index]
+            closing.sort! { |a, b| b.start <=> a.start }
+            closing.each do |m|
               case m.type
               when 1 # bold
                 result += "**"
               when 2 # italic
                 result += "*"
               when 3 # link
-                href = m.href.nil? ? "" : m.href.not_nil!
-                result += "](#{href})"
+                if result.ends_with?("[")
+                  @logger.warn 4, "Skip link because there is no anchor text"
+                  result = result.delete_at(-1)
+                else
+                  href = m.href.nil? ? "" : m.href.not_nil!
+                  result += "](#{href})"
+                end
               when 10 # code inline
                 result += "`"
               else
                 raise "Unknown markup type #{m.type} with text #{@text[m.start...m.end]}"
               end
             end
+            result += " " if remember_last_space
           end
 
           if open_elements.has_key?(char_index)

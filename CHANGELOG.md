@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Tags is an array instead of list of words splitted with coma
+- Tags is an array instead of the list of words split with coma. (@miry)
+
+### Fixed
+- Overlapping style and link tags could produce an incredible Markdown.
+  Because of WYSIWYG, plenty of hidden things that could destroy Markdown.
+  Introduce a workaround to have swap places last space and closing elements.
+  Ignore links without anchor text.
+  There are still more possibilities to break Markdown. (#59, @miry)
 
 ## [0.7.0] - 2022-07-22
 ### Changed
