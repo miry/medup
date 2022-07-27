@@ -299,6 +299,7 @@ module Medium
 
             if result.ends_with?(" ")
               @logger.warn 4, "Space is before closing element. Swapping order."
+              @logger.debug 7, "Swapping just after text: #{(result[-30..]? || result).inspect}"
               remember_last_space = true
               result = result.rchop
             end
