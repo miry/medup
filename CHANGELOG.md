@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.8.0] - 2022-07-27
 ### Changed
 - Tags is an array instead of the list of words split with coma. (@miry)
 
@@ -168,7 +170,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Relase docker image
 - Dump Medium posts base on author name
 
-[Unreleased]: https://github.com/miry/medup/compare/v0.7.0...HEAD
+[Unreleased]: https://github.com/miry/medup/compare/v0.8.0...HEAD
+[0.8.0]: https://github.commiry/medup/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.commiry/medup/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.commiry/medup/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.commiry/medup/compare/v0.4.1...v0.5.0
