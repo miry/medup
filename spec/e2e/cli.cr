@@ -371,19 +371,19 @@ describe "CommandLine", tags: "e2e" do
 
     describe "organization" do
       it "detects organization by name" do
-        actual = run_with ["-v4", "https://dev.to/jetthoughts/"]
+        actual = run_with ["-v4", "https://dev.to/jetthoughts/", "--dry-run"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
       end
 
       it "with organization name" do
-        actual = run_with ["-v4", "--platform=devto", "jetthoughts"]
+        actual = run_with ["-v4", "--platform=devto", "jetthoughts", "--dry-run"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
       end
 
       it "with organization attribute" do
-        actual = run_with ["-v4", "--platform=devto", "--publication=jetthoughts"]
+        actual = run_with ["-v4", "--platform=devto", "--publication=jetthoughts", "--dry-run"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
       end
@@ -391,19 +391,19 @@ describe "CommandLine", tags: "e2e" do
 
     describe "with user argument" do
       it "detects user by url" do
-        actual = run_with ["-v4", "https://dev.to/jetthoughts/"]
+        actual = run_with ["-v4", "https://dev.to/jetthoughts/", "--dry-run"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
       end
 
       it "detects with user name" do
-        actual = run_with ["-v4", "--platform=devto", "@jetthoughts"]
+        actual = run_with ["-v4", "--platform=devto", "@jetthoughts", "--dry-run"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
       end
 
       it "detects with user attribute" do
-        actual = run_with ["-v4", "--platform=devto", "--user=jetthoughts"]
+        actual = run_with ["-v4", "--platform=devto", "--user=jetthoughts", "--dry-run"]
         actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
         actual[1].should contain(%{Posts count: })
       end
@@ -416,7 +416,12 @@ describe "CommandLine", tags: "e2e" do
 
     describe "with assets images argument" do
       it "creates image file" do
-        actual = run_with ["-v4", "--assets-images", "https://dev.to/jetthoughts/how-to-use-a-transaction-script-aka-service-objects-in-ruby-on-rails-simple-example-3ll8"]
+        actual = run_with [
+          "-v4",
+          "--assets-images",
+          "https://dev.to/jetthoughts/how-to-use-a-transaction-script-aka-service-objects-in-ruby-on-rails-simple-example-3ll8",
+          "--dry-run",
+        ]
         actual[1].should contain(%{Create directory ./posts/assets})
         actual[1].should contain(%{Posts count: 1})
         actual[1].should contain %{GET https://dev-to-uploads.s3.amazonaws.com/i/z8doa4yviijb8cje161m.png => 200 OK}
@@ -427,7 +432,7 @@ describe "CommandLine", tags: "e2e" do
 
   describe "for mix platforms" do
     it "uses medium and devto in same command" do
-      actual = run_with ["-v4", "--platform=medium", "@miry", "https://dev.to/jetthoughts/"]
+      actual = run_with ["-v4", "--platform=medium", "@miry", "https://dev.to/jetthoughts/", "--dry-run"]
       actual[1].should contain(%{GET https://dev.to/api/articles?username=jetthoughts&page=1&per_page=1000 => 200 OK})
       actual[1].should contain(%{Posts count: })
       actual[1].should contain(%{GET /_/api/users/fdf238948af6/profile/stream?format=json&limit=100&source=overview => 200 OK})
